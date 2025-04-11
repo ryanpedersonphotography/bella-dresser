@@ -18,7 +18,12 @@
 
 @layer components {
   .gradient-text {
-    @apply bg-gradient-to-r from-primary via-accent to-highlight bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-primary via-accent to-highlight;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    display: inline-block; /* Ensure background spans the entire text */
   }
 
   .hover-glow {

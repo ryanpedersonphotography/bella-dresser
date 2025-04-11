@@ -61,7 +61,7 @@ const HeroSlideshow: React.FC = () => {
                 {slide.subtitle}
               </h2>
               <h1 className="text-7xl font-heading font-bold mb-6 leading-tight">
-                <span className="bg-gradient-to-r from-primary via-highlight to-accent bg-clip-text text-transparent">
+                <span className="gradient-text">
                   {slide.title}
                 </span>
               </h1>

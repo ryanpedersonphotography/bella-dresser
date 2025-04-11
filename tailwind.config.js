@@ -22,9 +22,9 @@ export default {
         plum: '#796E89', // Smokey Plum
       },
       fontFamily: {
-        heading: ['Hatton', 'Clash Display', 'sans-serif'],
-        body: ['Cabinet Grotesk', 'sans-serif'],
-        accent: ['Voyage', 'serif'],
+        heading: ['"Clash Display"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        body: ['"Cabinet Grotesk"', '"DM Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        accent: ['"Playfair Display"', 'ui-serif', 'Georgia', 'serif'],
       },
       borderRadius: {
         'sm': '8px',
