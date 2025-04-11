@@ -9,9 +9,20 @@
   margin: 0;
   padding: 0;
   z-index: 10; /* Ensure proper layering */
+  perspective: 1000px; /* Add perspective for 3D effects */
 }
 
-.pink-wave-divider::before {
+/* Wrapper for wave animations with Framer Motion */
+.wave-animation-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transform-origin: center bottom;
+}
+
+.wave-animation-wrapper::before {
   content: '';
   position: absolute;
   top: 0;
@@ -22,9 +33,10 @@
   background-size: 1200px 100%;
   animation: wave-animation 18s linear infinite;
   transform-origin: center bottom; /* Ensure waves scale from the bottom */
+  will-change: transform; /* Optimize for animations */
 }
 
-.pink-wave-divider::after {
+.wave-animation-wrapper::after {
   content: '';
   position: absolute;
   top: 30px;
@@ -35,6 +47,8 @@
   background-size: 1200px 100%;
   animation: wave-animation 15s linear infinite reverse;
   transform-origin: center bottom; /* Ensure waves scale from the bottom */
+  will-change: transform; /* Optimize for animations */
+  filter: drop-shadow(0 0 8px rgba(255, 0, 255, 0.1)); /* Subtle glow effect */
 }
 
 @keyframes wave-animation {
@@ -44,6 +58,17 @@
   100% {
     background-position-x: 1200px;
   }
+}
+
+/* Add a subtle hover effect for interactive feel */
+.pink-wave-divider:hover .wave-animation-wrapper::before {
+  animation-duration: 15s; /* Speed up on hover */
+  filter: brightness(1.1); /* Slightly brighter on hover */
+}
+
+.pink-wave-divider:hover .wave-animation-wrapper::after {
+  animation-duration: 12s; /* Speed up on hover */
+  filter: drop-shadow(0 0 12px rgba(255, 0, 255, 0.15)); /* Enhanced glow on hover */
 }
 
 /* Special styling for the bottom wave divider */
