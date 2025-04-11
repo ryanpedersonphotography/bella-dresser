@@ -1,5 +1,7 @@
 # Bella Dresser Boutique - Site Documentation
 
+> **Design Update:** A [Design Refinement Plan](./design-refinement-plan.md) has been created to address several design improvements including gradient text refinement, button sizing consistency, dynamic section dividers, enhanced text styling, and new textures. Additionally, a [Sticky Navbar Implementation](./sticky-navbar-implementation.md) has been added to enhance the hero section experience.
+
 ## Table of Contents
 1. [Technical Architecture](#technical-architecture)
 2. [Design System](#design-system)
@@ -123,14 +125,19 @@ bella-dresser/
 - Polish heritage emphasis
 
 ### Components
-
 #### Navbar
 ```typescript
 Features:
-- Fixed top navigation
-- Logo with Sparkles icon
+- Dual-mode navigation (transparent in hero, solid when sticky)
+- Integrated within hero section on homepage
+- Fixed top navigation on other pages
+- Logo with adaptive styling based on background
 - Responsive design
 - Hover effects on links
+- Smooth transition animations
+```
+
+See the [Sticky Navbar Implementation Guide](./sticky-navbar-implementation.md) for detailed information on the transparent-to-sticky navbar behavior.
 ```
 
 #### Footer
@@ -212,6 +219,18 @@ Features:
 - Community-oriented
 
 ## Improvement Plan
+
+### Latest Design Refinements
+A detailed [Design Refinement Plan](./design-refinement-plan.md) has been created to address specific design improvements:
+
+1. **Gradient Text Refinement** - Less colorful, more elegant gradient text options
+2. **Button Sizing Consistency** - Standardized button sizes with consistent proportions
+3. **Dynamic Section Dividers** - More feminine, flowing section dividers
+4. **Enhanced Text-Cosmic** - Larger, more playful text variants
+5. **Pink Wool Texture** - New bright pink wool texture for backgrounds
+6. **Sticky Navbar in Hero** - Transparent navbar integrated in hero section that becomes sticky on scroll
+
+These refinements are documented with implementation details and will be incorporated in the next development phase.
 
 ### Phase 1: Visual Refresh
 - Implement vibrant color palette

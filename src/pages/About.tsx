@@ -37,13 +37,37 @@ const About: React.FC = () => {
             </blockquote>
           </div>
           <div className="relative group">
-            <div className="absolute -inset-4 bg-gradient-to-r from-primary to-accent rounded-2xl opacity-50 blur-xl group-hover:opacity-75 transition duration-500"></div>
+            <div className="absolute -inset-4 bg-gradient-to-r from-primary/80 to-secondary/80 rounded-2xl opacity-40 blur-xl group-hover:opacity-60 transition duration-500"></div>
             <div className="relative aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl">
-              <img 
-                src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?ixlib=rb-4.0.3" 
-                alt="Boutique owner"
-                className="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-105"
-              />
+              {/* Owner's image with boutique background */}
+              <div className="absolute inset-0 w-full h-full">
+                {/* Boutique background */}
+                <div className="absolute inset-0 bg-gradient-to-b from-lavender/30 to-cloud/50"></div>
+                <div className="absolute inset-0 opacity-30 bg-[url('https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?ixlib=rb-4.0.3')] bg-cover bg-center mix-blend-overlay"></div>
+                
+                {/* Soft vignette overlay */}
+                <div className="absolute inset-0 bg-radial-gradient opacity-60"></div>
+                
+                {/* Stylized photo of Aneta */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="relative w-4/5 h-4/5 rounded-xl overflow-hidden border-2 border-white/20 shadow-lg">
+                    <div className="absolute inset-0 bg-primary/5"></div>
+                    <img
+                      src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?ixlib=rb-4.0.3"
+                      alt="Aneta, Founder of Bella Dresser"
+                      className="w-full h-full object-cover object-center transition duration-700 group-hover:scale-105 filter saturate-110 brightness-105 contrast-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-primary/15 to-transparent mix-blend-overlay"></div>
+                  </div>
+                </div>
+                
+                {/* Decorative elements */}
+                <div className="absolute bottom-6 right-6">
+                  <div className="px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full shadow-lg">
+                    <p className="text-xs font-medium text-cosmic">Founder & Fashion Curator</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

@@ -1,0 +1,569 @@
+/* Button Showcase Styles
+   These styles define various button options for selection
+   Each style maintains consistent sizing while offering different aesthetics
+*/
+
+/* Base Button Sizing - Consistent across all styles */
+.btn-xs {
+  padding: 0.375rem 1rem;
+  font-size: 0.75rem;
+  height: 28px;
+}
+
+.btn-sm {
+  padding: 0.5rem 1.25rem;
+  font-size: 0.875rem;
+  height: 36px;
+}
+
+.btn-md {
+  padding: 0.625rem 1.5rem;
+  font-size: 1rem;
+  height: 44px;
+}
+
+.btn-lg {
+  padding: 0.75rem 2rem;
+  font-size: 1.125rem;
+  height: 52px;
+}
+
+.btn-xl {
+  padding: 0.875rem 2.5rem;
+  font-size: 1.25rem;
+  height: 60px;
+}
+
+/* Common Button Properties */
+[class*="btn-"] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  border: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  font-family: var(--font-body);
+  line-height: 1;
+}
+
+/* ==============================
+   Style 1: Minimal Clean
+   ============================== */
+
+/* Primary - Light Background */
+.btn-minimal-primary {
+  background-color: var(--color-primary);
+  color: white;
+  border-radius: 4px;
+}
+
+.btn-minimal-primary:hover {
+  background-color: var(--color-primary-saturated);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 0, 255, 0.2);
+}
+
+/* Secondary - Light Background */
+.btn-minimal-secondary {
+  background-color: transparent;
+  color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+  border-radius: 4px;
+}
+
+.btn-minimal-secondary:hover {
+  background-color: var(--color-primary-light);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 0, 255, 0.1);
+}
+
+/* Primary - Dark Background */
+.btn-minimal-primary-dark {
+  background-color: white;
+  color: var(--color-cosmic);
+  border-radius: 4px;
+}
+
+.btn-minimal-primary-dark:hover {
+  background-color: var(--color-cloud);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+}
+
+/* Secondary - Dark Background */
+.btn-minimal-secondary-dark {
+  background-color: transparent;
+  color: white;
+  border: 1px solid white;
+  border-radius: 4px;
+}
+
+.btn-minimal-secondary-dark:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+}
+
+/* ==============================
+   Style 2: Soft Elegant
+   ============================== */
+
+/* Primary - Light Background */
+.btn-elegant-primary {
+  background-color: var(--color-primary);
+  color: white;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(255, 0, 255, 0.2);
+}
+
+.btn-elegant-primary:hover {
+  background-color: var(--color-primary-saturated);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(255, 0, 255, 0.25);
+}
+
+/* Secondary - Light Background */
+.btn-elegant-secondary {
+  background-color: var(--color-cloud);
+  color: var(--color-primary);
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.btn-elegant-secondary:hover {
+  background-color: white;
+  color: var(--color-primary-saturated);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+/* Primary - Dark Background */
+.btn-elegant-primary-dark {
+  background-color: var(--color-accent);
+  color: var(--color-cosmic);
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 229, 229, 0.3);
+}
+
+.btn-elegant-primary-dark:hover {
+  background-color: var(--color-accent-saturated);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 229, 229, 0.4);
+}
+
+/* Secondary - Dark Background */
+.btn-elegant-secondary-dark {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn-elegant-secondary-dark:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* ==============================
+   Style 3: Modern Accent
+   ============================== */
+
+/* Primary - Light Background */
+.btn-modern-primary {
+  background-color: var(--color-primary);
+  color: white;
+  border-radius: 4px;
+  border-left: 4px solid var(--color-accent);
+}
+
+.btn-modern-primary:hover {
+  background-color: var(--color-primary-saturated);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 0, 255, 0.2);
+}
+
+/* Secondary - Light Background */
+.btn-modern-secondary {
+  background-color: var(--color-cloud);
+  color: var(--color-cosmic);
+  border-radius: 4px;
+  border-left: 4px solid var(--color-primary);
+}
+
+.btn-modern-secondary:hover {
+  background-color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Primary - Dark Background */
+.btn-modern-primary-dark {
+  background-color: var(--color-accent);
+  color: var(--color-cosmic);
+  border-radius: 4px;
+  border-left: 4px solid var(--color-highlight);
+}
+
+.btn-modern-primary-dark:hover {
+  background-color: var(--color-accent-saturated);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 229, 229, 0.3);
+}
+
+/* Secondary - Dark Background */
+.btn-modern-secondary-dark {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  border-radius: 4px;
+  border-left: 4px solid var(--color-accent);
+}
+
+.btn-modern-secondary-dark:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+}
+
+/* ==============================
+   Style 4: Refined Feminine Gradients
+   ============================== */
+
+/* Primary - Light Background */
+.btn-gradient-primary {
+ background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-saturated) 100%);
+ color: white;
+ border-radius: 6px;
+ border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.btn-gradient-primary:hover {
+ background: linear-gradient(135deg, var(--color-primary-saturated) 0%, var(--color-primary) 100%);
+ transform: translateY(-2px);
+ box-shadow: 0 4px 12px rgba(255, 0, 255, 0.15);
+}
+
+/* Secondary - Light Background */
+.btn-gradient-secondary {
+ background: linear-gradient(135deg, var(--color-lavender) 0%, var(--color-peach) 100%);
+ color: var(--color-cosmic);
+ border-radius: 6px;
+ border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-gradient-secondary:hover {
+ background: linear-gradient(135deg, var(--color-peach) 0%, var(--color-lavender) 100%);
+ transform: translateY(-2px);
+ box-shadow: 0 4px 12px rgba(226, 213, 248, 0.2);
+}
+
+/* Primary - Dark Background */
+.btn-gradient-primary-dark {
+ background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-saturated) 100%);
+ color: var(--color-cosmic);
+ border-radius: 6px;
+ border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.btn-gradient-primary-dark:hover {
+ background: linear-gradient(135deg, var(--color-accent-saturated) 0%, var(--color-accent) 100%);
+ transform: translateY(-2px);
+ box-shadow: 0 4px 12px rgba(0, 229, 229, 0.2);
+}
+
+/* Secondary - Dark Background */
+.btn-gradient-secondary-dark {
+ background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
+ color: white;
+ border-radius: 6px;
+ border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.btn-gradient-secondary-dark:hover {
+ background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+}
+
+/* ==============================
+   Style 5: Bordered Refined
+   ============================== */
+
+/* Primary - Light Background */
+.btn-bordered-primary {
+  background-color: white;
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+  border-radius: 4px;
+}
+
+.btn-bordered-primary:hover {
+  background-color: var(--color-primary);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 0, 255, 0.15);
+}
+
+/* Secondary - Light Background */
+.btn-bordered-secondary {
+  background-color: white;
+  color: var(--color-cosmic);
+  border: 2px solid var(--color-plum);
+  border-radius: 4px;
+}
+
+.btn-bordered-secondary:hover {
+  background-color: var(--color-plum);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(121, 110, 137, 0.2);
+}
+
+/* Primary - Dark Background */
+.btn-bordered-primary-dark {
+  background-color: transparent;
+  color: var(--color-accent);
+  border: 2px solid var(--color-accent);
+  border-radius: 4px;
+}
+
+.btn-bordered-primary-dark:hover {
+  background-color: var(--color-accent);
+  color: var(--color-cosmic);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 229, 229, 0.3);
+}
+
+/* Secondary - Dark Background */
+.btn-bordered-secondary-dark {
+  background-color: transparent;
+  color: white;
+  border: 2px solid white;
+  border-radius: 4px;
+}
+
+.btn-bordered-secondary-dark:hover {
+  background-color: white;
+  color: var(--color-cosmic);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+}
+
+/* ==============================
+   Enhanced Hover Animations for Bordered Refined
+   ============================== */
+
+/* Text Slide Animation */
+.btn-bordered-text-slide {
+  position: relative;
+  background-color: white;
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+  border-radius: 4px;
+  overflow: hidden;
+  z-index: 1;
+  transition: color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-bordered-text-slide::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-primary);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: -1;
+}
+
+.btn-bordered-text-slide:hover {
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 0, 255, 0.2);
+}
+
+.btn-bordered-text-slide:hover::before {
+  transform: translateX(100%);
+}
+
+/* Reverse Text Slide Animation */
+.btn-bordered-text-slide-reverse {
+  position: relative;
+  background-color: white;
+  color: var(--color-secondary);
+  border: 2px solid var(--color-secondary);
+  border-radius: 4px;
+  overflow: hidden;
+  z-index: 1;
+  transition: color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-bordered-text-slide-reverse::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: -100%;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-secondary);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: -1;
+}
+
+.btn-bordered-text-slide-reverse:hover {
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(91, 62, 150, 0.2);
+}
+
+.btn-bordered-text-slide-reverse:hover::before {
+  transform: translateX(-100%);
+}
+
+/* Fill Left Animation */
+.btn-bordered-fill-left {
+  position: relative;
+  background-color: white;
+  color: var(--color-accent);
+  border: 2px solid var(--color-accent);
+  border-radius: 4px;
+  overflow: hidden;
+  z-index: 1;
+  transition: color 0.4s ease;
+}
+
+.btn-bordered-fill-left::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background-color: var(--color-accent);
+  transition: width 0.4s ease;
+  z-index: -1;
+}
+
+.btn-bordered-fill-left:hover {
+  color: var(--color-cosmic);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 229, 229, 0.2);
+}
+
+.btn-bordered-fill-left:hover::before {
+  width: 100%;
+}
+
+/* Fill Center Animation */
+.btn-bordered-fill-center {
+  position: relative;
+  background-color: white;
+  color: var(--color-highlight);
+  border: 2px solid var(--color-highlight);
+  border-radius: 4px;
+  overflow: hidden;
+  z-index: 1;
+  transition: color 0.4s ease;
+}
+
+.btn-bordered-fill-center::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 0;
+  height: 100%;
+  background-color: var(--color-highlight);
+  transition: width 0.4s ease, left 0.4s ease;
+  z-index: -1;
+}
+
+.btn-bordered-fill-center:hover {
+  color: var(--color-cosmic);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 221, 0, 0.2);
+}
+
+.btn-bordered-fill-center:hover::before {
+  width: 100%;
+  left: 0;
+}
+
+/* Glow Effect */
+.btn-bordered-glow {
+  background-color: white;
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+  border-radius: 4px;
+  transition: all 0.4s ease;
+}
+
+.btn-bordered-glow:hover {
+  background-color: var(--color-primary);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 0 15px 5px rgba(255, 0, 255, 0.3);
+  border-color: transparent;
+}
+
+/* Pulse Effect */
+.btn-bordered-pulse {
+  background-color: white;
+  color: var(--color-secondary);
+  border: 2px solid var(--color-secondary);
+  border-radius: 4px;
+  transition: all 0.4s ease;
+}
+
+.btn-bordered-pulse:hover {
+  background-color: var(--color-secondary);
+  color: white;
+  transform: translateY(-2px);
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(91, 62, 150, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(91, 62, 150, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(91, 62, 150, 0);
+  }
+}
+
+/* Scale Effect */
+.btn-bordered-scale {
+  background-color: white;
+  color: var(--color-accent);
+  border: 2px solid var(--color-accent);
+  border-radius: 4px;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.btn-bordered-scale:hover {
+  background-color: var(--color-accent);
+  color: var(--color-cosmic);
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(0, 229, 229, 0.2);
+}
+
+/* Rotate Effect */
+.btn-bordered-rotate {
+  background-color: white;
+  color: var(--color-highlight);
+  border: 2px solid var(--color-highlight);
+  border-radius: 4px;
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.btn-bordered-rotate:hover {
+  background-color: var(--color-highlight);
+  color: var(--color-cosmic);
+  transform: rotate(5deg) scale(1.05);
+  box-shadow: 0 4px 12px rgba(255, 221, 0, 0.2);
+}

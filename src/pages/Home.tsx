@@ -1,200 +1,428 @@
-import React from 'react';
-import HeroSlideshow from '../components/HeroSlideshow';
+import React, { useState } from 'react';
+import TexturedSection from '../components/TexturedSection';
+import ButtonComponent from '../components/ButtonComponent';
+import CardComponent from '../components/CardComponent';
+import HeroSection from '../components/HeroSection';
 import { Star, Sparkles, Heart } from 'lucide-react';
+import { HeroBanner } from '../components/HeroImage';
+import ImageCarousel from '../components/ImageCarousel';
+import ScrollReveal from '../components/ScrollReveal';
+import { ProductGallery } from '../components/ProductImage';
+import EnhancedImage from '../components/EnhancedImage';
+
 
 const Home: React.FC = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  
+  const handleSubscribe = () => {
+    setIsLoading(true);
+    // Simulate API call
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+  };
+  
   return (
     <div className="relative">
-      {/* Hero Section with Decorative Elements */}
-      <div className="relative">
-        {/* Top-right decorative orb */}
-        <div className="absolute -top-20 right-0 w-96 h-96 bg-primary/10 rounded-full mix-blend-multiply filter blur-2xl animate-pulse-slow"></div>
-        <HeroSlideshow />
+      <HeroSection
+        title="Dress to Impress"
+        subtitle="Your Style Journey Begins Here"
+        description="Step into a world of curated fashion where European elegance meets Minnesota charm. Our boutique collection features handpicked pieces that celebrate individuality and timeless style. From lakeside casual to evening sophistication, find your perfect look for every occasion and season."
+        ctaText="Shop Now"
+        ctaLink="/shop"
+        backgroundImage="https://images.unsplash.com/photo-1441986300917-64674bd600d8"
+      />
+
+      {/* Decorative divider */}
+      <div className="breathing-space">
+        <div className="textured-divider"></div>
       </div>
 
       {/* Featured Collection */}
-      <section className="py-20 relative overflow-hidden">
-        {/* Background texture and decorative elements */}
-        <div className="absolute inset-0 bg-noise opacity-5"></div>
-        <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-accent/10 rounded-full mix-blend-multiply filter blur-2xl animate-pulse-slow animation-delay-2000"></div>
-        
-        <div className="max-w-7xl mx-auto px-4 relative">
-          <h2 className="text-4xl font-heading font-bold text-center mb-4">
-            <span className="gradient-text">Latest Arrivals</span>
-          </h2>
-          <p className="text-cosmic/70 text-center max-w-2xl mx-auto mb-12 font-body">
-            Discover our newest collection of carefully curated pieces that blend European elegance with Minnesota charm.
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <TexturedSection
+        variant="primary"
+        textureType="noise"
+        className="section-spacing"
+      >
+        <div className="content-container">
+          <ScrollReveal animation="fade-up">
+            <div className="max-w-2xl mx-auto text-center mb-16">
+              <h2 className="text-4xl font-heading font-bold mb-4">
+                <span className="gradient-text">Latest Arrivals</span>
+              </h2>
+              <p className="text-cosmic/70 font-body">
+                Discover our newest collection of carefully curated pieces that blend European elegance with Minnesota charm. Each item is selected with attention to quality, style, and versatility, ensuring you'll find pieces that seamlessly integrate into your wardrobe while making a distinctive statement. Our spring collection celebrates vibrant colors and lightweight fabrics perfect for the changing seasons.
+              </p>
+            </div>
+          </ScrollReveal>
+          <div className="section-grid">
             {[
-              "https://images.unsplash.com/photo-1539008835657-9e8e9680c956?ixlib=rb-4.0.3",
-              "https://images.unsplash.com/photo-1538329972958-465d6d2144ed?ixlib=rb-4.0.3",
-              "https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?ixlib=rb-4.0.3"
-            ].map((image, index) => (
-              <div key={index} className="group relative overflow-hidden rounded-2xl shadow-xl">
-                <img src={image} alt="Fashion item" className="w-full h-96 object-cover transition-transform group-hover:scale-105" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-                  <div className="absolute bottom-4 left-4 text-white">
-                    <p className="text-lg font-semibold">Summer Collection</p>
-                    <p className="text-sm">Shop Now →</p>
-                  </div>
-                </div>
-              </div>
+              {
+                image: "https://images.unsplash.com/photo-1539008835657-9e8e9680c956?ixlib=rb-4.0.3",
+                title: "Summer Collection",
+                subtitle: "Shop Now →"
+              },
+              {
+                image: "https://images.unsplash.com/photo-1538329972958-465d6d2144ed?ixlib=rb-4.0.3",
+                title: "Beach Essentials",
+                subtitle: "Shop Now →"
+              },
+              {
+                image: "https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?ixlib=rb-4.0.3",
+                title: "Evening Wear",
+                subtitle: "Shop Now →"
+              }
+            ].map((item, index) => (
+              <ScrollReveal
+                key={index}
+                animation="fade-up"
+                delay={index * 200}
+              >
+                <CardComponent
+                  variant="product"
+                  imageUrl={item.image}
+                  title={item.title}
+                  subtitle={item.subtitle}
+                />
+              </ScrollReveal>
             ))}
           </div>
         </div>
-      </section>
+      </TexturedSection>
+
+      {/* Section transition with connecting element */}
+      <div className="section-transition">
+        <div className="connecting-divider"></div>
+      </div>
 
       {/* European Elegance Section */}
-      <section className="relative py-32 overflow-hidden">
-        {/* Background texture and decorative elements */}
-        <div className="absolute inset-0 bg-noise opacity-5"></div>
-        <div className="absolute -top-32 right-0 w-96 h-96 bg-primary/10 rounded-full mix-blend-multiply filter blur-2xl animate-pulse-slow"></div>
-        
-        <div className="max-w-7xl mx-auto px-4 relative">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-            <div>
+      <TexturedSection
+        variant="secondary"
+        textureType="grid"
+        className="section-spacing"
+      >
+        <div className="content-container">
+          <div className="asymmetric-layout">
+            <ScrollReveal animation="fade-right" className="asymmetric-layout-content">
               <h2 className="text-4xl font-heading font-bold mb-4">
                 <span className="gradient-text">European Elegance Meets Minnesota Charm</span>
               </h2>
-              <p className="text-cosmic/70 mb-8 font-body">
-                Experience our carefully curated collection of unique pieces that blend sophisticated European style with comfortable 
-                lakeside living. Each item is selected to make you feel confident and beautiful.
+              <p className="text-cosmic/70 mb-6 font-body">
+                Experience our carefully curated collection of unique pieces that blend sophisticated European style with comfortable
+                lakeside living. Each item is selected to make you feel confident and beautiful, no matter the occasion.
               </p>
-              <button className="bg-gradient-to-r from-primary to-secondary text-white px-8 py-3 rounded-full hover:shadow-neon transform hover:scale-105 transition-all duration-300">
+              <p className="text-cosmic/70 mb-8 font-body">
+                Our buyers travel throughout Europe to discover emerging designers and timeless classics that bring continental sophistication to the Midwest. We believe fashion should be both beautiful and functional, allowing you to express your personal style while complementing your active lifestyle.
+              </p>
+              <ButtonComponent variant="primary" size="lg">
                 View Collections
-              </button>
-            </div>
-            <div className="relative group">
-              <div className="absolute -inset-4 bg-gradient-to-r from-primary to-accent rounded-2xl opacity-50 blur-xl group-hover:opacity-75 transition duration-500"></div>
-              <div className="relative aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl">
-                <img 
-                  src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3"
-                  alt="Boutique interior"
-                  className="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-105"
-                />
-              </div>
-            </div>
+              </ButtonComponent>
+            </ScrollReveal>
+            <ScrollReveal animation="fade-left" className="asymmetric-layout-media relative group">
+              <div className="absolute -inset-4 bg-gradient-to-r from-primary-saturated to-accent-saturated rounded-2xl opacity-50 blur-xl group-hover:opacity-75 transition duration-500"></div>
+              <ImageCarousel
+                images={[
+                  {
+                    src: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3",
+                    alt: "Boutique interior with elegant displays"
+                  },
+                  {
+                    src: "https://images.unsplash.com/photo-1551232864-3f0890e580d9?ixlib=rb-4.0.3",
+                    alt: "European-inspired fashion collection"
+                  },
+                  {
+                    src: "https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?ixlib=rb-4.0.3",
+                    alt: "Sophisticated boutique styling"
+                  },
+                  {
+                    src: "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?ixlib=rb-4.0.3",
+                    alt: "Elegant clothing display"
+                  }
+                ]}
+                autoplaySpeed={6000}
+                className="group-hover:shadow-2xl transition-all duration-500"
+              />
+            </ScrollReveal>
           </div>
         </div>
-      </section>
+      </TexturedSection>
+
+      {/* Decorative divider */}
+      <div className="breathing-space">
+        <div className="textured-divider"></div>
+      </div>
 
       {/* Small Town Style Section */}
-      <section className="relative py-32 overflow-hidden">
-        {/* Background texture and decorative elements */}
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5"></div>
-        <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-accent/10 rounded-full mix-blend-multiply filter blur-2xl animate-pulse-slow"></div>
-        
-        <div className="max-w-7xl mx-auto px-4 relative">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-            <div className="relative group order-2 md:order-1">
-              <div className="absolute -inset-4 bg-gradient-to-r from-accent to-highlight rounded-2xl opacity-50 blur-xl group-hover:opacity-75 transition duration-500"></div>
-              <div className="relative aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl">
-                <img 
-                  src="https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?ixlib=rb-4.0.3"
-                  alt="Boutique collection"
-                  className="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-105"
-                />
-              </div>
-            </div>
-            <div className="order-1 md:order-2">
+      <TexturedSection
+        variant="accent"
+        textureType="dots"
+        className="section-spacing"
+      >
+        <div className="content-container">
+          <div className="asymmetric-layout">
+            <ScrollReveal animation="fade-right" className="asymmetric-layout-media relative group order-2 md:order-1">
+              <div className="absolute -inset-4 bg-gradient-to-r from-accent-saturated to-highlight-saturated rounded-2xl opacity-50 blur-xl group-hover:opacity-75 transition duration-500"></div>
+              <ImageCarousel
+                images={[
+                  {
+                    src: "https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?ixlib=rb-4.0.3",
+                    alt: "Boutique collection display"
+                  },
+                  {
+                    src: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?ixlib=rb-4.0.3",
+                    alt: "Small town boutique style"
+                  },
+                  {
+                    src: "https://images.unsplash.com/photo-1539008835657-9e8e9680c956?ixlib=rb-4.0.3",
+                    alt: "Contemporary fashion collection"
+                  },
+                  {
+                    src: "https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?ixlib=rb-4.0.3",
+                    alt: "Lakeside fashion display"
+                  }
+                ]}
+                autoplaySpeed={5000}
+                className="group-hover:shadow-2xl transition-all duration-500"
+              />
+            </ScrollReveal>
+            <ScrollReveal animation="fade-left" className="asymmetric-layout-content order-1 md:order-2">
               <h2 className="text-4xl font-heading font-bold mb-4">
                 <span className="gradient-text">Small Town Boutique, Big City Style</span>
               </h2>
-              <p className="text-cosmic/70 mb-8 font-body">
-                Discover our handpicked selection of contemporary fashion that brings the latest trends to Pequot Lakes. 
+              <p className="text-cosmic/70 mb-6 font-body">
+                Discover our handpicked selection of contemporary fashion that brings the latest trends to Pequot Lakes.
                 From casual lakeside wear to elegant evening attire, we offer styles that perfectly blend sophistication with comfort.
               </p>
-              <button className="relative group">
-                <div className="absolute -inset-0.5 bg-gradient-to-r from-primary to-accent rounded-full opacity-75 group-hover:opacity-100 blur transition duration-500"></div>
-                <div className="relative px-8 py-3 bg-cloud rounded-full text-cosmic hover:text-primary transition-colors">
-                  Explore Store
-                </div>
-              </button>
-            </div>
+              <p className="text-cosmic/70 mb-8 font-body">
+                Our boutique celebrates the unique character of small-town Minnesota while offering a shopping experience and selection you'd expect in a metropolitan setting. We pride ourselves on personal attention, styling advice, and creating a welcoming atmosphere where fashion becomes an accessible joy rather than an intimidating experience.
+              </p>
+              <ButtonComponent variant="secondary" size="lg">
+                Explore Store
+              </ButtonComponent>
+            </ScrollReveal>
           </div>
         </div>
-      </section>
+      </TexturedSection>
+
+      {/* Decorative divider */}
+      <div className="breathing-space">
+        <div className="textured-divider"></div>
+      </div>
+
+      {/* Enhanced Image Gallery Section */}
+      <TexturedSection
+        variant="accent"
+        textureType="noise"
+        className="section-spacing"
+      >
+        <div className="content-container">
+          <ScrollReveal animation="fade-up">
+            <div className="text-center max-w-3xl mx-auto mb-16">
+              <h2 className="text-5xl font-heading font-bold mb-6 tracking-tight">
+                <span className="gradient-text">
+                  Fashion Lookbook
+                </span>
+              </h2>
+              <p className="text-xl text-cosmic/70 font-body leading-relaxed mb-4">
+                Explore our latest collections with enhanced visual styling and dramatic photography. Each season tells a unique story through color, texture, and silhouette.
+              </p>
+              <p className="text-lg text-cosmic/70 font-body leading-relaxed">
+                Our lookbook serves as inspiration for creating your own distinctive style. Mix and match pieces to express your personality while embracing the quality and craftsmanship that defines our collection.
+              </p>
+            </div>
+          </ScrollReveal>
+          
+          {/* Hero Banner with enhanced image effects */}
+          <ScrollReveal animation="zoom-in" delay={200}>
+            <div className="mb-16">
+              <HeroBanner
+                src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?ixlib=rb-4.0.3"
+                alt="Fashion collection hero"
+                overlayText="Summer Collection 2025"
+                overlaySubtext="Bold colors and patterns for the season ahead"
+                ctaText="View Collection"
+                ctaLink="/collections/summer"
+                patternOverlay={true}
+              />
+            </div>
+          </ScrollReveal>
+          
+          {/* Product Gallery with enhanced images */}
+          <div className="mb-16">
+            <h3 className="text-3xl font-heading font-semibold mb-8 text-center">Featured Products</h3>
+            <ProductGallery
+              images={[
+                {
+                  src: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-4.0.3",
+                  alt: "Summer Collection Dress",
+                  category: "Summer"
+                },
+                {
+                  src: "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?ixlib=rb-4.0.3",
+                  alt: "Spring Fashion",
+                  category: "Spring"
+                },
+                {
+                  src: "https://images.unsplash.com/photo-1554412933-514a83d2f3c8?ixlib=rb-4.0.3",
+                  alt: "Casual Collection",
+                  category: "Casual"
+                }
+              ]}
+              className="mb-8"
+            />
+          </div>
+          
+          {/* Image Effects Showcase */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+            <ScrollReveal animation="fade-up" delay={0}>
+              <div className="text-center">
+                <h4 className="text-xl font-heading font-semibold mb-4">Duotone Effect</h4>
+                <EnhancedImage
+                  src="https://images.unsplash.com/photo-1581044777550-4cfa60707c03?ixlib=rb-4.0.3"
+                  alt="Fashion with duotone effect"
+                  effect="duotone"
+                  aspectRatio="portrait"
+                  className="rounded-lg overflow-hidden"
+                />
+              </div>
+            </ScrollReveal>
+            <ScrollReveal animation="fade-up" delay={200}>
+              <div className="text-center">
+                <h4 className="text-xl font-heading font-semibold mb-4">Vibrant Effect</h4>
+                <EnhancedImage
+                  src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?ixlib=rb-4.0.3"
+                  alt="Fashion with vibrant effect"
+                  effect="vibrant"
+                  aspectRatio="portrait"
+                  className="rounded-lg overflow-hidden"
+                />
+              </div>
+            </ScrollReveal>
+            <ScrollReveal animation="fade-up" delay={400}>
+              <div className="text-center">
+                <h4 className="text-xl font-heading font-semibold mb-4">Pattern Overlay</h4>
+                <EnhancedImage
+                  src="https://images.unsplash.com/photo-1509631179647-0177331693ae?ixlib=rb-4.0.3"
+                  alt="Fashion with pattern overlay"
+                  effect="pattern"
+                  aspectRatio="portrait"
+                  className="rounded-lg overflow-hidden"
+                />
+              </div>
+            </ScrollReveal>
+          </div>
+          
+          <div className="text-center mt-12">
+            <ButtonComponent variant="primary" size="lg">
+              View Full Lookbook
+            </ButtonComponent>
+          </div>
+        </div>
+      </TexturedSection>
+      
+      {/* Decorative divider */}
+      <div className="breathing-space">
+        <div className="textured-divider"></div>
+      </div>
 
       {/* Boutique Experience Section */}
-      <section className="relative py-24 mt-20 overflow-hidden">
-        {/* Background texture and decorative elements */}
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5"></div>
-        <div className="absolute inset-0 bg-noise opacity-5"></div>
-        <div className="absolute -top-32 right-0 w-96 h-96 bg-primary/10 rounded-full mix-blend-multiply filter blur-2xl animate-pulse-slow"></div>
-        
-        <div className="max-w-7xl mx-auto px-4 relative">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-4xl font-heading font-bold mb-4">
-              <span className="gradient-text">Our Boutique Experience</span>
-            </h2>
-            <p className="text-cosmic/70 font-body">
-              Step into a world where fashion meets personal attention. Our boutique offers a curated shopping experience 
-              with personalized styling advice and unique pieces you won't find anywhere else.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <TexturedSection
+        variant="primary"
+        textureType="grid"
+        className="section-spacing"
+      >
+        <div className="content-container">
+          <ScrollReveal animation="fade-up">
+            <div className="text-center max-w-3xl mx-auto mb-20">
+              <h2 className="text-5xl font-heading font-bold mb-6 tracking-tight">
+                <span className="gradient-text">
+                  Our Boutique Experience
+                </span>
+              </h2>
+              <p className="text-xl text-cosmic/70 font-body leading-relaxed mb-4">
+                Step into a world where fashion meets personal attention. Our boutique offers a curated shopping experience
+                with personalized styling advice and unique pieces you won't find anywhere else.
+              </p>
+              <p className="text-lg text-cosmic/70 font-body leading-relaxed">
+                We believe shopping should be a joyful experience that celebrates your individuality. Our team is passionate about helping you discover pieces that make you feel confident and beautiful, creating a wardrobe that tells your unique story.
+              </p>
+            </div>
+          </ScrollReveal>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-16">
             {[
               {
                 icon: Heart,
                 title: "Personal Styling",
-                description: "One-on-one attention to help you find the perfect pieces for your style and occasion."
+                description: "One-on-one attention to help you find the perfect pieces for your style and occasion. Our expert stylists are here to guide you through every fashion decision, ensuring you look and feel confident. We take the time to understand your preferences, lifestyle, and aspirations, creating a personalized shopping experience that celebrates your individuality."
               },
               {
                 icon: Star,
                 title: "Unique Selection",
-                description: "Carefully curated collection featuring both European and local designers."
+                description: "Carefully curated collection featuring both European and local designers. Each piece is handpicked to bring something special to your wardrobe, blending international trends with Minnesota charm. We focus on quality craftsmanship, sustainable practices, and timeless designs that transcend seasonal trends while keeping you stylishly current."
               },
               {
                 icon: Sparkles,
                 title: "Lakeside Fashion",
-                description: "Styles that transition seamlessly from beach to evening events."
+                description: "Styles that transition seamlessly from beach to evening events. Perfect for the Minnesota lifestyle where every day brings new adventures, from morning lakeside walks to elegant dinner parties. Our versatile pieces adapt to your busy schedule, offering comfort without compromising on sophistication, allowing you to navigate your day with confidence and grace."
               }
             ].map((item, index) => (
-              <div key={index} className="relative p-8 rounded-xl bg-gradient-to-br from-cloud to-lavender hover-glow">
-                <div className="absolute inset-0 bg-noise opacity-5"></div>
-                <div className="relative">
-                  <div className="w-12 h-12 mb-6 rounded-lg bg-gradient-to-r from-primary to-accent p-2 flex items-center justify-center">
-                    <item.icon className="w-8 h-8 text-white" />
-                  </div>
-                  <h3 className="text-xl font-heading font-bold mb-4">{item.title}</h3>
-                  <p className="text-cosmic/70 font-body">{item.description}</p>
+              <ScrollReveal key={index} animation="fade-up" delay={index * 200}>
+                <div className="transform hover:scale-[1.02] transition-all duration-500">
+                  <CardComponent
+                    variant="feature"
+                    icon={item.icon}
+                    title={item.title}
+                    className="h-full bg-gradient-to-br from-cloud/50 to-lavender/30 shadow-xl hover:shadow-2xl"
+                  >
+                    {item.description}
+                  </CardComponent>
                 </div>
-              </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
-      </section>
+      </TexturedSection>
+
+      {/* Decorative divider */}
+      <div className="breathing-space">
+        <div className="textured-divider"></div>
+      </div>
 
       {/* Newsletter Section */}
-      <section className="relative py-20 mt-20 overflow-hidden">
-        {/* Background texture and decorative elements */}
-        <div className="absolute inset-0 bg-gradient-to-br from-cosmic to-cosmic/95"></div>
-        <div className="absolute inset-0 bg-noise opacity-5"></div>
-        <div className="absolute -top-32 -right-32 w-96 h-96 bg-primary/10 rounded-full mix-blend-multiply filter blur-2xl animate-pulse-slow"></div>
-        <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-accent/10 rounded-full mix-blend-multiply filter blur-2xl animate-pulse-slow animation-delay-2000"></div>
-        
-        <div className="max-w-7xl mx-auto px-4 relative">
-          <div className="max-w-2xl mx-auto text-center">
-            <h2 className="text-4xl font-heading font-bold mb-4">
-              <span className="gradient-text">Join Our Fashion Family</span>
-            </h2>
-            <p className="text-cloud/80 mb-8 font-body">
-              Subscribe to receive updates on new arrivals, special promotions, and styling tips.
-            </p>
-            <div className="flex gap-4 max-w-md mx-auto">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="flex-1 px-6 py-3 rounded-full bg-cloud/10 text-cloud placeholder:text-cloud/50 focus:outline-none focus:ring-2 focus:ring-primary/50"
-              />
-              <button className="bg-gradient-to-r from-primary to-secondary text-white px-8 py-3 rounded-full hover:shadow-neon transform hover:scale-105 transition-all duration-300">
-                Subscribe
-              </button>
-            </div>
+      <TexturedSection
+        variant="secondary"
+        textureType="noise"
+        className="section-spacing bg-gradient-cosmic"
+      >
+        <div className="shape-container">
+          {/* Decorative shapes */}
+          <div className="shape-circle shape-circle-xl -top-1/4 -right-1/4 bg-primary/10 animate-pulse-slow"></div>
+          <div className="shape-circle shape-circle-lg -bottom-1/4 -left-1/4 bg-accent/10 animate-pulse-slow animation-delay-2000"></div>
+          
+          <div className="content-container relative z-10">
+            <ScrollReveal animation="fade-up">
+              <div className="max-w-2xl mx-auto text-center">
+                <h2 className="text-4xl font-heading font-bold mb-4">
+                  <span className="gradient-text">Join Our Fashion Family</span>
+                </h2>
+                <p className="text-cloud/90 mb-8 font-body">
+                  Subscribe to receive updates on new arrivals, special promotions, and styling tips.
+                </p>
+                <div className="flex gap-4 max-w-md mx-auto">
+                  <input
+                    type="email"
+                    placeholder="Enter your email"
+                    className="flex-1 px-6 py-3 rounded-full bg-cloud/10 text-cloud placeholder:text-cloud/50 focus:outline-none focus:ring-4 focus:ring-primary-saturated/50 shadow-inner-glow"
+                  />
+                  <ButtonComponent variant="primary" size="lg" onClick={handleSubscribe} loading={isLoading}>
+                    Subscribe
+                  </ButtonComponent>
+                </div>
+              </div>
+            </ScrollReveal>
           </div>
         </div>
-      </section>
+      </TexturedSection>
     </div>
   );
 };

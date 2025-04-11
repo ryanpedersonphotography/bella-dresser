@@ -1,5 +1,106 @@
+/* Import Button Showcase Styles */
+@import './styles/button-showcase.css';
+
 @tailwind base;
+
+/* Animation keyframes */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.05);
+  }
+}
+
+/* Custom animations */
+.animate-fade-in {
+  animation: fade-in 0.8s ease-out forwards;
+  animation-delay: var(--animation-delay, 0s);
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 3s ease-in-out infinite;
+}
+
+/* Image enhancement styles */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.mask-blob {
+  mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='black' d='M40.8,-70.7C54.7,-64.5,69.2,-56.9,76.3,-44.7C83.5,-32.5,83.3,-16.2,80.4,-1.7C77.5,12.9,71.9,25.8,64.8,38.5C57.7,51.2,49.1,63.7,37.4,70.5C25.8,77.3,12.9,78.3,-0.9,79.8C-14.7,81.3,-29.4,83.3,-41.6,77.7C-53.8,72.1,-63.5,58.9,-70.3,44.8C-77.1,30.7,-81,15.3,-81.1,0C-81.2,-15.4,-77.5,-30.8,-70.1,-44.7C-62.7,-58.6,-51.6,-71,-38.4,-77.1C-25.2,-83.3,-12.6,-83.2,0.8,-84.5C14.2,-85.9,28.3,-88.7,40.8,-83.4C53.3,-78.1,66.5,-64.7,70.3,-50.9C74.1,-37.1,68.5,-22.9,67.8,-9.2C67.1,4.5,71.3,17.6,69.1,29.9C66.9,42.2,58.3,53.6,47.5,63.8C36.7,74,23.7,83,9.7,85.8C-4.3,88.6,-19.3,85.2,-33.2,79.3C-47.1,73.4,-59.9,65,-69.8,53.2C-79.7,41.4,-86.7,26.2,-88.9,10.3C-91.1,-5.6,-88.5,-22.2,-81.9,-36.8C-75.3,-51.4,-64.7,-64,-51.2,-70.2C-37.7,-76.4,-21.2,-76.2,-5.7,-74.1C9.8,-72,19.6,-68,30.9,-65.1C42.2,-62.2,55,-60.4,62.3,-53.2C69.6,-46,71.4,-33.5,74.9,-20.7C78.4,-7.9,83.6,5.2,83.3,18.5C83,31.8,77.3,45.3,68.1,56.3C58.9,67.3,46.3,75.8,32.5,79.9C18.7,84,3.7,83.7,-10.9,80.9C-25.5,78.1,-39.7,72.8,-52.2,64.5C-64.7,56.2,-75.5,44.9,-81.1,31.5C-86.7,18.1,-87.1,2.7,-84.1,-11.8C-81.1,-26.3,-74.7,-39.9,-64.9,-50.5C-55.1,-61.1,-41.9,-68.7,-28.4,-73.4C-14.9,-78.1,-1.1,-79.9,12.2,-78.8C25.5,-77.7,38.3,-73.7,47.8,-66.2C57.3,-58.7,63.5,-47.7,71.2,-35.8C78.9,-23.9,88.1,-11.9,89.9,0.9C91.7,13.8,86.1,27.5,78.1,39.3C70.1,51.1,59.7,60.9,47.4,68.4C35.1,75.9,20.9,81.1,6.2,83.1C-8.5,85.1,-23.7,83.9,-37.5,78.5C-51.3,73.1,-63.7,63.5,-72.8,51.1C-81.9,38.7,-87.7,23.5,-89.2,7.8C-90.7,-7.9,-87.9,-24.1,-80.7,-37.9C-73.5,-51.7,-61.9,-63.1,-48.2,-69.9C-34.5,-76.7,-18.8,-78.9,-3.2,-78.3C12.4,-77.7,24.8,-74.3,37.1,-70.1C49.4,-65.9,61.6,-61,70.1,-51.9C78.6,-42.8,83.4,-29.6,85.9,-15.9C88.4,-2.2,88.6,12,84.1,24.5C79.6,37,70.5,47.8,59.9,57.1C49.3,66.4,37.2,74.2,24.1,78.7C11,83.2,-3.1,84.4,-16.7,82.1C-30.3,79.8,-43.4,74,-54.9,65.5C-66.4,57,-76.3,45.8,-82.3,32.7C-88.3,19.6,-90.4,4.6,-88.2,-9.5C-86,-23.6,-79.5,-36.8,-70.1,-47.7C-60.7,-58.6,-48.4,-67.2,-35,-72.1C-21.6,-77,-7.1,-78.2,7.1,-78.1C21.3,-78,35.3,-76.6,47.1,-70.8C58.9,-65,68.5,-54.8,75.3,-42.8C82.1,-30.8,86.1,-17,86.3,-3.1C86.5,10.8,82.9,24.8,76.4,37.2C69.9,49.6,60.5,60.4,49,68.8C37.5,77.2,23.8,83.1,9.3,85.9C-5.2,88.7,-20.5,88.3,-34.9,84.4C-49.3,80.5,-62.8,73.1,-73.1,62.3C-83.4,51.5,-90.5,37.3,-93.3,22.3C-96.1,7.3,-94.6,-8.5,-89.5,-22.9C-84.4,-37.3,-75.7,-50.3,-64.2,-60.1C-52.7,-69.9,-38.5,-76.5,-23.9,-79.5C-9.3,-82.5,5.7,-81.9,19.9,-78.5C34.1,-75.1,47.5,-68.9,58.7,-60C69.9,-51.1,78.9,-39.5,83.7,-26.5C88.5,-13.5,89.1,0.9,86.5,14.7C83.9,28.5,78.1,41.7,69.5,53.1C60.9,64.5,49.5,74.1,36.6,80C23.7,85.9,9.3,88.1,-5.1,88.5C-19.5,88.9,-39,87.5,-53.8,79.9C-68.6,72.3,-78.7,58.5,-84.9,43.5C-91.1,28.5,-93.3,12.2,-91.9,-3.3C-90.5,-18.8,-85.5,-33.5,-77.1,-46.1C-68.7,-58.7,-56.9,-69.2,-43.2,-75.4C-29.5,-81.6,-13.8,-83.5,1.3,-83.8C16.4,-84.1,32.8,-82.8,46.3,-76.7C59.8,-70.6,70.4,-59.7,77.5,-46.9C84.6,-34.1,88.2,-19.3,89.1,-4.7C90,9.9,88.2,24.5,82.6,37.2C77,49.9,67.6,60.7,56.1,69.3C44.6,77.9,31,84.3,16.6,87.2C2.2,90.1,-13,89.5,-27.4,85.8C-41.8,82.1,-55.4,75.3,-66.7,65.5C-78,55.7,-87,42.9,-91.8,28.7C-96.6,14.5,-97.2,-1.1,-94,-15.8C-90.8,-30.5,-83.8,-44.3,-73.6,-55.6C-63.4,-66.9,-50,-75.7,-35.6,-80.3C-21.2,-84.9,-5.8,-85.3,9.1,-83.5C24,-81.7,38.4,-77.7,51,-70.7C63.6,-63.7,74.4,-53.7,81.5,-41.5C88.6,-29.3,92,-14.7,92.2,0.1C92.4,14.9,89.4,29.7,82.9,42.8C76.4,55.9,66.4,67.3,54.3,75.8C42.2,84.3,28,89.9,13.3,92.1C-1.4,94.3,-16.6,93.1,-31.1,89.2C-45.6,85.3,-59.4,78.7,-70.4,68.7C-81.4,58.7,-89.6,45.3,-94.1,30.7C-98.6,16.1,-99.4,0.3,-96.5,-14.7C-93.6,-29.7,-87,-43.9,-77.1,-55.6C-67.2,-67.3,-54,-76.5,-39.7,-81.5C-25.4,-86.5,-9.9,-87.3,5.1,-86.2C20.1,-85.1,34.6,-82.1,47.6,-76.1C60.6,-70.1,72.1,-61.1,80.4,-49.6C88.7,-38.1,93.8,-24.1,95.8,-9.7C97.8,4.7,96.7,19.5,91.9,32.9C87.1,46.3,78.6,58.3,67.7,68.1C56.8,77.9,43.5,85.5,29.3,89.6C15.1,93.7,0,94.3,-14.8,92.2C-29.6,90.1,-44.1,85.3,-56.9,77.4C-69.7,69.5,-80.8,58.5,-88.2,45.2C-95.6,31.9,-99.3,16.3,-99.1,0.9C-98.9,-14.5,-94.8,-29.8,-87.4,-43C-80,-56.2,-69.3,-67.3,-56.3,-74.8C-43.3,-82.3,-28,-86.1,-12.7,-87.1C2.6,-88.1,18,-86.3,32.1,-81.7C46.2,-77.1,59,-69.7,69.3,-59.7C79.6,-49.7,87.4,-37.1,91.6,-23.5C95.8,-9.9,96.4,4.7,93.8,18.7C91.2,32.7,85.4,46.1,76.8,57.7C68.2,69.3,56.8,79.1,43.8,85.7C30.8,92.3,16.2,95.7,1.2,96.8C-13.8,97.9,-29.2,96.7,-43.4,91.9C-57.6,87.1,-70.6,78.7,-80.8,67.5C-91,56.3,-98.4,42.3,-102,27.2C-105.6,12.1,-105.4,-4.1,-101.9,-19.3C-98.4,-34.5,-91.6,-48.7,-81.5,-60.4C-71.4,-72.1,-58,-81.3,-43.4,-86.6C-28.8,-91.9,-13,-93.3,2.5,-93.1C18,-92.9,33.2,-91.1,47,-85.7C60.8,-80.3,73.2,-71.3,82.5,-59.8C91.8,-48.3,98,-34.3,101,-19.8C104,-5.3,103.8,9.7,100.3,23.9C96.8,38.1,90,51.5,80.3,62.8C70.6,74.1,58,83.3,44.1,89.2C30.2,95.1,15.1,97.7,-0.2,98.1C-15.5,98.5,-31,96.7,-45.3,91.5C-59.6,86.3,-72.7,77.7,-82.9,66.2C-93.1,54.7,-100.4,40.3,-104,25C-107.6,9.7,-107.5,-6.5,-104.1,-21.7C-100.7,-36.9,-94,-51.1,-84.1,-62.8C-74.2,-74.5,-61.1,-83.7,-46.6,-89.2C-32.1,-94.7,-16.1,-96.5,0,-96.5C16.1,-96.5,32.2,-94.7,46.7,-89.2C61.2,-83.7,74.1,-74.5,84,-62.8C93.9,-51.1,100.6,-36.9,104,-21.7C107.4,-6.5,107.5,9.7,104,25C100.5,40.3,93.2,54.7,83,66.2C72.8,77.7,59.7,86.3,45.4,91.5C31.1,96.7,15.6,98.5,0.3,98.1C-15,97.7,-30.1,95.1,-44,89.2C-57.9,83.3,-70.5,74.1,-80.2,62.8C-89.9,51.5,-96.7,38.1,-100.2,23.9C-103.7,9.7,-103.9,-5.3,-100.9,-19.8C-97.9,-34.3,-91.7,-48.3,-82.4,-59.8C-73.1,-71.3,-60.7,-80.3,-46.9,-85.7C-33.1,-91.1,-17.9,-92.9,-2.4,-93.1C13.1,-93.3,28.9,-91.9,43.5,-86.6C58.1,-81.3,71.5,-72.1,81.6,-60.4C91.7,-48.7,98.5,-34.5,102,-19.3C105.5,-4.1,105.7,12.1,102.1,27.2C98.5,42.3,91.1,56.3,80.9,67.5C70.7,78.7,57.7,87.1,43.5,91.9C29.3,96.7,13.9,97.9,-1.1,96.8C-16.1,95.7,-30.7,92.3,-43.7,85.7C-56.7,79.1,-68.1,69.3,-76.7,57.7C-85.3,46.1,-91.1,32.7,-93.7,18.7C-96.3,4.7,-95.7,-9.9,-91.5,-23.5C-87.3,-37.1,-79.5,-49.7,-69.2,-59.7C-58.9,-69.7,-46.1,-77.1,-32,-81.7C-17.9,-86.3,-2.5,-88.1,12.8,-87.1C28.1,-86.1,43.4,-82.3,56.4,-74.8C69.4,-67.3,80.1,-56.2,87.5,-43C94.9,-29.8,99,-14.5,99.2,0.9C99.4,16.3,95.7,31.9,88.3,45.2C80.9,58.5,69.8,69.5,57,77.4C44.2,85.3,29.7,90.1,14.9,92.2C0.1,94.3,-15,93.7,-29.2,89.6C-43.4,85.5,-56.7,77.9,-67.6,68.1C-78.5,58.3,-87,46.3,-91.8,32.9C-96.6,19.5,-97.7,4.7,-95.7,-9.7C-93.7,-24.1,-88.6,-38.1,-80.3,-49.6C-72,-61.1,-60.5,-70.1,-47.5,-76.1C-34.5,-82.1,-20,-85.1,-5,-86.2C10,-87.3,25.5,-86.5,39.8,-81.5C54.1,-76.5,67.3,-67.3,77.2,-55.6C87.1,-43.9,93.7,-29.7,96.6,-14.7C99.5,0.3,98.7,16.1,94.2,30.7C89.7,45.3,81.5,58.7,70.5,68.7C59.5,78.7,45.7,85.3,31.2,89.2C16.7,93.1,1.5,94.3,-13.2,92.1C-27.9,89.9,-42.1,84.3,-54.2,75.8C-66.3,67.3,-76.3,55.9,-82.8,42.8C-89.3,29.7,-92.3,14.9,-92.1,0.1C-91.9,-14.7,-88.5,-29.3,-81.4,-41.5C-74.3,-53.7,-63.5,-63.7,-50.9,-70.7C-38.3,-77.7,-23.9,-81.7,-9,-83.5C5.9,-85.3,21.3,-84.9,35.7,-80.3C50.1,-75.7,63.5,-66.9,73.7,-55.6C83.9,-44.3,90.9,-30.5,94.1,-15.8C97.3,-1.1,96.7,14.5,91.9,28.7C87.1,42.9,78.1,55.7,66.8,65.5C55.5,75.3,41.9,82.1,27.5,85.8C13.1,89.5,-2.1,90.1,-16.5,87.2C-30.9,84.3,-44.5,77.9,-56,69.3C-67.5,60.7,-76.9,49.9,-82.5,37.2C-88.1,24.5,-89.9,9.9,-89,-.3'%3E%3C/path%3E%3C/svg%3E");
+}
+
+.mask-diamond {
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+}
+
+.bg-noise {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Responsive logo adjustments */
+@media (max-width: 640px) {
+  .logo-text {
+    font-size: 1.875rem;
+  }
+  .logo-icon {
+    width: 2rem;
+    height: 2rem;
+    padding: 0.375rem;
+  }
+}
 @tailwind components;
+
+/* Sticky navbar styles */
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.sticky-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to right, var(--color-lavender), var(--color-cloud));
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transform: translateY(0);
+  animation: slideDown 0.3s ease-in-out;
+}
+
+.hero-nav {
+  background: transparent;
+  box-shadow: none;
+}
+
+/* Add text shadow for better readability on transparent navbar */
+.hero-nav .text-cloud {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
 @tailwind utilities;
 
 @layer base {
@@ -8,7 +109,32 @@
   }
 
   body {
-    @apply bg-cloud text-cosmic overflow-x-hidden font-body;
+    @apply bg-cloud text-cosmic overflow-x-hidden font-body text-lg leading-relaxed;
+  }
+
+  p {
+    @apply text-lg leading-relaxed mb-6 text-cosmic/90;
+  }
+
+  .featured-text {
+    @apply text-xl leading-relaxed font-medium p-6 rounded-2xl bg-gradient-to-br from-lavender/30 to-mint/30 mb-8;
+  }
+
+  h1 {
+    @apply font-heading text-9xl font-extrabold tracking-tighter leading-none mb-8;
+    text-shadow: 2px 2px 0px rgba(255,0,255,0.2), 4px 4px 0px rgba(0,229,229,0.15);
+  }
+
+  h2 {
+    @apply font-heading text-7xl font-bold tracking-tight leading-tight mb-6;
+  }
+
+  h3 {
+    @apply font-heading text-5xl font-semibold tracking-tight leading-snug mb-4;
+  }
+
+  strong {
+    @apply font-semibold text-cosmic;
   }
 
   ::selection {
@@ -17,27 +143,584 @@
 }
 
 @layer components {
+  /* Refined feminine gradient text */
   .gradient-text {
-    @apply bg-gradient-to-r from-primary via-accent to-highlight;
+    @apply bg-gradient-to-r from-primary/90 to-secondary/90;
     background-clip: text;
     -webkit-background-clip: text;
     color: transparent;
     -webkit-text-fill-color: transparent;
-    display: inline-block; /* Ensure background spans the entire text */
+    display: inline-block;
   }
 
+  /* Enhanced hover effect with multi-layered shadow */
   .hover-glow {
-    @apply transition-all duration-300 hover:shadow-neon hover:scale-105;
+    @apply transition-all duration-300 hover:shadow-multi hover:scale-105;
+  }
+
+  /* Enhanced dimensional text shadow */
+  .text-shadow-dimensional {
+    text-shadow:
+      2px 2px 0px rgba(255,0,255,0.25),
+      4px 4px 0px rgba(0,229,229,0.2),
+      6px 6px 0px rgba(255,221,0,0.15);
+  }
+
+  /* Section container with texture and gradient */
+  .section-container {
+    @apply relative overflow-hidden;
+  }
+
+  .section-container::before {
+    content: '';
+    @apply absolute inset-0 bg-noise opacity-15;
+  }
+  
+  /* Layout Components */
+  @layer components {
+    .section-spacing {
+      @apply py-16 md:py-20 lg:py-24; /* Reduced for tighter section spacing */
+    }
+  
+    .content-container {
+      @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+    }
+  
+    .section-grid {
+      @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-12;
+    }
+  
+    .asymmetric-layout {
+      @apply grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center;
+    }
+  
+    .asymmetric-layout-content {
+      @apply md:col-span-7 lg:pr-12;
+    }
+  
+    .asymmetric-layout-media {
+      @apply md:col-span-5;
+    }
+  
+    .breathing-space {
+      @apply my-6 md:my-8 lg:my-10; /* Reduced for better section flow */
+    }
+  
+    .shape-container {
+      @apply relative overflow-hidden;
+    }
+  
+    .shape-circle {
+      @apply absolute rounded-full bg-gradient-to-br opacity-20 mix-blend-multiply filter blur-3xl;
+    }
+  
+    .shape-circle-lg {
+      @apply w-96 h-96;
+    }
+  
+    .shape-circle-xl {
+      @apply w-[32rem] h-[32rem];
+    }
+  }
+  
+  /* Layout Components */
+  @layer components {
+    .section-spacing {
+      @apply py-24 md:py-32 lg:py-40;
+    }
+  
+    .content-container {
+      @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+    }
+  
+    .section-grid {
+      @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-12;
+    }
+  
+    .asymmetric-layout {
+      @apply grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center;
+    }
+  
+    .asymmetric-layout-content {
+      @apply md:col-span-7 lg:pr-12;
+    }
+  
+    .asymmetric-layout-media {
+      @apply md:col-span-5;
+    }
+  
+    .breathing-space {
+      @apply my-12 md:my-16 lg:my-24;
+    }
+  }
+  
+  .section-container::after {
+    content: '';
+    @apply absolute inset-0 bg-gradient-cosmic mix-blend-overlay;
+  }
+
+  /* Radial gradient for photo backgrounds */
+  .bg-radial-gradient {
+    background: radial-gradient(circle, transparent 50%, rgba(0, 0, 0, 0.3) 100%);
+  }
+
+  /* Floating shape decorative element */
+  .floating-shape {
+    @apply absolute rounded-full bg-gradient-to-br from-primary/20 to-accent/20 mix-blend-multiply filter blur-3xl animate-float-slow;
+  }
+
+  /* Textured divider */
+  .textured-divider {
+    @apply relative h-px w-full my-12 overflow-hidden;
+  }
+
+  .textured-divider::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-r from-transparent via-primary/20 to-transparent;
+  }
+
+  .textured-divider::after {
+    content: '';
+    @apply absolute inset-0 bg-dots opacity-30;
+  }
+  
+  /* Connecting element between sections */
+  .connecting-divider {
+    @apply relative h-16 w-full overflow-hidden my-0 py-0;
+    background: linear-gradient(to bottom, transparent, rgba(255, 0, 255, 0.05), transparent);
+  }
+  
+  .section-transition {
+    @apply relative overflow-hidden py-0 my-0;
+  }
+
+  /* Color block section */
+  .color-block {
+    @apply relative p-8 rounded-2xl overflow-hidden;
+  }
+
+  .color-block::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-shine animate-pulse-glow;
   }
 }
 
 @layer utilities {
+  /* Animation delays */
   .animation-delay-2000 {
     animation-delay: 2s;
   }
   
   .animation-delay-4000 {
     animation-delay: 4s;
+  }
+
+  /* Texture variations */
+  .texture-noise {
+    @apply relative;
+  }
+
+  .texture-noise::before {
+    content: '';
+    @apply absolute inset-0 bg-noise opacity-15 pointer-events-none;
+  }
+
+  .texture-grid {
+    @apply relative;
+  }
+
+  .texture-grid::before {
+    content: '';
+    @apply absolute inset-0 bg-grid opacity-10 pointer-events-none;
+  }
+
+  .texture-dots {
+    @apply relative;
+  }
+
+  .texture-dots::before {
+    content: '';
+    @apply absolute inset-0 bg-dots opacity-10 pointer-events-none;
+  }
+
+  /* Color blocking utilities */
+  .color-block-primary {
+    @apply bg-gradient-to-br from-primary/10 to-primary/5;
+  }
+
+  .color-block-secondary {
+    @apply bg-gradient-to-br from-secondary/10 to-secondary/5;
+  }
+
+  .color-block-accent {
+    @apply bg-gradient-to-br from-accent/10 to-accent/5;
+  }
+
+  /* Enhanced section backgrounds */
+  .bg-enhanced {
+    @apply relative overflow-hidden;
+  }
+
+  .bg-enhanced::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-cosmic opacity-50;
+  }
+
+  .bg-enhanced::after {
+    content: '';
+    @apply absolute inset-0 bg-noise opacity-15 mix-blend-overlay;
+  }
+}
+
+/* ===== COMPONENT CLASSES ===== */
+@layer components {
+  /* Button Variants */
+  .btn {
+    @apply inline-flex items-center justify-center px-10 py-4 text-lg font-heading font-semibold rounded-md
+           transform transition-all duration-400 focus:outline-none;
+  }
+  
+  /* Primary Button - Bordered Refined with Glow Effect */
+  .btn-primary {
+    @apply bg-white text-primary-saturated border-2 border-primary-saturated
+           transition-all duration-400;
+  }
+  
+  .btn-primary:hover {
+    @apply bg-primary-saturated text-white transform -translate-y-1
+           shadow-[0_0_20px_8px_rgba(255,0,255,0.3)] border-transparent;
+  }
+  
+  /* Secondary Button - Bordered Refined with Glow Effect */
+  .btn-secondary {
+    @apply bg-white text-secondary-saturated border-2 border-secondary-saturated
+           transition-all duration-400;
+  }
+  
+  .btn-secondary:hover {
+    @apply bg-secondary-saturated text-white transform -translate-y-1
+           shadow-[0_0_20px_8px_rgba(91,62,150,0.3)] border-transparent;
+  }
+  
+  /* Outline Button - Bordered Refined with Glow Effect */
+  .btn-outline {
+    @apply bg-white text-accent-saturated border-2 border-accent-saturated
+           transition-all duration-400;
+  }
+  
+  .btn-outline:hover {
+    @apply bg-accent-saturated text-cosmic transform -translate-y-1
+           shadow-[0_0_20px_8px_rgba(0,229,229,0.3)] border-transparent;
+  }
+  
+  /* Outline Button - Bordered Refined with Glow Effect */
+  .btn-outline {
+    @apply relative bg-transparent text-accent-saturated border-2 border-accent-saturated
+           transition-all duration-400;
+  }
+  
+  .btn-outline:hover {
+    @apply bg-accent-saturated text-cosmic transform -translate-y-1
+           shadow-[0_0_15px_5px_rgba(0,229,229,0.3)] border-transparent;
+  }
+  
+  .btn-sm {
+    @apply px-4 py-2 text-sm;
+  }
+  
+  .btn-lg {
+    @apply px-8 py-4 text-lg;
+  }
+  
+  /* Card Variants */
+  .card {
+    @apply relative overflow-hidden rounded-2xl transform transition-all duration-500
+           hover:scale-[1.02];
+  }
+  
+  /* Note: Add 'group' class directly in HTML when using card components */
+  
+  .card-product {
+    @apply bg-white shadow-multi border-4 border-transparent hover:border-primary-saturated/20;
+  }
+  
+  .card-content {
+    @apply bg-gradient-to-br from-cloud to-lavender/50 shadow-layered hover:shadow-multi
+           border-2 border-lavender/20 p-8;
+  }
+  
+  .card-feature {
+    @apply bg-gradient-to-br from-cloud to-lavender/30 hover:shadow-multi
+           border-2 border-lavender/20 hover:border-primary-saturated/20 p-8;
+  }
+  
+  /* Input Styles */
+  .input {
+    @apply px-6 py-3 rounded-full bg-cloud/80 border border-lavender/30
+           focus:outline-none focus:ring-2 focus:ring-primary-saturated/50
+           transition-all duration-300;
+  }
+  
+  .input-lg {
+    @apply px-8 py-4 text-lg;
+  }
+  
+  .input-dark {
+    @apply bg-cosmic/10 text-cloud placeholder:text-cloud/50 border-cosmic/20
+           focus:ring-accent-saturated/50;
+  }
+  
+  /* Section Styles */
+  .section {
+    @apply py-24 md:py-32 lg:py-40 relative overflow-hidden;
+  }
+  
+  .section-sm {
+    @apply py-12 md:py-16 lg:py-20;
+  }
+  
+  .section-primary {
+    @apply bg-gradient-to-br from-primary/5 to-secondary/5;
+  }
+  
+  .section-secondary {
+    @apply bg-gradient-to-br from-secondary/5 to-accent/5;
+  }
+  
+  .section-accent {
+    @apply bg-gradient-to-br from-accent/5 to-highlight/5;
+  }
+}
+
+/* ===== ANIMATION UTILITY CLASSES ===== */
+@layer utilities {
+  /* Entrance Animations */
+  .animate-on-scroll {
+    @apply opacity-0 transition-all duration-700;
+  }
+  
+  .animate-on-scroll.fade-up {
+    @apply translate-y-10;
+  }
+  
+  .animate-on-scroll.fade-down {
+    @apply -translate-y-10;
+  }
+  
+  .animate-on-scroll.fade-left {
+    @apply translate-x-10;
+  }
+  
+  .animate-on-scroll.fade-right {
+    @apply -translate-x-10;
+  }
+  
+  .animate-on-scroll.zoom {
+    @apply scale-95;
+  }
+  
+  .animate-on-scroll.visible {
+    @apply opacity-100 translate-y-0 translate-x-0 scale-100;
+  }
+  
+  /* Hover Animations */
+  .hover-float {
+    @apply transition-transform duration-300 hover:translate-y-[-8px];
+  }
+  
+  .hover-scale {
+    @apply transition-transform duration-300 hover:scale-[1.05];
+  }
+  
+  .hover-rotate {
+    @apply transition-transform duration-300 hover:rotate-3;
+  }
+  
+  .hover-glow {
+    @apply transition-shadow duration-300 hover:shadow-neon;
+  }
+  
+  /* Animation Delays */
+  .delay-100 {
+    @apply delay-100;
+  }
+  
+  .delay-200 {
+    @apply delay-200;
+  }
+  
+  .delay-300 {
+    @apply delay-300;
+  }
+  
+  .delay-400 {
+    @apply delay-400;
+  }
+  
+  .delay-500 {
+    @apply delay-500;
+  }
+  
+  .delay-700 {
+    @apply delay-700;
+  }
+  
+  .delay-1000 {
+    @apply delay-1000;
+  }
+}
+
+/* ===== GRADIENT & TEXTURE UTILITY CLASSES ===== */
+@layer utilities {
+  /* Gradient Backgrounds */
+  .bg-gradient-primary {
+    @apply bg-gradient-to-r from-primary to-secondary;
+  }
+  
+  .bg-gradient-secondary {
+    @apply bg-gradient-to-r from-secondary to-accent;
+  }
+  
+  .bg-gradient-accent {
+    @apply bg-gradient-to-r from-accent to-highlight;
+  }
+  
+  .bg-gradient-pastel {
+    @apply bg-gradient-to-r from-lavender via-mint to-peach/50;
+  }
+  
+  .bg-gradient-dark {
+    @apply bg-gradient-to-r from-cosmic via-plum to-cosmic;
+  }
+  
+  /* Refined Gradient Text - More feminine and elegant */
+  .text-gradient-primary {
+    @apply bg-gradient-to-r from-primary to-primary-saturated/90 bg-clip-text text-transparent;
+  }
+  
+  .text-gradient-secondary {
+    @apply bg-gradient-to-r from-secondary to-secondary-saturated/90 bg-clip-text text-transparent;
+  }
+  
+  .text-gradient-accent {
+    @apply bg-gradient-to-r from-accent to-accent-saturated/90 bg-clip-text text-transparent;
+  }
+
+  .text-gradient-elegant {
+    @apply bg-gradient-to-r from-plum to-secondary/90 bg-clip-text text-transparent;
+  }
+
+  .text-gradient-soft {
+    @apply bg-gradient-to-r from-lavender to-peach/90 bg-clip-text text-transparent;
+  }
+
+  .text-gradient-feminine {
+    @apply bg-gradient-to-r from-primary/90 to-secondary/90 bg-clip-text text-transparent;
+  }
+  
+  /* Texture Overlays */
+  .texture-noise {
+    @apply relative;
+  }
+  
+  .texture-noise::after {
+    @apply content-[''] absolute inset-0 bg-noise opacity-15 pointer-events-none mix-blend-overlay;
+  }
+  
+  .texture-dots {
+    @apply relative;
+  }
+  
+  .texture-dots::after {
+    @apply content-[''] absolute inset-0 bg-dots opacity-15 pointer-events-none mix-blend-overlay;
+  }
+  
+  .texture-grid {
+    @apply relative;
+  }
+  
+  .texture-grid::after {
+    @apply content-[''] absolute inset-0 bg-grid opacity-15 pointer-events-none mix-blend-overlay;
+  }
+}
+
+/* ===== SHAPE GENERATOR CLASSES ===== */
+@layer utilities {
+  /* Basic Shapes */
+  .shape-circle {
+    @apply rounded-full;
+  }
+  
+  .shape-blob {
+    @apply mask-blob;
+  }
+  
+  .shape-diamond {
+    @apply mask-diamond;
+  }
+  
+  /* Decorative Shapes */
+  .shape-decorator {
+    @apply absolute pointer-events-none;
+  }
+  
+  .shape-decorator-circle {
+    @apply shape-decorator rounded-full bg-gradient-to-br opacity-20 mix-blend-multiply filter blur-3xl;
+  }
+  
+  .shape-decorator-blob {
+    @apply shape-decorator mask-blob bg-gradient-to-br opacity-20 mix-blend-multiply filter blur-3xl;
+  }
+  
+  /* Shape Sizes */
+  .shape-sm {
+    @apply w-24 h-24;
+  }
+  
+  .shape-md {
+    @apply w-48 h-48;
+  }
+  
+  .shape-lg {
+    @apply w-96 h-96;
+  }
+  
+  .shape-xl {
+    @apply w-[32rem] h-[32rem];
+  }
+  
+  /* Shape Positions */
+  .shape-top-right {
+    @apply -top-1/4 -right-1/4;
+  }
+  
+  .shape-top-left {
+    @apply -top-1/4 -left-1/4;
+  }
+  
+  .shape-bottom-right {
+    @apply -bottom-1/4 -right-1/4;
+  }
+  
+  .shape-bottom-left {
+    @apply -bottom-1/4 -left-1/4;
+  }
+  
+  /* Shape Colors */
+  .shape-primary {
+    @apply from-primary/20 to-primary/5;
+  }
+  
+  .shape-secondary {
+    @apply from-secondary/20 to-secondary/5;
+  }
+  
+  .shape-accent {
+    @apply from-accent/20 to-accent/5;
+  }
+  
+  .shape-highlight {
+    @apply from-highlight/20 to-highlight/5;
   }
 }
 
@@ -86,31 +769,95 @@
   animation: wave 8s cubic-bezier(0.36, 0, 0.66, -0.56) infinite;
 }
 
-/* Gradient Backgrounds */
-.bg-gradient-radial {
-  background-image: radial-gradient(circle at center,
-    theme('colors.primary') 0%,
-    theme('colors.secondary') 25%,
-    theme('colors.accent') 50%,
-    theme('colors.highlight') 75%,
-    theme('colors.cloud') 100%
-  );
+/* Page Transition Animations */
+.transition-wrapper {
+  position: relative;
+  width: 100%;
 }
 
-.bg-gradient-conic {
-  background-image: conic-gradient(from 45deg,
-    theme('colors.primary'),
-    theme('colors.secondary'),
-    theme('colors.accent'),
-    theme('colors.highlight'),
-    theme('colors.primary')
-  );
+.transition-wrapper.fadeIn {
+  animation: pageTransitionFadeIn 0.5s ease forwards;
 }
 
-/* Noise Texture */
-.bg-noise {
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-  background-repeat: repeat;
+.transition-wrapper.fadeOut {
+  animation: pageTransitionFadeOut 0.5s ease forwards;
+}
+
+@keyframes pageTransitionFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pageTransitionFadeOut {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
+/* Section transition effects on scroll */
+.section-transition {
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.section-transition.slide-up {
+  transform: translateY(50px);
+  opacity: 0;
+}
+
+.section-transition.slide-up.in-view {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.section-transition.slide-right {
+  transform: translateX(-50px);
+  opacity: 0;
+}
+
+.section-transition.slide-right.in-view {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.section-transition.slide-left {
+  transform: translateX(50px);
+  opacity: 0;
+}
+
+.section-transition.slide-left.in-view {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.section-transition.zoom {
+  transform: scale(0.9);
+  opacity: 0;
+}
+
+.section-transition.zoom.in-view {
+  transform: scale(1);
+  opacity: 1;
+}
+
+/* CSS Variables */
+:root {
+  --color-primary: #FF00FF;
+  --color-secondary: #5B3E96;
+  --color-accent: #00E5E5;
+  --color-highlight: #FFDD00;
+  --color-cloud: #F8F5FF;
 }
 
 /* Smooth Scrolling for Anchor Links */

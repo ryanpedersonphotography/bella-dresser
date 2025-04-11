@@ -1,11 +1,22 @@
-import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import About from './pages/About';
+import MicroInteractionsPage from './pages/MicroInteractionsPage';
+import TransitionsPage from './pages/TransitionsPage';
+import ButtonShowcasePage from './pages/ButtonShowcasePage';
+import PageTransition from './components/PageTransition';
 import Footer from './components/Footer';
 
 const App: React.FC = () => {
+  const location = useLocation();
+  
+  // Scroll to top on page change
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+
   return (
     <div className="relative min-h-screen bg-cloud">
       {/* Background pattern - subtle and doesn't affect layout */}
@@ -13,12 +24,18 @@ const App: React.FC = () => {
       
       {/* Main content */}
       <div className="relative z-10">
-        <Navbar />
+        {/* Only show Navbar on non-home pages */}
+        {location.pathname !== '/' && <Navbar />}
         <main>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-          </Routes>
+          <PageTransition>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/micro-interactions" element={<MicroInteractionsPage />} />
+              <Route path="/transitions" element={<TransitionsPage />} />
+              <Route path="/button-showcase" element={<ButtonShowcasePage />} />
+            </Routes>
+          </PageTransition>
         </main>
         <Footer />
       </div>
