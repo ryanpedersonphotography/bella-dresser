@@ -5,6 +5,7 @@
   height: 90vh;
   overflow: hidden;
   margin-bottom: -1px; /* Ensure no gap between hero and wave divider */
+  z-index: 10; /* Ensure hero content is above the wave divider */
 }
 
 /* Custom Pink Arrow Buttons - Simple version positioned at bottom */

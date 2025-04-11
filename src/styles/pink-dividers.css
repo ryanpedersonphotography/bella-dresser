@@ -8,7 +8,7 @@
   overflow: hidden;
   margin: 0;
   padding: 0;
-  z-index: 10; /* Ensure proper layering */
+  z-index: 5; /* Lower z-index to ensure it goes behind content */
   perspective: 1000px; /* Add perspective for 3D effects */
 }
 
@@ -64,6 +64,7 @@
 /* Special styling for the hero wave divider */
 .hero-wave-divider {
   margin-top: -50px; /* Negative margin to overlap with hero */
+  z-index: 1; /* Even lower z-index for hero wave to ensure it goes behind hero content */
 }
 
 /* 2. Floating Pink Blobs */
