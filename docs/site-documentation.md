@@ -1,6 +1,8 @@
 # Bella Dresser Boutique - Site Documentation
 
 > **Design Update:** A [Design Refinement Plan](./design-refinement-plan.md) has been created to address several design improvements including gradient text refinement, button sizing consistency, dynamic section dividers, enhanced text styling, and new textures. Additionally, a [Sticky Navbar Implementation](./sticky-navbar-implementation.md) has been added to enhance the hero section experience.
+>
+> **Component Update:** All sliders and carousels have been migrated to [Keen Slider](https://keen-slider.io/) for improved performance, mobile support, and user experience. See the [Enhanced Hero Slideshow Guide](./enhanced-hero-slideshow-guide.md) and [Image Carousel Implementation](./image-carousel-implementation.md) for details.
 
 ## Table of Contents
 1. [Technical Architecture](#technical-architecture)
@@ -18,7 +20,9 @@
 - **Styling**: Tailwind CSS
 - **Build Tool**: Vite
 - **UI Components**: Lucide React for icons
-- **Dependencies**: use-interval for slideshow functionality
+- **Dependencies**:
+  - keen-slider for carousel and slideshow functionality
+  - use-interval (legacy, being phased out)
 
 ### Project Structure
 ```
@@ -86,10 +90,11 @@ bella-dresser/
 
 #### Home Page
 1. Hero Section
-   - Full-screen slideshow
-   - 3 rotating slides with content
+   - Full-screen slideshow using Keen Slider
+   - 4 rotating slides with content
    - Overlay text and CTA buttons
    - Slide indicators
+   - Touch/swipe support for mobile
 
 2. Latest Arrivals
    - 3-column product grid
@@ -107,7 +112,13 @@ bella-dresser/
    - Image with content
    - Circular decorative elements
 
-5. Boutique Experience
+5. Fashion Lookbook (currently disabled)
+   - Showcase of seasonal collections
+   - Enhanced image effects
+   - Product gallery
+   - Visual storytelling elements
+
+6. Boutique Experience
    - Three feature cards
    - Subtle gradient backgrounds
    - Hover animations
@@ -135,6 +146,7 @@ Features:
 - Responsive design
 - Hover effects on links
 - Smooth transition animations
+- Streamlined navigation without "Shop Now" button
 ```
 
 See the [Sticky Navbar Implementation Guide](./sticky-navbar-implementation.md) for detailed information on the transparent-to-sticky navbar behavior.
@@ -150,14 +162,32 @@ Features:
 - Icon integration
 ```
 
-#### HeroSlideshow
+#### EnhancedHeroSlideshow
 ```typescript
 Features:
+- Keen Slider integration
 - Auto-rotating slides
 - Content overlay
-- Navigation dots
+- Navigation dots with bottom-aligned arrows
 - Gradient backgrounds
 - CTA buttons
+- Touch/swipe support
+- Improved performance
+- Pause on hover
+- Bottom-positioned navigation arrows aligned with dots
+```
+
+#### ImageCarousel
+```typescript
+Features:
+- Keen Slider integration
+- Auto-rotating images
+- Navigation arrows with optimized hover effects
+- Indicator dots flush with content
+- Touch/swipe support
+- Configurable timing
+- Responsive design
+- Fixed arrow positioning to prevent hover glitches
 ```
 
 ## Site Analysis
@@ -168,6 +198,8 @@ Features:
 3. Responsive layout structure
 4. Performance-optimized images
 5. Thoughtful typography hierarchy
+6. Enhanced mobile experience with touch support
+7. Optimized carousel and slideshow components
 
 ### Areas for Improvement
 1. Color Palette
@@ -180,6 +212,7 @@ Features:
    - Creative section dividers
    - Asymmetrical designs
    - Enhanced grid systems
+   - Improved component alignment and positioning
 
 3. Visual Elements
    - Additional texture patterns
@@ -194,9 +227,10 @@ Features:
    - Contact functionality
 
 5. Navigation
-   - Expanded structure
+   - Streamlined structure
    - Mobile optimization
    - Additional user pathways
+   - Simplified navigation without distracting buttons
 
 ## Brand Identity
 
@@ -231,6 +265,26 @@ A detailed [Design Refinement Plan](./design-refinement-plan.md) has been create
 6. **Sticky Navbar in Hero** - Transparent navbar integrated in hero section that becomes sticky on scroll
 
 These refinements are documented with implementation details and will be incorporated in the next development phase.
+
+### Recent Technical Improvements
+1. **Keen Slider Integration** - All carousels and slideshows have been migrated to Keen Slider for:
+   - Improved performance and smoother animations
+   - Better mobile experience with touch/swipe support
+   - Reduced code complexity and maintenance
+   - Enhanced user experience
+   - Optimized navigation with properly positioned arrows and indicators
+
+2. **Navigation Refinements** - The navigation has been streamlined by:
+   - Removing the "Shop Now" button for cleaner navigation
+   - Aligning carousel navigation elements for visual consistency
+   - Fixing hover effects on carousel arrows to prevent position shifting
+   - Enhanced user experience
+
+2. **Content Optimization** - The Fashion Lookbook section has been temporarily disabled to:
+   - Streamline the user journey
+   - Focus attention on core offerings
+   - Improve page load performance
+   - Prepare for future content updates
 
 ### Phase 1: Visual Refresh
 - Implement vibrant color palette
