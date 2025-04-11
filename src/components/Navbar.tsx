@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import Logo from './Logo';
-import ButtonComponent from './ButtonComponent';
 
 interface NavbarProps {
   variant?: 'transparent' | 'solid';
@@ -10,19 +9,56 @@ interface NavbarProps {
 
 const Navbar: React.FC<NavbarProps> = ({ variant = 'solid' }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [isHome, setIsHome] = useState(false);
+  const location = useLocation();
   
-  // Determine classes based on variant
-  const navClasses = variant === 'transparent'
-    ? "bg-transparent transition-all duration-300"
-    : "bg-gradient-to-r from-lavender to-cloud transition-all duration-300";
+  // Check if we're on the home page
+  useEffect(() => {
+    setIsHome(location.pathname === '/');
+  }, [location.pathname]);
   
-  // Text color classes based on variant
-  const textClasses = variant === 'transparent'
+  // Add scroll event listener
+  useEffect(() => {
+    const handleScroll = () => {
+      // For home page, we want to detect when we've scrolled past the hero
+      // For other pages, we want to detect any scroll
+      const scrollThreshold = isHome ? window.innerHeight * 0.8 : 50;
+      
+      if (window.scrollY > scrollThreshold) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    
+    // Initial check
+    handleScroll();
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [isHome]);
+  
+  // Determine classes based on variant and scroll state
+  const navClasses = variant === 'transparent' && !scrolled
+    ? "bg-cosmic/60 backdrop-blur-sm"
+    : "bg-gradient-to-r from-lavender to-cloud shadow-md";
+  
+  // Text color classes based on variant and scroll state
+  const textClasses = variant === 'transparent' && !scrolled
     ? "text-cloud hover:text-primary"
     : "text-cosmic hover:text-primary";
   
+  // Height classes based on scroll state
+  const heightClasses = scrolled
+    ? "h-16" // Smaller height when scrolled
+    : variant === 'transparent' ? "h-24" : "h-20"; // Normal height
+  
   return (
-    <nav className={`${navClasses} relative z-50`}>
+    <nav className={`${navClasses} fixed top-0 left-0 right-0 transition-all duration-300 z-50`}>
       {/* Colorful top border */}
       <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-accent to-highlight"></div>
       
@@ -30,10 +66,14 @@ const Navbar: React.FC<NavbarProps> = ({ variant = 'solid' }) => {
       <div className="absolute inset-0 bg-noise opacity-10"></div>
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        <div className={`flex justify-between ${variant === 'transparent' ? 'h-24' : 'h-20'} transition-all duration-300`}>
+        <div className={`flex justify-between ${heightClasses} transition-all duration-300`}>
           <div className="flex items-center">
             <Link to="/">
-              <Logo size="md" variant="full" className={variant === 'transparent' ? 'text-cloud' : ''} />
+              <Logo 
+                size={scrolled ? "sm" : "md"} 
+                variant="full" 
+                className={variant === 'transparent' && !scrolled ? 'text-cloud' : ''}
+              />
             </Link>
           </div>
           
@@ -41,44 +81,40 @@ const Navbar: React.FC<NavbarProps> = ({ variant = 'solid' }) => {
           <div className="hidden md:flex items-center space-x-8">
             <Link 
               to="/" 
-              className={`font-body text-lg ${textClasses} transition-colors relative group`}
+              className={`font-body ${scrolled ? 'text-base' : 'text-lg'} ${textClasses} transition-all duration-300 relative group`}
             >
               Home
               <span className="absolute -bottom-1 left-0 w-0 h-1 bg-primary transition-all group-hover:w-full duration-300"></span>
             </Link>
             <Link
               to="/about"
-              className={`font-body text-lg ${textClasses} transition-colors relative group`}
+              className={`font-body ${scrolled ? 'text-base' : 'text-lg'} ${textClasses} transition-all duration-300 relative group`}
             >
               About
               <span className="absolute -bottom-1 left-0 w-0 h-1 bg-primary transition-all group-hover:w-full duration-300"></span>
             </Link>
             <Link
               to="/micro-interactions"
-              className={`font-body text-lg ${textClasses} transition-colors relative group`}
+              className={`font-body ${scrolled ? 'text-base' : 'text-lg'} ${textClasses} transition-all duration-300 relative group`}
             >
               Micro-Interactions
               <span className="absolute -bottom-1 left-0 w-0 h-1 bg-primary transition-all group-hover:w-full duration-300"></span>
             </Link>
             <Link
               to="/transitions"
-              className={`font-body text-lg ${textClasses} transition-colors relative group`}
+              className={`font-body ${scrolled ? 'text-base' : 'text-lg'} ${textClasses} transition-all duration-300 relative group`}
             >
               Transitions
               <span className="absolute -bottom-1 left-0 w-0 h-1 bg-primary transition-all group-hover:w-full duration-300"></span>
             </Link>
             <Link
               to="/button-showcase"
-              className={`font-body text-lg ${textClasses} transition-colors relative group`}
+              className={`font-body ${scrolled ? 'text-base' : 'text-lg'} ${textClasses} transition-all duration-300 relative group`}
             >
               Button Styles
               <span className="absolute -bottom-1 left-0 w-0 h-1 bg-primary transition-all group-hover:w-full duration-300"></span>
             </Link>
-            <Link to="/shop">
-              <ButtonComponent variant={variant === 'transparent' ? 'secondary' : 'primary'} size="lg">
-                Shop Now
-              </ButtonComponent>
-            </Link>
+            {/* Shop Now button removed */}
           </div>
           
           {/* Mobile menu button */}
@@ -141,11 +177,7 @@ const Navbar: React.FC<NavbarProps> = ({ variant = 'solid' }) => {
           >
             About
           </Link>
-          <Link to="/shop" onClick={() => setIsOpen(false)}>
-            <ButtonComponent variant="primary" size="lg">
-              Shop Now
-            </ButtonComponent>
-          </Link>
+          {/* Shop Now button removed */}
         </div>
       </div>
     </nav>

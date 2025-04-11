@@ -11,7 +11,6 @@
 /* Custom Pink Arrow Buttons - Simple version positioned at bottom */
 .slider-arrow-simple {
   position: absolute;
-  bottom: 100px; /* Positioned toward bottom of hero */
   z-index: 30;
   display: flex;
   align-items: center;
@@ -25,8 +24,16 @@
 }
 
 .slider-arrow-simple:hover {
-  transform: scale(1.2);
   filter: drop-shadow(0 4px 8px rgba(255, 0, 255, 0.5));
+}
+
+/* Apply the scale effect to the SVG icon instead of the button */
+.slider-arrow-simple svg {
+  transition: all 0.3s ease;
+}
+
+.slider-arrow-simple:hover svg {
+  transform: scale(1.2);
 }
 
 .slider-arrow-simple:active {

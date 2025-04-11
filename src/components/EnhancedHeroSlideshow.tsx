@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from './Navbar';
-import ButtonComponent from './ButtonComponent';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
+import { useKeenSlider } from 'keen-slider/react';
+import 'keen-slider/keen-slider.min.css';
 
 // Define the slide data with improved images and creative copy
 const slides = [
@@ -42,16 +43,7 @@ const slides = [
 const EnhancedHeroSlideshow: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isTransitioning, setIsTransitioning] = useState(false);
-
-  // Handle automatic slide transition
-  useEffect(() => {
-    const interval = setInterval(() => {
-      goToNextSlide();
-    }, 8000); // Slowed down from 6000ms to 8000ms
-    
-    return () => clearInterval(interval);
-  }, [currentSlide]);
+  const [loaded, setLoaded] = useState(false);
 
   // Handle scroll effect for navbar
   useEffect(() => {
@@ -63,41 +55,61 @@ const EnhancedHeroSlideshow: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Navigation functions
-  const goToNextSlide = () => {
-    if (isTransitioning) return;
-    
-    setIsTransitioning(true);
-    setTimeout(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length);
-      setIsTransitioning(false);
-    }, 300);
-  };
-
-  const goToPrevSlide = () => {
-    if (isTransitioning) return;
-    
-    setIsTransitioning(true);
-    setTimeout(() => {
-      setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
-      setIsTransitioning(false);
-    }, 300);
-  };
-
-  const goToSlide = (index: number) => {
-    if (isTransitioning || index === currentSlide) return;
-    
-    setIsTransitioning(true);
-    setTimeout(() => {
-      setCurrentSlide(index);
-      setIsTransitioning(false);
-    }, 300);
-  };
+  // Set up Keen Slider with modified options
+  const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>(
+    {
+      initial: 0,
+      loop: true,
+      mode: "snap",
+      slides: { perView: 1 },
+      slideChanged(slider) {
+        setCurrentSlide(slider.track.details.rel);
+      },
+      created() {
+        setLoaded(true);
+      },
+    },
+    [
+      // Add auto-play plugin
+      (slider) => {
+        let timeout: ReturnType<typeof setTimeout>;
+        let mouseOver = false;
+        
+        function clearNextTimeout() {
+          clearTimeout(timeout);
+        }
+        
+        function nextTimeout() {
+          clearTimeout(timeout);
+          if (mouseOver) return;
+          timeout = setTimeout(() => {
+            slider.next();
+          }, 8000); // 8 seconds per slide
+        }
+        
+        slider.on("created", () => {
+          slider.container.addEventListener("mouseover", () => {
+            mouseOver = true;
+            clearNextTimeout();
+          });
+          slider.container.addEventListener("mouseout", () => {
+            mouseOver = false;
+            nextTimeout();
+          });
+          nextTimeout();
+        });
+        
+        slider.on("dragStarted", clearNextTimeout);
+        slider.on("animationEnded", nextTimeout);
+        slider.on("updated", nextTimeout);
+      },
+    ]
+  );
 
   return (
     <section className="hero-slider">
       {/* Integrated Navbar - positioned absolutely within hero */}
-      <div className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'sticky-nav' : 'hero-nav'}`}>
+      <div className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'sticky-nav' : 'hero-nav'} bg-gradient-to-r from-purple-950/95 via-purple-900/90 to-purple-800/80`}>
         <Navbar variant={isScrolled ? "solid" : "transparent"} />
       </div>
 
@@ -105,96 +117,85 @@ const EnhancedHeroSlideshow: React.FC = () => {
       <div className="slide-decorative-circle slide-decorative-circle-1"></div>
       <div className="slide-decorative-circle slide-decorative-circle-2"></div>
       
-      {/* Slides */}
-      {slides.map((slide, index) => (
-        <div
-          key={index}
-          className={`absolute inset-0 transition-all duration-1000 ${
-            index === currentSlide 
-              ? 'opacity-100 scale-100 slide-active' 
-              : 'opacity-0 scale-105'
-          } ${isTransitioning ? 'transform blur-sm' : ''}`}
-        >
-          {/* Gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-r from-cosmic/80 via-cosmic/60 to-transparent z-10"></div>
-          
-          {/* Background image */}
+      {/* Keen Slider */}
+      <div ref={sliderRef} className="keen-slider h-full w-full">
+        {slides.map((slide, index) => (
           <div 
-            className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: `url(${slide.image})` }}
-          ></div>
-          
-          {/* Content container */}
-          <div className="relative h-full max-w-7xl mx-auto px-4 flex items-center z-20">
-            <div className="max-w-2xl">
-              <h2 className="text-2xl font-body mb-2 text-highlight slide-content slide-content-subtitle">
-                {slide.subtitle}
-              </h2>
-              <h1 className="text-8xl font-heading font-bold mb-6 leading-tight slide-content slide-content-title">
-                <span className="gradient-text">
-                  {slide.title}
-                </span>
-              </h1>
-              <p className="text-xl mb-8 text-cloud font-body slide-content slide-content-description">
-                {slide.description}
-              </p>
-              <div className="flex flex-wrap gap-4 slide-content slide-content-buttons">
-                <a href={slide.ctaLink}>
-                  <ButtonComponent size="lg">
-                    {slide.ctaText}
-                  </ButtonComponent>
-                </a>
-                <a href="#learn-more">
-                  <ButtonComponent variant="secondary" size="lg">
-                    Learn More
-                  </ButtonComponent>
-                </a>
+            key={index} 
+            className={`keen-slider__slide h-full w-full ${index === currentSlide ? 'slide-active' : ''}`}
+          >
+            {/* Gradient overlay */}
+            <div className="absolute inset-0 bg-gradient-to-r from-purple-950/95 via-purple-900/85 to-purple-800/75 z-10"></div>
+            
+            {/* Background image */}
+            <div 
+              className="absolute inset-0 bg-cover bg-center"
+              style={{ backgroundImage: `url(${slide.image})` }}
+            ></div>
+            
+            {/* Content container */}
+            <div className="relative h-full max-w-7xl mx-auto px-4 flex items-center z-20">
+              <div className="max-w-2xl">
+                <h2 className={`text-2xl font-body mb-2 text-highlight slide-content slide-content-subtitle ${index === currentSlide ? 'opacity-100 transform-none' : ''}`}>
+                  {slide.subtitle}
+                </h2>
+                <h1 className={`text-8xl font-heading font-bold mb-6 leading-tight slide-content slide-content-title ${index === currentSlide ? 'opacity-100 transform-none' : ''}`}>
+                  <span className="gradient-text">
+                    {slide.title}
+                  </span>
+                </h1>
+                <p className={`text-2xl mb-8 text-cloud font-body slide-content slide-content-description ${index === currentSlide ? 'opacity-100 transform-none' : ''}`}>
+                  {slide.description}
+                </p>
               </div>
             </div>
           </div>
-        </div>
-      ))}
-      
-      {/* Custom pink arrow navigation buttons - positioned at bottom */}
-      <button
-        className="slider-arrow-simple slider-arrow-left"
-        onClick={goToPrevSlide}
-        aria-label="Previous slide"
-      >
-        <ArrowLeft size={20} />
-      </button>
-      
-      <button
-        className="slider-arrow-simple slider-arrow-right"
-        onClick={goToNextSlide}
-        aria-label="Next slide"
-      >
-        <ArrowRight size={20} />
-      </button>
-      
-      {/* Slide indicators */}
-      <div className="slide-indicators">
-        {slides.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => goToSlide(index)}
-            className={`slide-indicator ${index === currentSlide ? 'active' : ''}`}
-            aria-label={`Go to slide ${index + 1}`}
-          ></button>
         ))}
       </div>
       
-      {/* Decorative wave divider - subtle version that works with the pink wave divider */}
-      <div className="absolute bottom-0 left-0 w-full overflow-hidden z-10">
-        <svg
-          viewBox="0 0 1200 120"
-          preserveAspectRatio="none"
-          className="w-full h-16 text-cloud opacity-70"
-          fill="currentColor"
-        >
-          <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C57.44,118.92,150.61,104.34,214.34,87.9c36.58-9.4,71.64-20.56,107.05-31.46Z"></path>
-        </svg>
-      </div>
+      {/* Custom navigation buttons */}
+      {loaded && instanceRef.current && (
+        <>
+          <button
+            className="slider-arrow-simple slider-arrow-left absolute bottom-[30px] left-6 z-30"
+            onClick={(e) => {
+              e.stopPropagation();
+              instanceRef.current?.prev();
+            }}
+            aria-label="Previous slide"
+          >
+            <ArrowLeft size={20} />
+          </button>
+          
+          <button
+            className="slider-arrow-simple slider-arrow-right absolute bottom-[30px] right-6 z-30"
+            onClick={(e) => {
+              e.stopPropagation();
+              instanceRef.current?.next();
+            }}
+            aria-label="Next slide"
+          >
+            <ArrowRight size={20} />
+          </button>
+        </>
+      )}
+      
+      {/* Slide indicators */}
+      {loaded && instanceRef.current && (
+        <div className="slide-indicators">
+          {Array.from({ length: instanceRef.current.track.details.slides.length }).map((_, index) => (
+            <button
+              key={index}
+              onClick={() => instanceRef.current?.moveToIdx(index)}
+              className={`slide-indicator ${index === currentSlide ? 'active' : ''}`}
+              aria-label={`Go to slide ${index + 1}`}
+            ></button>
+          ))}
+        </div>
+      )}
+      
+      {/* Decorative wave divider - simplified */}
+      <div className="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-cloud/20 to-transparent z-10"></div>
     </section>
   );
 };
