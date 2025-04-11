@@ -3,6 +3,29 @@ import HeroSlideshow from '../components/HeroSlideshow';
 import { Star, Sparkles, Heart } from 'lucide-react';
 
 const Home: React.FC = () => {
+  console.log("Home component rendering");
+  
+  // Create test element to check gradient-text class
+  React.useEffect(() => {
+    const testElement = document.createElement('span');
+    testElement.className = 'gradient-text';
+    testElement.style.position = 'absolute';
+    testElement.style.visibility = 'hidden';
+    testElement.textContent = 'Test';
+    document.body.appendChild(testElement);
+    
+    const styles = window.getComputedStyle(testElement);
+    console.log("Gradient text class check:", {
+      backgroundImage: styles.backgroundImage,
+      backgroundClip: styles.backgroundClip,
+      textFillColor: styles.webkitTextFillColor || styles.color,
+      elementCreated: !!testElement
+    });
+    
+    // Clean up
+    document.body.removeChild(testElement);
+  }, []);
+  
   return (
     <div className="relative">
       {/* Hero Section with Decorative Elements */}
