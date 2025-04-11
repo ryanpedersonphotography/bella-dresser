@@ -1,0 +1,180 @@
+/* Hero Slider with Custom Pink Arrows */
+
+.hero-slider {
+  position: relative;
+  height: 90vh;
+  overflow: hidden;
+  margin-bottom: -1px; /* Ensure no gap between hero and wave divider */
+}
+
+/* Custom Pink Arrow Buttons - Simple version positioned at bottom */
+.slider-arrow-simple {
+  position: absolute;
+  bottom: 100px; /* Positioned toward bottom of hero */
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: transparent;
+  border: none;
+  color: #FF00FF; /* Electric Fuchsia */
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3)); /* Drop shadow following site guidelines */
+}
+
+.slider-arrow-simple:hover {
+  transform: scale(1.2);
+  filter: drop-shadow(0 4px 8px rgba(255, 0, 255, 0.5));
+}
+
+.slider-arrow-simple:active {
+  transform: scale(0.9);
+}
+
+.slider-arrow-left {
+  left: 40px;
+}
+
+.slider-arrow-right {
+  right: 40px;
+}
+
+.slider-arrow-simple svg {
+  width: 20px;
+  height: 20px;
+  filter: drop-shadow(0 0 5px rgba(255, 0, 255, 0.8));
+}
+
+/* Slide transition effects */
+.slide-enter {
+  opacity: 0;
+  transform: scale(1.05);
+}
+
+.slide-enter-active {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 800ms, transform 800ms;
+}
+
+.slide-exit {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.slide-exit-active {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 800ms, transform 800ms;
+}
+
+/* Custom slide indicators */
+.slide-indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.slide-indicator::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, #FF00FF, #FF40FF);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.slide-indicator.active {
+  width: 36px;
+  border-radius: 6px;
+}
+
+.slide-indicator.active::before {
+  opacity: 1;
+}
+
+.slide-indicator:hover::before {
+  opacity: 0.5;
+}
+
+.slide-indicators {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 12px;
+  z-index: 30;
+}
+
+/* Slide content animations */
+.slide-content {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.slide-active .slide-content {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.slide-content-subtitle {
+  transition-delay: 0.2s;
+}
+
+.slide-content-title {
+  transition-delay: 0.4s;
+}
+
+.slide-content-description {
+  transition-delay: 0.6s;
+}
+
+.slide-content-buttons {
+  transition-delay: 0.8s;
+}
+
+/* Decorative elements */
+.slide-decorative-circle {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 0, 255, 0.15);
+  filter: blur(40px);
+  mix-blend-mode: screen;
+  animation: float 8s ease-in-out infinite;
+}
+
+.slide-decorative-circle-1 {
+  width: 300px;
+  height: 300px;
+  top: -100px;
+  right: -100px;
+  animation-delay: 0s;
+}
+
+.slide-decorative-circle-2 {
+  width: 200px;
+  height: 200px;
+  bottom: -50px;
+  left: -50px;
+  animation-delay: 2s;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-20px) scale(1.05);
+  }
+}

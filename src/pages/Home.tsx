@@ -1,42 +1,29 @@
-import React, { useState } from 'react';
+import React from 'react';
 import TexturedSection from '../components/TexturedSection';
 import ButtonComponent from '../components/ButtonComponent';
 import CardComponent from '../components/CardComponent';
-import HeroSection from '../components/HeroSection';
 import { Star, Sparkles, Heart } from 'lucide-react';
 import { HeroBanner } from '../components/HeroImage';
 import ImageCarousel from '../components/ImageCarousel';
+import EnhancedHeroSlideshow from '../components/EnhancedHeroSlideshow';
+import PinkWaveDivider from '../components/PinkWaveDivider';
+import PinkBlobContainer from '../components/PinkBlobContainer';
+import PinkDiagonalDivider from '../components/PinkDiagonalDivider';
+import PinkConfettiDivider from '../components/PinkConfettiDivider';
+import PinkDottedPath from '../components/PinkDottedPath';
 import ScrollReveal from '../components/ScrollReveal';
 import { ProductGallery } from '../components/ProductImage';
 import EnhancedImage from '../components/EnhancedImage';
 
 
 const Home: React.FC = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  
-  const handleSubscribe = () => {
-    setIsLoading(true);
-    // Simulate API call
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
-  };
   
   return (
-    <div className="relative">
-      <HeroSection
-        title="Dress to Impress"
-        subtitle="Your Style Journey Begins Here"
-        description="Step into a world of curated fashion where European elegance meets Minnesota charm. Our boutique collection features handpicked pieces that celebrate individuality and timeless style. From lakeside casual to evening sophistication, find your perfect look for every occasion and season."
-        ctaText="Shop Now"
-        ctaLink="/shop"
-        backgroundImage="https://images.unsplash.com/photo-1441986300917-64674bd600d8"
-      />
+    <div className="relative -mt-24"> {/* Negative margin to counteract the padding-top from main */}
+      <EnhancedHeroSlideshow />
 
-      {/* Decorative divider */}
-      <div className="breathing-space">
-        <div className="textured-divider"></div>
-      </div>
+      {/* Pink Wave Divider - First transition */}
+      <PinkWaveDivider variant="hero" />
 
       {/* Featured Collection */}
       <TexturedSection
@@ -90,10 +77,8 @@ const Home: React.FC = () => {
         </div>
       </TexturedSection>
 
-      {/* Section transition with connecting element */}
-      <div className="section-transition">
-        <div className="connecting-divider"></div>
-      </div>
+      {/* Pink Blob Container - Second transition */}
+      <PinkBlobContainer />
 
       {/* European Elegance Section */}
       <TexturedSection
@@ -147,10 +132,8 @@ const Home: React.FC = () => {
         </div>
       </TexturedSection>
 
-      {/* Decorative divider */}
-      <div className="breathing-space">
-        <div className="textured-divider"></div>
-      </div>
+      {/* Pink Diagonal Divider - Third transition */}
+      <PinkDiagonalDivider />
 
       {/* Small Town Style Section */}
       <TexturedSection
@@ -204,10 +187,8 @@ const Home: React.FC = () => {
         </div>
       </TexturedSection>
 
-      {/* Decorative divider */}
-      <div className="breathing-space">
-        <div className="textured-divider"></div>
-      </div>
+      {/* Pink Confetti Divider - Fourth transition */}
+      <PinkConfettiDivider />
 
       {/* Enhanced Image Gallery Section */}
       <TexturedSection
@@ -320,10 +301,8 @@ const Home: React.FC = () => {
         </div>
       </TexturedSection>
       
-      {/* Decorative divider */}
-      <div className="breathing-space">
-        <div className="textured-divider"></div>
-      </div>
+      {/* Pink Dotted Path - Fifth transition */}
+      <PinkDottedPath />
 
       {/* Boutique Experience Section */}
       <TexturedSection
@@ -383,46 +362,8 @@ const Home: React.FC = () => {
         </div>
       </TexturedSection>
 
-      {/* Decorative divider */}
-      <div className="breathing-space">
-        <div className="textured-divider"></div>
-      </div>
-
-      {/* Newsletter Section */}
-      <TexturedSection
-        variant="secondary"
-        textureType="noise"
-        className="section-spacing bg-gradient-cosmic"
-      >
-        <div className="shape-container">
-          {/* Decorative shapes */}
-          <div className="shape-circle shape-circle-xl -top-1/4 -right-1/4 bg-primary/10 animate-pulse-slow"></div>
-          <div className="shape-circle shape-circle-lg -bottom-1/4 -left-1/4 bg-accent/10 animate-pulse-slow animation-delay-2000"></div>
-          
-          <div className="content-container relative z-10">
-            <ScrollReveal animation="fade-up">
-              <div className="max-w-2xl mx-auto text-center">
-                <h2 className="text-4xl font-heading font-bold mb-4">
-                  <span className="gradient-text">Join Our Fashion Family</span>
-                </h2>
-                <p className="text-cloud/90 mb-8 font-body">
-                  Subscribe to receive updates on new arrivals, special promotions, and styling tips.
-                </p>
-                <div className="flex gap-4 max-w-md mx-auto">
-                  <input
-                    type="email"
-                    placeholder="Enter your email"
-                    className="flex-1 px-6 py-3 rounded-full bg-cloud/10 text-cloud placeholder:text-cloud/50 focus:outline-none focus:ring-4 focus:ring-primary-saturated/50 shadow-inner-glow"
-                  />
-                  <ButtonComponent variant="primary" size="lg" onClick={handleSubscribe} loading={isLoading}>
-                    Subscribe
-                  </ButtonComponent>
-                </div>
-              </div>
-            </ScrollReveal>
-          </div>
-        </div>
-      </TexturedSection>
+      {/* Pink Wave Divider at bottom */}
+      <PinkWaveDivider variant="bottom" />
     </div>
   );
 };

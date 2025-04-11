@@ -1,0 +1,200 @@
+/* Playful Pink Dividers for Section Transitions */
+
+/* 1. Wavy Pink Ribbons */
+.pink-wave-divider {
+  position: relative;
+  height: 150px; /* Increased height to ensure waves aren't cut off */
+  width: 100%;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  z-index: 10; /* Ensure proper layering */
+}
+
+.pink-wave-divider::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1200 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23FF00FF' fill-opacity='0.2' d='M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C57.44,118.92,150.61,104.34,214.34,87.9c36.58-9.4,71.64-20.56,107.05-31.46Z'%3E%3C/path%3E%3C/svg%3E");
+  background-size: 1200px 100%;
+  animation: wave-animation 18s linear infinite;
+  transform-origin: center bottom; /* Ensure waves scale from the bottom */
+}
+
+.pink-wave-divider::after {
+  content: '';
+  position: absolute;
+  top: 30px;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1200 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23FF00FF' fill-opacity='0.15' d='M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z'%3E%3C/path%3E%3C/svg%3E");
+  background-size: 1200px 100%;
+  animation: wave-animation 15s linear infinite reverse;
+  transform-origin: center bottom; /* Ensure waves scale from the bottom */
+}
+
+@keyframes wave-animation {
+  0% {
+    background-position-x: 0;
+  }
+  100% {
+    background-position-x: 1200px;
+  }
+}
+
+/* Special styling for the bottom wave divider */
+.bottom-wave-divider {
+  margin-bottom: -2px; /* Ensure no gap at the bottom */
+  height: 180px; /* Extra height for the bottom wave */
+}
+
+/* Special styling for the hero wave divider */
+.hero-wave-divider {
+  margin-top: -50px; /* Negative margin to overlap with hero */
+}
+
+/* 2. Floating Pink Blobs */
+.pink-blob-container {
+  position: relative;
+  height: 100px;
+  width: 100%;
+  overflow: hidden;
+  margin: -50px 0;
+  z-index: 10;
+}
+
+.pink-blob {
+  position: absolute;
+  background: rgba(255, 0, 255, 0.15);
+  border-radius: 100%;
+  filter: blur(20px);
+  mix-blend-mode: multiply;
+}
+
+.pink-blob-1 {
+  width: 150px;
+  height: 150px;
+  left: 15%;
+  top: -50px;
+  animation: float 8s ease-in-out infinite;
+}
+
+.pink-blob-2 {
+  width: 100px;
+  height: 100px;
+  right: 25%;
+  top: 20px;
+  animation: float 6s ease-in-out infinite 1s;
+}
+
+.pink-blob-3 {
+  width: 80px;
+  height: 80px;
+  left: 60%;
+  top: 10px;
+  animation: float 7s ease-in-out infinite 0.5s;
+}
+
+/* 3. Playful Pink Confetti */
+.pink-confetti-divider {
+  position: relative;
+  height: 80px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.confetti-piece {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: #FF00FF;
+  opacity: 0.2;
+  border-radius: 0 50% 50% 50%;
+  animation: confetti-fall 4s ease-in-out infinite;
+}
+
+@keyframes confetti-fall {
+  0% {
+    transform: translateY(-100px) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.2;
+  }
+  100% {
+    transform: translateY(100px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* 4. Diagonal Pink Slices */
+.pink-diagonal-divider {
+  position: relative;
+  height: 100px;
+  width: 100%;
+  overflow: hidden;
+  transform: skewY(-3deg);
+  margin: 20px 0;
+  background: linear-gradient(135deg, rgba(255, 0, 255, 0.05) 0%, rgba(255, 0, 255, 0.15) 50%, rgba(255, 0, 255, 0.05) 100%);
+}
+
+.pink-diagonal-divider::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.1;
+}
+
+/* 5. Pink Dotted Paths */
+.pink-dotted-path {
+  position: relative;
+  height: 80px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.pink-dotted-path::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-image: linear-gradient(to right, transparent, #FF00FF, transparent);
+  opacity: 0.3;
+  transform: translateY(-50%);
+}
+
+.pink-dot {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #FF00FF;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0;
+  animation: dot-appear 3s ease-in-out infinite;
+}
+
+@keyframes dot-appear {
+  0% {
+    opacity: 0;
+    left: 0;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 0;
+    left: 100%;
+  }
+}
