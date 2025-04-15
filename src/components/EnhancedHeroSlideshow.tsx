@@ -3,6 +3,7 @@ import Navbar from './Navbar';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { useKeenSlider } from 'keen-slider/react';
 import 'keen-slider/keen-slider.min.css';
+import ParticleBackground from './ParticleBackground';
 
 // Define the slide data with improved images and creative copy
 const slides = [
@@ -109,8 +110,20 @@ const EnhancedHeroSlideshow: React.FC = () => {
   return (
     <section className="hero-slider">
       {/* Integrated Navbar - positioned absolutely within hero */}
-      <div className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'sticky-nav' : 'hero-nav'} bg-gradient-to-r from-purple-950/95 via-purple-900/90 to-purple-800/80`}>
+      <div className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'sticky-nav' : 'hero-nav'}`}>
         <Navbar variant={isScrolled ? "solid" : "transparent"} />
+      </div>
+
+      {/* Particle background effect */}
+      <div className="absolute inset-0 z-10 overflow-hidden">
+        <ParticleBackground
+          count={120}
+          color="#FF00FF"
+          maxSpeed={0.4}
+          minSize={1}
+          maxSize={4}
+          className="w-full h-full opacity-60"
+        />
       </div>
 
       {/* Decorative elements */}
