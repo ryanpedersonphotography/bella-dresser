@@ -7,21 +7,20 @@ Bella Dresser's design embodies a "Funky Feminine Maximalism" approach - an exci
 ## Color Palette
 
 ### Primary Colors
-- **Electric Fuchsia** (#FF00FF) - Bold, vibrant pink as signature color
-- **Cyber Grape** (#5B3E96) - Rich, deep purple for depth
-- **Aqua Splash** (#00E5E5) - Bright turquoise for accents and contrast
-- **Lemon Zest** (#FFDD00) - Vibrant yellow for highlights and energy
+- **Vibrant Pink/Magenta** (#D9026D) - Bold, vibrant pink as signature color
+- **Sunny Yellow** (#F7D94C) - Warm, cheerful yellow for highlights and energy
+- **Leaf Green** (#3A7D44) - Rich, natural green for accents and contrast
 
 ### Secondary Colors
-- **Peachy Pink** (#FF7E79) - Warm complement to main palette
-- **Lavender Mist** (#E2D5F8) - Soft purple for backgrounds and texture
-- **Mint Cream** (#DEFFF2) - Fresh light tone for balance
-- **Tangerine Dream** (#FF8C42) - Energetic orange for strategic accents
+- **Lavender Mist** (#F0E8FF) - Soft, light purple for backgrounds and texture
+- **Mint Cream** (#E8F5EA) - Fresh light green tone for balance
+- **Peachy Pink** (#FF7E79) - Warm complement to main palette (retained for compatibility)
+- **Tangerine Dream** (#FF8C42) - Energetic orange for strategic accents (retained for compatibility)
 
 ### Neutral Foundation
-- **Cosmic Black** (#121212) - Deep, rich black (not pure black)
-- **Cloud Whip** (#F8F5FF) - Slightly purple-tinted white
-- **Smokey Plum** (#796E89) - Sophisticated neutral with purple undertones
+- **Dark Grey** (#333333) - Deep, rich grey for text (not pure black)
+- **Off-White/Light Grey** (#F8F8F8) - Clean, neutral white for backgrounds
+- **Medium Grey** (#666666) - Sophisticated neutral for secondary text
 
 ## Typography
 
@@ -165,10 +164,10 @@ Bella Dresser's design embodies a "Funky Feminine Maximalism" approach - an exci
 ```css
 :root {
   /* Colors */
-  --color-primary: #FF00FF;
-  --color-secondary: #5B3E96;
-  --color-accent: #00E5E5;
-  --color-highlight: #FFDD00;
+  --color-primary: #D9026D;
+  --color-secondary: #F7D94C;
+  --color-accent: #3A7D44;
+  --color-highlight: #F7D94C;
   
   /* Typography */
   --font-heading: "Hatton", "Clash Display", sans-serif;
@@ -202,10 +201,10 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#FF00FF',
-        secondary: '#5B3E96',
-        accent: '#00E5E5',
-        highlight: '#FFDD00',
+        primary: '#D9026D',
+        secondary: '#F7D94C',
+        accent: '#3A7D44',
+        highlight: '#F7D94C',
         // ... other colors
       },
       fontFamily: {

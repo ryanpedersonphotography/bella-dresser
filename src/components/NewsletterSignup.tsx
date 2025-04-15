@@ -42,7 +42,7 @@ const NewsletterSignup: React.FC = () => {
   }, []);
   
   return (
-    <section ref={sectionRef} className="relative overflow-hidden bg-gradient-to-r from-primary to-secondary py-16">
+    <section ref={sectionRef} className="relative overflow-hidden bg-gradient-to-r from-primary to-accent py-16">
       {/* Background elements */}
       <div className="absolute inset-0 bg-noise opacity-5"></div>
       <div className="absolute inset-0 opacity-30">
@@ -79,7 +79,7 @@ const NewsletterSignup: React.FC = () => {
               />
               <button
                 type="submit"
-                className="px-8 py-4 rounded-full bg-highlight text-cosmic font-body font-medium newsletter-button"
+                className="px-8 py-4 rounded-full bg-secondary text-cosmic font-body font-medium newsletter-button"
               >
                 Subscribe
               </button>

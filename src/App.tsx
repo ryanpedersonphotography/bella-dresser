@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
+import { initConfettiEffects } from './utils/confettiEffect';
 import About from './pages/About';
 import MicroInteractionsPage from './pages/MicroInteractionsPage';
 import TransitionsPage from './pages/TransitionsPage';
@@ -16,6 +17,11 @@ const App: React.FC = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location.pathname]);
+  
+  // Initialize confetti effects
+  useEffect(() => {
+    initConfettiEffects();
+  }, []);
 
   return (
     <div className="relative min-h-screen bg-cloud">
@@ -24,9 +30,9 @@ const App: React.FC = () => {
       
       {/* Main content */}
       <div className="relative z-10">
-        {/* Only show Navbar on non-home pages */}
-        {location.pathname !== '/' && <Navbar />}
-        <main>
+        {/* Show Navbar on all pages with appropriate variant */}
+        <Navbar variant={location.pathname === '/' ? 'transparent' : 'solid'} />
+        <main className="pt-24"> {/* Add padding to account for fixed navbar */}
           <PageTransition>
             <Routes>
               <Route path="/" element={<Home />} />

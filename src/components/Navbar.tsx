@@ -44,13 +44,11 @@ const Navbar: React.FC<NavbarProps> = ({ variant = 'solid' }) => {
   
   // Determine classes based on variant and scroll state
   const navClasses = variant === 'transparent' && !scrolled
-    ? "bg-cosmic/60 backdrop-blur-sm"
-    : "bg-gradient-to-r from-lavender to-cloud shadow-md";
+    ? "bg-gradient-to-r from-purple-950/95 via-purple-900/90 to-purple-800/80 backdrop-blur-sm"
+    : "bg-gradient-to-r from-purple-950/95 via-purple-900/90 to-purple-800/80 shadow-md";
   
   // Text color classes based on variant and scroll state
-  const textClasses = variant === 'transparent' && !scrolled
-    ? "text-cloud hover:text-primary"
-    : "text-cosmic hover:text-primary";
+  const textClasses = "text-cloud hover:text-secondary";
   
   // Height classes based on scroll state
   const heightClasses = scrolled
@@ -60,7 +58,7 @@ const Navbar: React.FC<NavbarProps> = ({ variant = 'solid' }) => {
   return (
     <nav className={`${navClasses} fixed top-0 left-0 right-0 transition-all duration-300 z-50`}>
       {/* Colorful top border */}
-      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-accent to-highlight"></div>
+      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-accent to-secondary"></div>
       
       {/* Background texture */}
       <div className="absolute inset-0 bg-noise opacity-10"></div>
@@ -132,7 +130,7 @@ const Navbar: React.FC<NavbarProps> = ({ variant = 'solid' }) => {
       
       {/* Mobile menu */}
       <div
-        className={`md:hidden absolute w-full bg-cloud shadow-lg transform transition-transform duration-300 ease-in-out ${
+        className={`md:hidden absolute w-full bg-gradient-to-r from-purple-950/95 via-purple-900/90 to-purple-800/80 shadow-lg transform transition-transform duration-300 ease-in-out ${
           isOpen ? 'translate-y-0' : '-translate-y-full'
         }`}
       >
@@ -144,35 +142,35 @@ const Navbar: React.FC<NavbarProps> = ({ variant = 'solid' }) => {
           
           <Link
             to="/"
-            className="block font-body text-lg text-cosmic hover:text-primary transition-colors py-2"
+            className="block font-body text-lg text-cloud hover:text-secondary transition-colors py-2"
             onClick={() => setIsOpen(false)}
           >
             Home
           </Link>
           <Link
             to="/transitions"
-            className="block font-body text-lg text-cosmic hover:text-primary transition-colors py-2"
+            className="block font-body text-lg text-cloud hover:text-secondary transition-colors py-2"
             onClick={() => setIsOpen(false)}
           >
             Transitions
           </Link>
           <Link
             to="/micro-interactions"
-            className="block font-body text-lg text-cosmic hover:text-primary transition-colors py-2"
+            className="block font-body text-lg text-cloud hover:text-secondary transition-colors py-2"
             onClick={() => setIsOpen(false)}
           >
             Micro-Interactions
           </Link>
           <Link
             to="/button-showcase"
-            className="block font-body text-lg text-cosmic hover:text-primary transition-colors py-2"
+            className="block font-body text-lg text-cloud hover:text-secondary transition-colors py-2"
             onClick={() => setIsOpen(false)}
           >
             Button Styles
           </Link>
           <Link
             to="/about"
-            className="block font-body text-lg text-cosmic hover:text-primary transition-colors py-2"
+            className="block font-body text-lg text-cloud hover:text-secondary transition-colors py-2"
             onClick={() => setIsOpen(false)}
           >
             About

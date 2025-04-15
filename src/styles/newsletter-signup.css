@@ -1,0 +1,87 @@
+    /* Newsletter Signup Styles */
+
+.newsletter-input {
+  transition: all 0.3s ease;
+}
+
+.newsletter-input:focus {
+  box-shadow: 0 0 0 3px rgba(247, 217, 76, 0.3);
+  transform: scale(1.02);
+}
+
+.newsletter-button {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.newsletter-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px -10px rgba(0, 0, 0, 0.2);
+}
+
+.newsletter-button::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 60%);
+  opacity: 0;
+  transform: scale(0.5);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.newsletter-button:hover::after {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Confetti animation for newsletter section */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(5deg);
+  }
+}
+
+.newsletter-confetti {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(217, 2, 109, 0.2);
+  pointer-events: none;
+  opacity: 0;
+  animation: newsletter-confetti-float 4s ease-in-out infinite;
+}
+
+@keyframes newsletter-confetti-float {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) rotate(0deg);
+  }
+  20% {
+    opacity: 0.6;
+  }
+  80% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-60px) rotate(360deg);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .newsletter-form {
+    flex-direction: column;
+  }
+  
+  .newsletter-input, 
+  .newsletter-button {
+    width: 100%;
+  }
+}

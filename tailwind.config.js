@@ -5,27 +5,27 @@ export default {
     extend: {
       colors: {
         // Primary colors with enhanced saturation
-        primary: '#FF00FF', // Electric Fuchsia
-        'primary-saturated': '#FF40FF',
-        secondary: '#5B3E96', // Cyber Grape
-        'secondary-saturated': '#6B4EAE',
-        accent: '#00E5E5', // Aqua Splash
-        'accent-saturated': '#00FFFF',
-        highlight: '#FFDD00', // Lemon Zest
-        'highlight-saturated': '#FFE500',
+        primary: '#D9026D', // Vibrant Pink/Magenta
+        'primary-saturated': '#F50980',
+        secondary: '#F7D94C', // Sunny Yellow
+        'secondary-saturated': '#FFE45C',
+        accent: '#3A7D44', // Leaf Green
+        'accent-saturated': '#4A9D54',
+        highlight: '#F7D94C', // Same as secondary for consistency
+        'highlight-saturated': '#FFE45C',
         
         // Secondary colors
-        peach: '#FF7E79', // Peachy Pink
+        peach: '#FF7E79', // Peachy Pink (keeping for compatibility)
         'peach-saturated': '#FF8F8B',
-        lavender: '#E2D5F8', // Lavender Mist
-        mint: '#DEFFF2', // Mint Cream
-        tangerine: '#FF8C42', // Tangerine Dream
+        lavender: '#F0E8FF', // Lighter version of primary
+        mint: '#E8F5EA', // Lighter version of accent
+        tangerine: '#FF8C42', // Tangerine Dream (keeping for compatibility)
         'tangerine-saturated': '#FF9D5C',
         
         // Neutral foundation
-        cosmic: '#121212', // Cosmic Black
-        cloud: '#F8F5FF', // Cloud Whip
-        plum: '#796E89', // Smokey Plum
+        cosmic: '#333333', // Dark Grey for text
+        cloud: '#F8F8F8', // Off-White/Light Grey for backgrounds
+        plum: '#666666', // Medium grey for secondary text
       },
       fontFamily: {
         heading: ['"Clash Display"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
@@ -33,20 +33,23 @@ export default {
         accent: ['"Playfair Display"', 'ui-serif', 'Georgia', 'serif'],
       },
       fontSize: {
-        '7xl': '4.5rem',   // h2
-        '8xl': '6rem',     // between h1 and h2
-        '9xl': '7.5rem',   // h1
-        'display-1': '10rem',
-        'display-2': '8.5rem',
-        'display-3': '7rem',
-        'title-1': '5rem',
-        'title-2': '4rem',
-        'title-3': '3rem',
-        'body-xl': '1.5rem',
-        'body-lg': '1.25rem',
-        'body-md': '1.125rem',
-        'body-sm': '0.875rem',
-        'body-xs': '0.75rem',
+        // Heading sizes - increased by ~15-20%
+        '7xl': '5.25rem',   // h2 (was 4.5rem)
+        '8xl': '7rem',      // between h1 and h2 (was 6rem)
+        '9xl': '8.75rem',   // h1 (was 7.5rem)
+        'display-1': '11.5rem', // was 10rem
+        'display-2': '9.75rem', // was 8.5rem
+        'display-3': '8rem',    // was 7rem
+        'title-1': '5.75rem',   // was 5rem
+        'title-2': '4.6rem',    // was 4rem
+        'title-3': '3.45rem',   // was 3rem
+        
+        // Body text sizes - increased by ~20%
+        'body-xl': '1.8rem',    // was 1.5rem
+        'body-lg': '1.5rem',    // was 1.25rem
+        'body-md': '1.35rem',   // was 1.125rem
+        'body-sm': '1.05rem',   // was 0.875rem
+        'body-xs': '0.9rem',    // was 0.75rem
       },
       letterSpacing: {
         'tightest': '-0.02em',
@@ -60,19 +63,19 @@ export default {
       },
       boxShadow: {
         'funky': '4px 4px 0 rgba(0, 0, 0, 0.1)',
-        'neon': '0 0 15px rgba(255, 0, 255, 0.5)',
-        'layered': '0 5px 15px rgba(0, 0, 0, 0.1), 0 15px 35px rgba(91, 62, 150, 0.1)',
-        'multi': '0 5px 15px rgba(0, 0, 0, 0.1), 0 15px 35px rgba(91, 62, 150, 0.25)',
-        'inner-glow': 'inset 0 0 20px rgba(255, 0, 255, 0.2)',
-        'neon-intense': '0 0 20px rgba(255, 0, 255, 0.7), 0 0 30px rgba(255, 0, 255, 0.4), 0 0 40px rgba(255, 0, 255, 0.2)',
-        'neon-accent': '0 0 15px rgba(0, 229, 229, 0.7), 0 0 25px rgba(0, 229, 229, 0.4)',
-        'neon-highlight': '0 0 15px rgba(255, 221, 0, 0.7), 0 0 25px rgba(255, 221, 0, 0.4)',
+        'neon': '0 0 15px rgba(217, 2, 109, 0.5)',
+        'layered': '0 5px 15px rgba(0, 0, 0, 0.1), 0 15px 35px rgba(58, 125, 68, 0.1)',
+        'multi': '0 5px 15px rgba(0, 0, 0, 0.1), 0 15px 35px rgba(217, 2, 109, 0.25)',
+        'inner-glow': 'inset 0 0 20px rgba(217, 2, 109, 0.2)',
+        'neon-intense': '0 0 20px rgba(217, 2, 109, 0.7), 0 0 30px rgba(217, 2, 109, 0.4), 0 0 40px rgba(217, 2, 109, 0.2)',
+        'neon-accent': '0 0 15px rgba(58, 125, 68, 0.7), 0 0 25px rgba(58, 125, 68, 0.4)',
+        'neon-highlight': '0 0 15px rgba(247, 217, 76, 0.7), 0 0 25px rgba(247, 217, 76, 0.4)',
         'floating': '0 20px 50px rgba(0, 0, 0, 0.1), 0 10px 20px rgba(0, 0, 0, 0.05)',
         'pressed': 'inset 0 2px 8px rgba(0, 0, 0, 0.2)',
         'card-hover': '0 10px 30px rgba(91, 62, 150, 0.2), 0 5px 15px rgba(0, 0, 0, 0.05)',
-        '3d-primary': '5px 5px 0 rgba(255, 0, 255, 0.5)',
-        '3d-secondary': '5px 5px 0 rgba(91, 62, 150, 0.5)',
-        '3d-accent': '5px 5px 0 rgba(0, 229, 229, 0.5)',
+        '3d-primary': '5px 5px 0 rgba(217, 2, 109, 0.5)',
+        '3d-secondary': '5px 5px 0 rgba(247, 217, 76, 0.5)',
+        '3d-accent': '5px 5px 0 rgba(58, 125, 68, 0.5)',
       },
       animation: {
         'float': 'float 6s ease-in-out infinite',
@@ -171,8 +174,8 @@ export default {
           '100%': { transform: 'scale3d(1, 1, 1)' },
         },
         glowPulse: {
-          '0%, 100%': { boxShadow: '0 0 15px rgba(255, 0, 255, 0.5)' },
-          '50%': { boxShadow: '0 0 30px rgba(255, 0, 255, 0.8), 0 0 40px rgba(255, 0, 255, 0.4)' },
+          '0%, 100%': { boxShadow: '0 0 15px rgba(217, 2, 109, 0.5)' },
+          '50%': { boxShadow: '0 0 30px rgba(217, 2, 109, 0.8), 0 0 40px rgba(217, 2, 109, 0.4)' },
         },
         fadeInUp: {
           '0%': { opacity: '0', transform: 'translateY(30px)' },
@@ -234,11 +237,12 @@ export default {
       },
       backgroundImage: {
         'gradient-funky': 'linear-gradient(45deg, var(--tw-gradient-stops))',
-        'gradient-cosmic': 'linear-gradient(135deg, rgba(91, 62, 150, 0.1) 0%, rgba(255, 0, 255, 0.1) 100%)',
+        'gradient-cosmic': 'linear-gradient(135deg, rgba(58, 125, 68, 0.1) 0%, rgba(217, 2, 109, 0.1) 100%)',
         'gradient-shine': 'linear-gradient(60deg, transparent 0%, rgba(255, 255, 255, 0.2) 50%, transparent 100%)',
+        'gradient-bella': 'linear-gradient(135deg, rgba(217, 2, 109, 0.1) 0%, rgba(247, 217, 76, 0.1) 100%)',
         'noise': "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E\")",
-        'dots': "url(\"data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='2' cy='2' r='1' fill='rgba(91, 62, 150, 0.1)' /%3E%3C/svg%3E\")",
-        'grid': "url(\"data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h40v40H0V0zm1 1h38v38H1V1z' fill='rgba(91, 62, 150, 0.05)' fill-rule='evenodd'/%3E%3C/svg%3E\")",
+        'dots': "url(\"data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='2' cy='2' r='1' fill='rgba(217, 2, 109, 0.1)' /%3E%3C/svg%3E\")",
+        'grid': "url(\"data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h40v40H0V0zm1 1h38v38H1V1z' fill='rgba(58, 125, 68, 0.05)' fill-rule='evenodd'/%3E%3C/svg%3E\")",
       },
       spacing: {
         '72': '18rem',

@@ -1,9 +1,14 @@
 import React from 'react';
 import { MapPin, Phone, Mail, Instagram, Facebook, Heart } from 'lucide-react';
+import NewsletterSignup from './NewsletterSignup';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="relative bg-cosmic text-cloud mt-20 overflow-hidden">
+    <>
+      {/* Newsletter signup section */}
+      <NewsletterSignup />
+      
+      <footer className="relative bg-cosmic text-cloud overflow-hidden">
       {/* Decorative background elements */}
       <div className="absolute inset-0 bg-noise opacity-5"></div>
       <div className="absolute -top-32 -right-32 w-64 h-64 bg-primary/10 rounded-full mix-blend-overlay filter blur-3xl"></div>
@@ -14,7 +19,7 @@ const Footer: React.FC = () => {
           {/* Brand Section */}
           <div className="relative">
             <div className="mb-6">
-              <h3 className="text-3xl font-heading font-bold bg-gradient-to-r from-primary via-accent to-highlight bg-clip-text text-transparent">
+              <h3 className="text-3xl font-heading font-bold bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent">
                 Bella Dresser
               </h3>
             </div>
@@ -25,7 +30,7 @@ const Footer: React.FC = () => {
 
           {/* Contact Section */}
           <div>
-            <h4 className="text-xl font-heading font-bold mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+            <h4 className="text-xl font-heading font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
               Contact
             </h4>
             <div className="space-y-4 font-body">
@@ -52,7 +57,7 @@ const Footer: React.FC = () => {
 
           {/* Social Section */}
           <div>
-            <h4 className="text-xl font-heading font-bold mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+            <h4 className="text-xl font-heading font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
               Follow Us
             </h4>
             <div className="flex space-x-4">
@@ -61,7 +66,7 @@ const Footer: React.FC = () => {
                 className="group relative"
                 aria-label="Follow us on Instagram"
               >
-                <div className="absolute -inset-2 bg-gradient-to-r from-primary to-accent rounded-lg opacity-0 group-hover:opacity-50 blur transition duration-500"></div>
+                <div className="absolute -inset-1 bg-pink-500/30 rounded-lg opacity-0 group-hover:opacity-40 blur-sm transition duration-500"></div>
                 <div className="relative w-10 h-10 flex items-center justify-center rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">
                   <Instagram className="h-5 w-5 text-primary group-hover:scale-110 transition-transform" />
                 </div>
@@ -71,7 +76,7 @@ const Footer: React.FC = () => {
                 className="group relative"
                 aria-label="Follow us on Facebook"
               >
-                <div className="absolute -inset-2 bg-gradient-to-r from-accent to-highlight rounded-lg opacity-0 group-hover:opacity-50 blur transition duration-500"></div>
+                <div className="absolute -inset-1 bg-pink-500/30 rounded-lg opacity-0 group-hover:opacity-40 blur-sm transition duration-500"></div>
                 <div className="relative w-10 h-10 flex items-center justify-center rounded-lg bg-accent/10 group-hover:bg-accent/20 transition-colors">
                   <Facebook className="h-5 w-5 text-accent group-hover:scale-110 transition-transform" />
                 </div>
@@ -93,6 +98,7 @@ const Footer: React.FC = () => {
         </div>
       </div>
     </footer>
+    </>
   );
 };
 

@@ -37,7 +37,7 @@ const About: React.FC = () => {
             </blockquote>
           </div>
           <div className="relative group">
-            <div className="absolute -inset-4 bg-gradient-to-r from-primary/80 to-secondary/80 rounded-2xl opacity-40 blur-xl group-hover:opacity-60 transition duration-500"></div>
+            <div className="absolute -inset-2 bg-pink-500/30 rounded-2xl opacity-30 blur-md group-hover:opacity-40 transition duration-500"></div>
             <div className="relative aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl">
               {/* Owner's image with boutique background */}
               <div className="absolute inset-0 w-full h-full">
