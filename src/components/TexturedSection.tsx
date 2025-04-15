@@ -31,7 +31,7 @@ const TexturedSection: React.FC<TexturedSectionProps> = ({
       ${colorBlockClass}
       ${textureClass}
       relative p-8 md:p-12 lg:p-16
-      overflow-hidden rounded-3xl
+      overflow-hidden
       ${className}
     `}>
       {/* Floating decorative shapes */}
