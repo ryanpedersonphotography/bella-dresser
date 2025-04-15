@@ -108,7 +108,7 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
               e.stopPropagation();
               instanceRef.current?.prev();
             }}
-            className="slider-arrow-simple slider-arrow-left absolute top-1/2 -translate-y-1/2 -left-6 z-20 text-purple-900"
+            className="slider-arrow-simple slider-arrow-left carousel-arrow absolute top-1/2 -translate-y-1/2 left-0 z-20 text-purple-900"
             aria-label="Previous image"
           >
             <ArrowLeft size={24} />
@@ -119,7 +119,7 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
               e.stopPropagation();
               instanceRef.current?.next();
             }}
-            className="slider-arrow-simple slider-arrow-right absolute top-1/2 -translate-y-1/2 -right-6 z-20 text-purple-900"
+            className="slider-arrow-simple slider-arrow-right carousel-arrow absolute top-1/2 -translate-y-1/2 right-0 z-20 text-purple-900"
             aria-label="Next image"
           >
             <ArrowRight size={24} />
