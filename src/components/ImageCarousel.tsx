@@ -84,12 +84,12 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
   if (images.length === 0) return null;
   
   return (
-    <div className={`relative rounded-2xl overflow-visible shadow-multi ${className} px-6`}>
+    <div className={`relative rounded-2xl overflow-visible shadow-multi ${className} px-2`}>
       {/* Keen Slider container */}
       <div ref={sliderRef} className="keen-slider h-full w-full">
         {images.map((image, index) => (
-          <div key={index} className="keen-slider__slide px-3">
-            <div className="aspect-[4/5] overflow-hidden rounded-lg shadow-sm">
+          <div key={index} className="keen-slider__slide px-2">
+            <div className="aspect-[4/5] overflow-hidden rounded-lg shadow-sm p-3">
               <img
                 src={image.src}
                 alt={image.alt}
@@ -106,9 +106,12 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
           <button
             onClick={(e) => {
               e.stopPropagation();
-              instanceRef.current?.prev();
+              // Calculate the previous group index
+              const currentGroup = Math.floor(currentSlide / Math.max(1, imagesPerView));
+              const prevGroup = (currentGroup - 1 + Math.ceil(images.length / Math.max(1, imagesPerView))) % Math.ceil(images.length / Math.max(1, imagesPerView));
+              instanceRef.current?.moveToIdx(prevGroup * Math.max(1, imagesPerView));
             }}
-            className="slider-arrow-simple slider-arrow-left carousel-arrow absolute top-1/2 -translate-y-1/2 left-0 z-20 text-purple-900"
+            className="slider-arrow-simple slider-arrow-left carousel-arrow absolute top-1/2 -translate-y-1/2 z-20 text-primary-saturated"
             aria-label="Previous image"
           >
             <ArrowLeft size={24} />
@@ -117,9 +120,12 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
           <button
             onClick={(e) => {
               e.stopPropagation();
-              instanceRef.current?.next();
+              // Calculate the next group index
+              const currentGroup = Math.floor(currentSlide / Math.max(1, imagesPerView));
+              const nextGroup = (currentGroup + 1) % Math.ceil(images.length / Math.max(1, imagesPerView));
+              instanceRef.current?.moveToIdx(nextGroup * Math.max(1, imagesPerView));
             }}
-            className="slider-arrow-simple slider-arrow-right carousel-arrow absolute top-1/2 -translate-y-1/2 right-0 z-20 text-purple-900"
+            className="slider-arrow-simple slider-arrow-right carousel-arrow absolute top-1/2 -translate-y-1/2 z-20 text-primary-saturated"
             aria-label="Next image"
           >
             <ArrowRight size={24} />
@@ -129,7 +135,7 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
       
       {/* Indicator dots */}
       {loaded && instanceRef.current && (
-        <div className="absolute bottom-0 left-0 right-0 z-20 flex justify-center gap-2 py-2">
+        <div className="mt-3 flex justify-center gap-2 py-3">
           {Array.from({ length: Math.ceil(instanceRef.current.track.details.slides.length / Math.max(1, imagesPerView)) }).map((_, index) => (
             <button
               key={index}
