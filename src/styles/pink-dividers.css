@@ -82,7 +82,7 @@
   width: 100%;
   overflow: hidden;
   margin: -50px 0;
-  z-index: 10;
+  z-index: 5; /* Changed from 10 to 5 to match other dividers */
 }
 
 .pink-blob {
@@ -123,6 +123,7 @@
   height: 80px;
   width: 100%;
   overflow: hidden;
+  z-index: 5; /* Added z-index to ensure it stays in background */
 }
 
 .confetti-piece {
@@ -157,6 +158,7 @@
   overflow: hidden;
   margin: 20px 0;
   background: linear-gradient(135deg, rgba(255, 0, 255, 0.05) 0%, rgba(255, 0, 255, 0.15) 50%, rgba(255, 0, 255, 0.05) 100%);
+  z-index: 5; /* Added z-index to ensure it stays in background */
 }
 
 /* Direction variants */
@@ -212,6 +214,7 @@
   height: 80px;
   width: 100%;
   overflow: hidden;
+  z-index: 5; /* Added z-index to ensure it stays in background */
 }
 
 .pink-dotted-path::before {

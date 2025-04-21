@@ -1,0 +1,378 @@
+/* About Page Styles */
+
+/* Main container */
+.about-container {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Background decorative elements */
+.bg-gradient-radial {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 33.333%;
+  height: 100vh;
+  background: radial-gradient(circle, rgba(217, 2, 109, 0.1) 0%, transparent 70%);
+  opacity: 0.1;
+}
+
+.bg-gradient-conic {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 33.333%;
+  height: 100vh;
+  background: conic-gradient(from 90deg at 50% 50%, rgba(217, 2, 109, 0.1), rgba(247, 217, 76, 0.1), rgba(58, 125, 68, 0.1), rgba(217, 2, 109, 0.1));
+  opacity: 0.1;
+}
+
+/* Content container */
+.about-content {
+  max-width: 80rem; /* max-w-7xl */
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+/* Hero Section */
+.hero-section {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4rem;
+  align-items: center;
+  margin-bottom: 8rem;
+}
+
+@media (min-width: 768px) {
+  .hero-section {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Hero Content */
+.hero-content {
+  position: relative;
+}
+
+.hero-subtitle {
+  margin-bottom: 0.5rem;
+  font-size: 1.25rem;
+  font-family: "Cabinet Grotesk", "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  color: #3A7D44; /* accent color */
+  animation: float 6s ease-in-out infinite;
+}
+
+.hero-title {
+  font-size: 3rem;
+  font-family: "Clash Display", ui-sans-serif, system-ui, sans-serif;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 768px) {
+  .hero-title {
+    font-size: 3.75rem;
+  }
+}
+
+.gradient-text {
+  background: linear-gradient(to right, #D9026D, #F7D94C);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.hero-paragraph {
+  font-size: 1.125rem;
+  color: rgba(51, 51, 51, 0.8); /* cosmic/80 */
+  margin-bottom: 2rem;
+  font-family: "Cabinet Grotesk", "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  line-height: 1.6;
+  max-width: 90%;
+}
+
+/* Blockquote */
+.hero-blockquote {
+  position: relative;
+  margin-top: 2rem;
+}
+
+.quote-icon {
+  position: absolute;
+  left: -1rem;
+  top: -1rem;
+  color: rgba(217, 2, 109, 0.2); /* primary/20 */
+}
+
+.quote-text {
+  position: relative;
+  z-index: 10;
+  font-size: 1.25rem;
+  font-family: "Playfair Display", ui-serif, Georgia, serif;
+  font-style: italic;
+  color: rgba(51, 51, 51, 0.9); /* cosmic/90 */
+  padding-left: 2rem;
+  border-left: 2px solid #D9026D; /* primary */
+  line-height: 1.5;
+}
+
+.quote-footer {
+  margin-top: 1rem;
+  font-size: 0.875rem;
+  color: rgba(51, 51, 51, 0.6); /* cosmic/60 */
+  padding-left: 2rem;
+}
+
+/* Hero Image */
+.hero-image-container {
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.hero-image-container:hover {
+  transform: scale(1.02);
+}
+
+.hero-image-glow {
+  position: absolute;
+  inset: -0.5rem;
+  background-color: rgba(217, 2, 109, 0.3); /* pink-500/30 */
+  border-radius: 1rem;
+  opacity: 0.3;
+  filter: blur(0.5rem);
+  transition: opacity 0.5s ease;
+}
+
+.hero-image-container:hover .hero-image-glow {
+  opacity: 0.4;
+}
+
+.hero-image-frame {
+  position: relative;
+  aspect-ratio: 3/4;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); /* shadow-2xl */
+  height: 100%;
+}
+
+.hero-image-background {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-image-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(240, 232, 255, 0.3), rgba(248, 248, 248, 0.5)); /* from-lavender/30 to-cloud/50 */
+}
+
+.hero-image-overlay {
+  position: absolute;
+  inset: 0;
+  opacity: 0.3;
+  background-image: url('https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?ixlib=rb-4.0.3');
+  background-size: cover;
+  background-position: center;
+  mix-blend-mode: overlay;
+}
+
+.hero-image-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, transparent 50%, rgba(0, 0, 0, 0.3) 100%);
+  opacity: 0.6;
+}
+
+.hero-image-portrait {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.portrait-frame {
+  position: relative;
+  width: 80%;
+  height: 80%;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-lg */
+}
+
+.portrait-tint {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(217, 2, 109, 0.05); /* primary/5 */
+}
+
+.portrait-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.7s ease;
+  filter: saturate(1.1) brightness(1.05) contrast(1.05);
+}
+
+.hero-image-container:hover .portrait-image {
+  transform: scale(1.05);
+}
+
+.portrait-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(217, 2, 109, 0.15), transparent);
+  mix-blend-mode: overlay;
+}
+
+.portrait-badge {
+  position: absolute;
+  bottom: 1.5rem;
+  right: 1.5rem;
+}
+
+.badge {
+  padding: 0.5rem 1rem;
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(4px);
+  border-radius: 9999px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-lg */
+}
+
+.badge-text {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #333333; /* cosmic */
+}
+
+/* Values Section */
+.values-section {
+  padding-top: 8rem;
+  padding-bottom: 5rem;
+}
+
+.values-header {
+  text-align: center;
+  margin-bottom: 4rem;
+  padding: 0 1rem;
+}
+
+.values-title {
+  font-size: 2.5rem;
+  font-family: "Clash Display", ui-sans-serif, system-ui, sans-serif;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.values-description {
+  font-size: 1.125rem;
+  color: rgba(51, 51, 51, 0.8); /* cosmic/80 */
+  max-width: 42rem;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+
+.values-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .values-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.value-card {
+  position: relative;
+  padding: 2rem;
+  border-radius: 1rem;
+  background: linear-gradient(to bottom right, #F8F8F8, #F0E8FF);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.value-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.card-noise {
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.05;
+}
+
+.card-content {
+  position: relative;
+}
+
+.card-icon {
+  width: 3rem;
+  height: 3rem;
+  margin-bottom: 1.5rem;
+  border-radius: 0.5rem;
+  background: linear-gradient(to right, #D9026D, #3A7D44);
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+/* Specific icon backgrounds */
+.card-icon-star {
+  background: linear-gradient(to right, #D9026D, #3A7D44);
+}
+
+.card-icon-heart {
+  background: linear-gradient(to right, #D9026D, #F7D94C);
+}
+
+.card-icon-sparkles {
+  background: linear-gradient(to right, #F7D94C, #3A7D44);
+}
+
+.icon {
+  width: 2rem;
+  height: 2rem;
+  color: white;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  font-family: "Clash Display", ui-sans-serif, system-ui, sans-serif;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #333333;
+}
+
+.card-description {
+  color: rgba(51, 51, 51, 0.7); /* cosmic/70 */
+  line-height: 1.5;
+}
+
+/* Animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}

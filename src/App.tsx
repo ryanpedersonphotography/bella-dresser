@@ -7,6 +7,7 @@ import About from './pages/About';
 import MicroInteractionsPage from './pages/MicroInteractionsPage';
 import TransitionsPage from './pages/TransitionsPage';
 import ButtonShowcasePage from './pages/ButtonShowcasePage';
+import DesignElementsPage from './pages/DesignElementsPage';
 import PageTransition from './components/PageTransition';
 import Footer from './components/Footer';
 
@@ -30,8 +31,10 @@ const App: React.FC = () => {
       
       {/* Main content */}
       <div className="relative z-10">
-        {/* Show Navbar on all pages with appropriate variant */}
-        <Navbar variant={location.pathname === '/' ? 'transparent' : 'solid'} />
+        {/* Show Navbar on all pages except design elements page */}
+        {location.pathname !== '/design-elements' && (
+          <Navbar variant={location.pathname === '/' ? 'transparent' : 'solid'} />
+        )}
         <main className="pt-24"> {/* Add padding to account for fixed navbar */}
           <PageTransition>
             <Routes>
@@ -40,6 +43,7 @@ const App: React.FC = () => {
               <Route path="/micro-interactions" element={<MicroInteractionsPage />} />
               <Route path="/transitions" element={<TransitionsPage />} />
               <Route path="/button-showcase" element={<ButtonShowcasePage />} />
+              <Route path="/design-elements" element={<DesignElementsPage />} />
             </Routes>
           </PageTransition>
         </main>

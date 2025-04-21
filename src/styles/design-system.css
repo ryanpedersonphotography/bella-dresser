@@ -1,0 +1,176 @@
+/* Design System CSS */
+
+/* Theme Variables */
+:root {
+  /* Base tokens that all themes share */
+  --bd-spacing-xs: 0.25rem;
+  --bd-spacing-sm: 0.5rem;
+  --bd-spacing-md: 1rem;
+  --bd-spacing-lg: 1.5rem;
+  --bd-spacing-xl: 2rem;
+  
+  --bd-radius-sm: 0.25rem;
+  --bd-radius-md: 0.5rem;
+  --bd-radius-lg: 1rem;
+  --bd-radius-xl: 1.5rem;
+  
+  --bd-font-family: 'Inter', sans-serif;
+  --bd-font-heading: 'Playfair Display', serif;
+  
+  /* Default theme */
+  --bd-primary-color: #ff6b98;
+  --bd-secondary-color: #9d4edd;
+  --bd-text-color: #333333;
+  --bd-background-color: #ffffff;
+  --bd-accent-color: #00b4d8;
+}
+
+/* Elegant theme */
+[data-theme="elegant"] {
+  --bd-primary-color: #000000;
+  --bd-secondary-color: #707070;
+  --bd-text-color: #1a1a1a;
+  --bd-background-color: #f8f8f8;
+  --bd-accent-color: #c9a959;
+}
+
+/* Playful theme */
+[data-theme="playful"] {
+  --bd-primary-color: #ff4d6d;
+  --bd-secondary-color: #7209b7;
+  --bd-text-color: #333333;
+  --bd-background-color: #ffffff;
+  --bd-accent-color: #4cc9f0;
+}
+
+/* Design System Page Styles */
+.design-system-page {
+  padding-bottom: 4rem;
+}
+
+.component-showcase {
+  margin-bottom: 3rem;
+}
+
+.component-name {
+  font-weight: 600;
+  color: var(--bd-primary-color);
+  margin-bottom: 0.5rem;
+}
+
+.component-id {
+  font-family: monospace;
+  font-size: 0.875rem;
+  color: rgba(0, 0, 0, 0.5);
+  margin-bottom: 1rem;
+}
+
+.component-description {
+  margin-bottom: 1.5rem;
+}
+
+.example-container {
+  margin-bottom: 2rem;
+}
+
+.example-title {
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.example-display {
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.unstyled-view .example-display {
+  background-color: #f9f9f9;
+  border: 1px dashed #ccc;
+}
+
+.styled-view .example-display {
+  background-color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.code-example {
+  background-color: #f5f5f5;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+}
+
+.code-example pre {
+  margin: 0;
+  font-family: monospace;
+  font-size: 0.875rem;
+}
+
+/* Unstyled Components */
+.bd-button-unstyled {
+  padding: 0.5rem 1rem;
+  border: 1px solid #ccc;
+  background: none;
+  cursor: pointer;
+}
+
+.bd-card-unstyled {
+  border: 1px solid #ccc;
+  padding: 1rem;
+}
+
+.bd-divider-unstyled {
+  height: 1px;
+  background-color: #ccc;
+  margin: 1rem 0;
+}
+
+/* Theme Switcher */
+.theme-switcher {
+  margin-bottom: 2rem;
+}
+
+.theme-button {
+  padding: 0.5rem 1rem;
+  margin-right: 0.5rem;
+  border-radius: 0.25rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.theme-button.active {
+  background-color: var(--bd-primary-color);
+  color: white;
+}
+
+.theme-button:not(.active) {
+  background-color: rgba(0, 0, 0, 0.05);
+  color: var(--bd-text-color);
+}
+
+.theme-button:not(.active):hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Layout Patterns */
+.bd-layout-pattern {
+  margin-bottom: 3rem;
+}
+
+.bd-layout-title {
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.bd-layout-description {
+  margin-bottom: 1.5rem;
+}
+
+.bd-layout-example {
+  border: 1px solid #eee;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  background-color: white;
+}

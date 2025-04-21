@@ -4,10 +4,6 @@ import CardComponent from '../components/CardComponent';
 import { Star, Sparkles, Heart } from 'lucide-react';
 import ImageCarousel from '../components/ImageCarousel';
 import EnhancedHeroSlideshow from '../components/EnhancedHeroSlideshow';
-import DirectionalDiagonalDivider from '../components/DirectionalDiagonalDivider';
-import PinkBlobContainer from '../components/PinkBlobContainer';
-import PinkDiagonalDivider from '../components/PinkDiagonalDivider';
-import PinkConfettiDivider from '../components/PinkConfettiDivider';
 // import PinkDottedPath from '../components/PinkDottedPath';
 import ScrollReveal from '../components/ScrollReveal';
 
@@ -17,9 +13,6 @@ const Home: React.FC = () => {
   return (
     <div className="relative -mt-24"> {/* Negative margin to counteract the padding-top from main */}
       <EnhancedHeroSlideshow />
-
-      {/* Directional Diagonal Divider - First transition */}
-      <DirectionalDiagonalDivider direction="up" variant="hero" />
 
       {/* Featured Collection */}
       <TexturedSection
@@ -72,9 +65,6 @@ const Home: React.FC = () => {
         </div>
       </TexturedSection>
 
-      {/* Pink Blob Container - Second transition */}
-      <PinkBlobContainer />
-
       {/* European Elegance Section */}
       <TexturedSection
         variant="secondary"
@@ -125,9 +115,6 @@ const Home: React.FC = () => {
         </div>
       </TexturedSection>
 
-      {/* Pink Diagonal Divider - Third transition */}
-      <PinkDiagonalDivider />
-
       {/* Small Town Style Section */}
       <TexturedSection
         variant="accent"
@@ -177,9 +164,6 @@ const Home: React.FC = () => {
           </div>
         </div>
       </TexturedSection>
-
-      {/* Pink Confetti Divider - Fourth transition */}
-      <PinkConfettiDivider />
 
       {/* Enhanced Image Gallery Section - LOOKBOOK COMMENTED OUT (might add back later) */}
       
@@ -237,8 +221,6 @@ const Home: React.FC = () => {
         </div>
       </TexturedSection>
 
-      {/* Directional Diagonal Divider at bottom */}
-      <DirectionalDiagonalDivider direction="down" variant="bottom" />
     </div>
   );
 };

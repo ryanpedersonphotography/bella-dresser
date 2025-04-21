@@ -1,5 +1,6 @@
-/* Import Button Showcase Styles */
+/* Import Component Styles */
 @import './styles/button-showcase.css';
+@import './styles/about.css';
 
 @tailwind base;
 
