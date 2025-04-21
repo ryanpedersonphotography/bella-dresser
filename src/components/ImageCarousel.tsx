@@ -90,11 +90,13 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
         {images.map((image, index) => (
           <div key={index} className="keen-slider__slide px-2">
             <div className="aspect-[4/5] overflow-hidden rounded-lg shadow-sm p-3">
-              <img
-                src={image.src}
-                alt={image.alt}
-                className="w-full h-full object-cover"
-              />
+              <div className="w-full h-full overflow-hidden rounded-md">
+                <img
+                  src={image.src}
+                  alt={image.alt}
+                  className="w-full h-full object-cover"
+                />
+              </div>
             </div>
           </div>
         ))}
