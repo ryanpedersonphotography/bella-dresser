@@ -77,42 +77,27 @@ const Navbar: React.FC<NavbarProps> = ({ variant = 'solid' }) => {
           
           {/* Desktop nav */}
           <div className="hidden md:flex items-center space-x-8">
-            <Link 
-              to="/" 
+            <a
+              href="#"
               className={`font-body ${scrolled ? 'text-base' : 'text-lg'} ${textClasses} transition-all duration-300 relative group`}
             >
-              Home
+              Our Vibe
               <span className="absolute -bottom-1 left-0 w-0 h-1 bg-primary transition-all group-hover:w-full duration-300"></span>
-            </Link>
-            <Link
-              to="/about"
+            </a>
+            <a
+              href="#"
               className={`font-body ${scrolled ? 'text-base' : 'text-lg'} ${textClasses} transition-all duration-300 relative group`}
             >
-              About
+              Contact Us
               <span className="absolute -bottom-1 left-0 w-0 h-1 bg-primary transition-all group-hover:w-full duration-300"></span>
-            </Link>
-            <Link
-              to="/micro-interactions"
+            </a>
+            <a
+              href="#"
               className={`font-body ${scrolled ? 'text-base' : 'text-lg'} ${textClasses} transition-all duration-300 relative group`}
             >
-              Micro-Interactions
+              Meet Aneta
               <span className="absolute -bottom-1 left-0 w-0 h-1 bg-primary transition-all group-hover:w-full duration-300"></span>
-            </Link>
-            <Link
-              to="/transitions"
-              className={`font-body ${scrolled ? 'text-base' : 'text-lg'} ${textClasses} transition-all duration-300 relative group`}
-            >
-              Transitions
-              <span className="absolute -bottom-1 left-0 w-0 h-1 bg-primary transition-all group-hover:w-full duration-300"></span>
-            </Link>
-            <Link
-              to="/button-showcase"
-              className={`font-body ${scrolled ? 'text-base' : 'text-lg'} ${textClasses} transition-all duration-300 relative group`}
-            >
-              Button Styles
-              <span className="absolute -bottom-1 left-0 w-0 h-1 bg-primary transition-all group-hover:w-full duration-300"></span>
-            </Link>
-            {/* Shop Now button removed */}
+            </a>
           </div>
           
           {/* Mobile menu button */}
@@ -140,42 +125,27 @@ const Navbar: React.FC<NavbarProps> = ({ variant = 'solid' }) => {
             <Logo size="sm" variant="icon" />
           </div>
           
-          <Link
-            to="/"
+          <a
+            href="#"
             className="block font-body text-lg text-cloud hover:text-secondary transition-colors py-2"
             onClick={() => setIsOpen(false)}
           >
-            Home
-          </Link>
-          <Link
-            to="/transitions"
+            Our Vibe
+          </a>
+          <a
+            href="#"
             className="block font-body text-lg text-cloud hover:text-secondary transition-colors py-2"
             onClick={() => setIsOpen(false)}
           >
-            Transitions
-          </Link>
-          <Link
-            to="/micro-interactions"
+            Contact Us
+          </a>
+          <a
+            href="#"
             className="block font-body text-lg text-cloud hover:text-secondary transition-colors py-2"
             onClick={() => setIsOpen(false)}
           >
-            Micro-Interactions
-          </Link>
-          <Link
-            to="/button-showcase"
-            className="block font-body text-lg text-cloud hover:text-secondary transition-colors py-2"
-            onClick={() => setIsOpen(false)}
-          >
-            Button Styles
-          </Link>
-          <Link
-            to="/about"
-            className="block font-body text-lg text-cloud hover:text-secondary transition-colors py-2"
-            onClick={() => setIsOpen(false)}
-          >
-            About
-          </Link>
-          {/* Shop Now button removed */}
+            Meet Aneta
+          </a>
         </div>
       </div>
     </nav>

@@ -41,45 +41,13 @@ const Logo: React.FC<LogoProps> = ({
         <div className="absolute -inset-1 bg-gradient-to-r from-primary to-secondary rounded-full blur opacity-70 group-hover:opacity-100 transition duration-500"></div>
         
         {/* SVG Logo */}
-        <div className={`relative ${sizes[size].icon} ${isLightText ? 'bg-cloud/20' : 'bg-primary'} rounded-lg p-2 shadow-xl overflow-hidden`}>
-          <svg
-            viewBox="0 0 100 100"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
+        <div className={`relative ${sizes[size].icon} rounded-lg overflow-hidden flex items-center justify-center`}>
+          <img
+            src="/images/logo/bellas_dresser_logo_vector.svg"
+            alt="Bella's Dresser Logo"
             className="w-full h-full transform group-hover:scale-105 transition-transform duration-500"
-          >
-            {/* Background */}
-            <rect x="0" y="0" width="100" height="100" fill="#D9026D" />
-            
-            {/* Dresser illustration */}
-            <g transform="translate(60, 50) scale(0.4)">
-              <rect x="-40" y="-40" width="80" height="80" rx="5" fill="#F7D94C" stroke="#3A7D44" strokeWidth="3" />
-              <rect x="-30" y="-30" width="60" height="15" rx="2" fill="#F7D94C" stroke="#3A7D44" strokeWidth="2" />
-              <rect x="-30" y="-10" width="60" height="15" rx="2" fill="#F7D94C" stroke="#3A7D44" strokeWidth="2" />
-              <rect x="-30" y="10" width="60" height="15" rx="2" fill="#F7D94C" stroke="#3A7D44" strokeWidth="2" />
-              <rect x="-15" y="-25" width="30" height="5" rx="1" fill="#3A7D44" />
-              <rect x="-15" y="-5" width="30" height="5" rx="1" fill="#3A7D44" />
-              <rect x="-15" y="15" width="30" height="5" rx="1" fill="#3A7D44" />
-              <rect x="-20" y="-50" width="40" height="10" rx="2" fill="#D9026D" />
-            </g>
-            
-            {/* Floral elements */}
-            <g className="animate-pulse-slow">
-              <circle cx="15" cy="15" r="5" fill="#F7D94C" />
-              <circle cx="15" cy="85" r="5" fill="#F7D94C" />
-              <circle cx="85" cy="15" r="5" fill="#F7D94C" />
-              <circle cx="85" cy="85" r="5" fill="#F7D94C" />
-            </g>
-            
-            {/* Gradient definitions */}
-            <defs>
-              <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#D9026D" />
-                <stop offset="50%" stopColor="#3A7D44" />
-                <stop offset="100%" stopColor="#F7D94C" />
-              </linearGradient>
-            </defs>
-          </svg>
+            style={{ filter: isLightText ? 'brightness(1.5)' : 'none' }}
+          />
         </div>
       </div>
       
