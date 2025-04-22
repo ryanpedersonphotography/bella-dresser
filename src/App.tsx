@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
+import HomeNoHeader from './pages/HomeNoHeader';
 import { initConfettiEffects } from './utils/confettiEffect';
 import About from './pages/About';
 import MicroInteractionsPage from './pages/MicroInteractionsPage';
@@ -31,14 +32,15 @@ const App: React.FC = () => {
       
       {/* Main content */}
       <div className="relative z-10">
-        {/* Show Navbar on all pages except design elements page */}
-        {location.pathname !== '/design-elements' && (
-          <Navbar variant={location.pathname === '/' ? 'transparent' : 'solid'} />
+        {/* Show Navbar on all pages except home and design elements pages */}
+        {location.pathname !== '/design-elements' && location.pathname !== '/' && (
+          <Navbar variant="solid" />
         )}
-        <main className="pt-24"> {/* Add padding to account for fixed navbar */}
+        <main className={location.pathname === '/' || location.pathname === '/no-header' ? '' : 'pt-24'}> {/* Add padding to account for fixed navbar except on home page and no-header page */}
           <PageTransition>
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route path="/no-header" element={<HomeNoHeader />} />
               <Route path="/about" element={<About />} />
               <Route path="/micro-interactions" element={<MicroInteractionsPage />} />
               <Route path="/transitions" element={<TransitionsPage />} />

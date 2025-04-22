@@ -1,4 +1,40 @@
-    /* Newsletter Signup Styles */
+/* Newsletter Signup Styles */
+
+/* Sparkle background styles - similar to hero */
+.newsletter-decorative-circle {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 0, 255, 0.15);
+  filter: blur(40px);
+  mix-blend-mode: screen;
+  animation: newsletter-float 8s ease-in-out infinite;
+  z-index: 5;
+}
+
+.newsletter-decorative-circle-1 {
+  width: 250px;
+  height: 250px;
+  top: -80px;
+  right: -80px;
+  animation-delay: 0s;
+}
+
+.newsletter-decorative-circle-2 {
+  width: 180px;
+  height: 180px;
+  bottom: -40px;
+  left: -40px;
+  animation-delay: 2s;
+}
+
+@keyframes newsletter-float {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-15px) scale(1.05);
+  }
+}
 
 .newsletter-input {
   transition: all 0.3s ease;
@@ -51,7 +87,7 @@
 .newsletter-confetti {
   position: absolute;
   border-radius: 50%;
-  background: rgba(217, 2, 109, 0.2);
+  background: linear-gradient(to right, rgba(34, 197, 94, 0.3), rgba(88, 28, 135, 0.3), rgba(236, 72, 153, 0.3));
   pointer-events: none;
   opacity: 0;
   animation: newsletter-confetti-float 4s ease-in-out infinite;

@@ -87,7 +87,7 @@
 
 .pink-blob {
   position: absolute;
-  background: rgba(255, 0, 255, 0.15);
+  background: linear-gradient(to right, rgba(34, 197, 94, 0.15), rgba(88, 28, 135, 0.15), rgba(236, 72, 153, 0.15));
   border-radius: 100%;
   filter: blur(20px);
   mix-blend-mode: multiply;
@@ -157,7 +157,7 @@
   width: 100%;
   overflow: hidden;
   margin: 20px 0;
-  background: linear-gradient(135deg, rgba(255, 0, 255, 0.05) 0%, rgba(255, 0, 255, 0.15) 50%, rgba(255, 0, 255, 0.05) 100%);
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.05) 0%, rgba(88, 28, 135, 0.15) 50%, rgba(236, 72, 153, 0.05) 100%);
   z-index: 5; /* Added z-index to ensure it stays in background */
 }
 

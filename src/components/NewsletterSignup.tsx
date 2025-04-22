@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import PinkBlobContainer from '../components/PinkBlobContainer';
 import PinkDiagonalDivider from '../components/PinkDiagonalDivider';
+import ParticleBackground from './ParticleBackground';
 import '../styles/newsletter-signup.css';
 
 const NewsletterSignup: React.FC = () => {
@@ -42,12 +43,28 @@ const NewsletterSignup: React.FC = () => {
   }, []);
   
   return (
-    <section ref={sectionRef} className="relative overflow-hidden bg-gradient-to-r from-primary to-accent py-16">
+    <section ref={sectionRef} className="relative overflow-hidden bg-gradient-to-r from-pink-600 via-purple-800 to-purple-950 py-16">
       {/* Background elements */}
       <div className="absolute inset-0 bg-noise opacity-5"></div>
       <div className="absolute inset-0 opacity-30">
         <PinkBlobContainer />
       </div>
+      
+      {/* Particle background effect - similar to hero */}
+      <div className="absolute inset-0 z-10 overflow-hidden">
+        <ParticleBackground
+          count={80}
+          color="#FF00FF"
+          maxSpeed={0.3}
+          minSize={1}
+          maxSize={3}
+          className="w-full h-full opacity-60"
+        />
+      </div>
+      
+      {/* Decorative elements - similar to hero */}
+      <div className="newsletter-decorative-circle newsletter-decorative-circle-1"></div>
+      <div className="newsletter-decorative-circle newsletter-decorative-circle-2"></div>
       
       {/* Top diagonal divider */}
       <div className="absolute top-0 left-0 w-full">
@@ -79,7 +96,7 @@ const NewsletterSignup: React.FC = () => {
               />
               <button
                 type="submit"
-                className="px-8 py-4 rounded-full bg-secondary text-cosmic font-body font-medium newsletter-button"
+                className="px-8 py-4 rounded-full bg-gradient-to-r from-pink-500 via-purple-700 to-purple-900 text-white font-body font-medium newsletter-button"
               >
                 Subscribe
               </button>

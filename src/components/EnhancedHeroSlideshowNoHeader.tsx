@@ -4,52 +4,27 @@ import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { useKeenSlider } from 'keen-slider/react';
 import 'keen-slider/keen-slider.min.css';
 import ParticleBackground from './ParticleBackground';
-import { useLocation } from 'react-router-dom';
 
 // Define the slide data with improved images and creative copy
 const slides = [
   {
     image: "/images/hero/1wide.png",
-    title: "Dress to Impress",
-    subtitle: "Your Style Journey Begins Here",
-    description: "Step into a world of curated fashion where European elegance meets Minnesota charm. Our boutique collection features handpicked pieces that celebrate individuality and timeless style. From lakeside casual to evening sophistication, find your perfect look for every occasion and season.",
-    ctaText: "Shop Now",
-    ctaLink: "/shop"
   },
   {
     image: "/images/hero/2wide.png",
-    title: "Elevate Your Essence",
-    subtitle: "Spring Collection 2025",
-    description: "Discover pieces that speak to your soul and elevate your personal style narrative. Our curated collection blends European sophistication with Minnesota's free-spirited charm.",
-    ctaText: "Explore Collection",
-    ctaLink: "/collection/spring"
   },
   {
     image: "/images/hero/1narrow.png",
-    title: "Lakeside Luxe",
-    subtitle: "Summer Essentials",
-    description: "From sunrise kayaking to sunset soirées, our versatile pieces transition effortlessly through your day. Embrace the season with fabrics that breathe and silhouettes that celebrate.",
-    ctaText: "Shop Summer",
-    ctaLink: "/collection/summer"
   },
   {
     image: "/images/hero/1wide.png",
-    title: "Uniquely You",
-    subtitle: "Personalized Style Journey",
-    description: "Your wardrobe should tell your story. Our stylists craft personalized experiences that honor your individuality while introducing you to unexpected pieces that become signature favorites.",
-    ctaText: "Book Styling",
-    ctaLink: "/services/styling"
   }
 ];
 
-const EnhancedHeroSlideshow: React.FC = () => {
+const EnhancedHeroSlideshowNoHeader: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isScrolled, setIsScrolled] = useState(false);
   const [loaded, setLoaded] = useState(false);
-  const location = useLocation();
-  
-  // Check if the URL has the 'noheader' parameter
-  const showHeader = !location.search.includes('noheader');
 
   // Handle scroll effect for navbar
   useEffect(() => {
@@ -151,23 +126,9 @@ const EnhancedHeroSlideshow: React.FC = () => {
               style={{ backgroundImage: `url(${slide.image})` }}
             ></div>
             
-            {/* Content container */}
+            {/* Empty content container - no header text */}
             <div className="relative h-full max-w-7xl mx-auto px-4 flex items-center z-20">
-              {showHeader && (
-                <div className="max-w-2xl">
-                  <h2 className={`text-2xl font-body mb-2 text-highlight slide-content slide-content-subtitle ${index === currentSlide ? 'opacity-100 transform-none' : ''}`}>
-                    {slide.subtitle}
-                  </h2>
-                  <h1 className={`text-8xl font-heading font-bold mb-6 leading-tight slide-content slide-content-title ${index === currentSlide ? 'opacity-100 transform-none' : ''}`}>
-                    <span className="gradient-text">
-                      {slide.title}
-                    </span>
-                  </h1>
-                  <p className={`text-2xl mb-8 text-cloud font-body slide-content slide-content-description ${index === currentSlide ? 'opacity-100 transform-none' : ''}`}>
-                    {slide.description}
-                  </p>
-                </div>
-              )}
+              {/* No content here */}
             </div>
           </div>
         ))}
@@ -220,4 +181,4 @@ const EnhancedHeroSlideshow: React.FC = () => {
   );
 };
 
-export default EnhancedHeroSlideshow;
+export default EnhancedHeroSlideshowNoHeader;

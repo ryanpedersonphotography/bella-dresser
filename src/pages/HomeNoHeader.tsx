@@ -5,15 +5,11 @@ import { Star, Sparkles, Heart } from 'lucide-react';
 import ImageCarousel from '../components/ImageCarousel';
 import ScrollReveal from '../components/ScrollReveal';
 import WatercolorBorderedImage from '../components/WatercolorBorderedImage';
-import EnhancedHeroSlideshow from '../components/EnhancedHeroSlideshow';
 
-const Home: React.FC = () => {
+const HomeNoHeader: React.FC = () => {
   return (
     <div className="relative">
-      {/* Hero Section */}
-      <EnhancedHeroSlideshow />
-      
-      {/* Welcome Section */}
+      {/* Welcome Section - No Hero Section */}
       <TexturedSection
         variant="secondary"
         textureType="grid"
@@ -303,4 +299,4 @@ const Home: React.FC = () => {
   );
 };
 
-export default Home;
+export default HomeNoHeader;
