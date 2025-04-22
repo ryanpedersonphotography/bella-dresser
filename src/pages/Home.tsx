@@ -53,8 +53,7 @@ const Home: React.FC = () => {
                   Welcome to Bella's Dresser, a charming boutique nestled in the heart of Pequot Lakes, Minnesota. Our store brings European elegance to the lakeside community, offering a carefully curated selection of unique fashion pieces.
                 </p>
                 <p className="text-xl text-cosmic/70 mb-0 font-body leading-relaxed">
-                  We're delighted to share our passion for fashion with you through this online space. Browse our collections, discover our story, and experience the warmth of our small-town boutique with big-city style.
-                </p>
+                Meet Aneta, our Polish-born fashion maven who spent years soaking up Parisian chic before bringing her European flair to our lakeside boutique! Her motto? "Fashion should be fabulous, fun, and affordable for everyone!"              </p>
               </div>
             </ScrollReveal>
           </div>
