@@ -29,10 +29,8 @@ else
     echo "✅ Public directory already exists."
 fi
 
-# Create _redirects file for SPA routing
-echo "📝 Creating _redirects file for SPA routing..."
-echo "/* /index.html 200" > public/_redirects
-echo "✅ _redirects file created."
+# We're not creating the _redirects file anymore as requested
+echo "📝 Skipping _redirects file creation as requested..."
 
 # Optional: Create netlify.toml file (alternative to _redirects)
 echo "📝 Creating netlify.toml file as backup..."
@@ -59,13 +57,17 @@ echo "🔨 Building project..."
 npm run build
 echo "✅ Build completed successfully!"
 
-# Initialize Netlify if not already done
-if [ ! -f ".netlify/state.json" ]; then
-    echo "🔄 Initializing Netlify..."
-    netlify init
-else
-    echo "✅ Netlify already initialized."
-fi
+# Link to the correct Netlify site using the exact site ID
+echo "🔄 Linking to the correct Netlify site (bellasdresser.com)..."
+echo "⚠️ This will fix the issue with deploying to the wrong site"
+
+# Link directly to the existing site using its ID
+echo "✅ Linking to existing belladresser site..."
+netlify link --id b3047b1d-50ef-4fc0-89e7-09ac81a68c84
+
+# Verify the site is linked correctly
+echo "🔍 Verifying site link..."
+netlify status
 
 # Deploy to Netlify
 echo "🚀 Deploying to Netlify..."
