@@ -16,6 +16,17 @@ const Home: React.FC = () => {
         className="section-spacing"
       >
         <div className="content-container">
+          <ScrollReveal animation="fade-up">
+            <div className="py-8 mb-10">
+              <h1 className="text-6xl font-heading font-bold mb-8 text-center relative z-10">
+                <span className="gradient-text relative">
+                  Welcome to our little website
+                  <div className="absolute -bottom-3 left-0 right-0 h-1 bg-pink-500/50 rounded-full"></div>
+                </span>
+              </h1>
+            </div>
+          </ScrollReveal>
+          
           {/* Top grid with boutique image and welcome text */}
           <div className="grid grid-cols-1 md:grid-cols-5 gap-10 mt-8">
             <ScrollReveal animation="fade-right" className="relative group md:col-span-3">
@@ -42,7 +53,7 @@ const Home: React.FC = () => {
                   Welcome to Bella's Dresser, a charming boutique nestled in the heart of Pequot Lakes, Minnesota. Our store brings European elegance to the lakeside community, offering a carefully curated selection of unique fashion pieces.
                 </p>
                 <p className="text-xl text-cosmic/70 mb-0 font-body leading-relaxed">
-                Meet Aneta, our Polish-born fashion maven who spent years soaking up Parisian chic before bringing her European flair to our lakeside boutique! Her motto? "Fashion should be fabulous, fun, and affordable for everyone!"              </p>
+                Meet Bella, our French-born fashion maven who spent years in the heart of Paris before bringing her sophisticated European flair to our lakeside boutique! Her motto? "La mode doit être fabuleuse, amusante, et accessible à tous!"              </p>
               </div>
             </ScrollReveal>
           </div>
@@ -60,12 +71,12 @@ const Home: React.FC = () => {
                      }}>
                     I hope you'll stop by soon to experience our European-inspired fashion in person!
                   </p>
-                  <p className="text-2xl md:text-3xl font-bold" 
-                     style={{ 
+                  <p className="text-2xl md:text-3xl font-bold"
+                     style={{
                        fontFamily: "'Dancing Script', cursive",
                        color: '#4A1D96' // Dark purple color
                      }}>
-                    ~ Aneta, The Shopkeeper
+                    ~ Bella
                   </p>
                 </div>
               </div>
@@ -145,6 +156,7 @@ const Home: React.FC = () => {
         </div>
       </TexturedSection>
 
+      {/* Rest of code remains unchanged */}
       {/* European Elegance Section */}
       <TexturedSection
         variant="secondary"
@@ -234,7 +246,7 @@ const Home: React.FC = () => {
       </TexturedSection>
 
       {/* Boutique Experience Section */}
-      <TexturedSection
+      {/* <TexturedSection
         variant="primary"
         textureType="grid"
         className="section-spacing"
@@ -282,7 +294,7 @@ const Home: React.FC = () => {
             ))}
           </div>
         </div>
-      </TexturedSection>
+      </TexturedSection> */}
     </div>
   );
 };
