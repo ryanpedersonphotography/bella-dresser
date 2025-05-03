@@ -1,4 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import TexturedSection from '../components/TexturedSection';
 import CardComponent from '../components/CardComponent';
 import { Star, Sparkles, Heart, Play } from 'lucide-react';
@@ -7,11 +8,13 @@ import ScrollReveal from '../components/ScrollReveal';
 import WatercolorBorderedImage from '../components/WatercolorBorderedImage';
 
 const Home: React.FC = () => {
+  const navigate = useNavigate();
   const [videoEnded, setVideoEnded] = useState(false);
   const [currentVideo, setCurrentVideo] = useState<string>("/videos/intro.mp4");
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [showPlayButton, setShowPlayButton] = useState(true); // Show play button initially
   const [videoPlaying, setVideoPlaying] = useState(false); // Track if video is playing
+  const [showIntroScreen, setShowIntroScreen] = useState(true); // Show intro screen with choice buttons
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const handleVideoEnd = () => {
@@ -67,77 +70,122 @@ const Home: React.FC = () => {
   }, []);
   return (
     <div className="relative">
-      {/* Video Section */}
-      <div className="w-full relative overflow-hidden" style={{ maxHeight: '90vh' }}>
-        {/* Main video player */}
-        <div className={`transition-opacity duration-500 ${isTransitioning ? 'opacity-50' : 'opacity-100'}`}>
-          <video 
-            ref={videoRef}
-            key={currentVideo} // Key changes trigger React to recreate the element
-            playsInline
-            preload="auto"
-            className="w-full h-auto"
-            style={{ maxHeight: '90vh', objectFit: 'contain' }}
-            onEnded={handleVideoEnd}
-            muted={false}
-            autoPlay={!showPlayButton} // Only autoplay if play button has been clicked
-          >
-            <source src={currentVideo} type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-          
-          {/* Meet Bella button overlay */}
-          {showPlayButton && (
-            <div className="absolute inset-0 flex items-center justify-center bg-black/20">
+      {/* Intro or Video Section */}
+      {showIntroScreen ? (
+        /* Intro Screen with choice buttons */
+        <div className="w-full relative overflow-hidden bg-gradient-to-b from-pink-100 to-purple-100" style={{ minHeight: '90vh' }}>
+          <div className="absolute inset-0 flex flex-col items-center justify-center p-6">
+            <div className="mb-8">
+              <img 
+                src="/images/illustrations/bella_dresser_larger.png" 
+                alt="Bella's Dresser Boutique" 
+                className="w-full max-w-lg mx-auto"
+              />
+            </div>
+            
+            <h1 className="text-5xl md:text-6xl font-bold mb-12 text-center" style={{ 
+              fontFamily: "'Dancing Script', cursive",
+              color: '#4A1D96'
+            }}>
+              Welcome to Bella's Dresser
+            </h1>
+            
+            <div className="flex flex-col md:flex-row gap-6 w-full max-w-xl">
               <button
-                onClick={startVideo}
-                className="group flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
+                onClick={() => {
+                  setShowIntroScreen(false);
+                  setTimeout(() => startVideo(), 300);
+                }}
+                className="flex-1 group flex items-center justify-center gap-3 px-8 py-6 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
               >
                 <Play size={24} className="text-white animate-pulse" />
-                <span className="text-xl font-medium">Meet Bella</span>
+                <span className="text-xl font-medium">Meet Bella (Interactive Experience)</span>
               </button>
+              
+              <button
+                onClick={() => navigate('/no-header')}
+                className="flex-1 px-8 py-6 bg-gradient-to-r from-purple-400 to-pink-400 text-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 font-medium text-xl"
+              >
+                Simple Site Experience
+              </button>
+            </div>
+          </div>
+        </div>
+      ) : (
+        /* Video Section */
+        <div className="w-full relative overflow-hidden" style={{ maxHeight: '90vh' }}>
+          {/* Main video player */}
+          <div className={`transition-opacity duration-500 ${isTransitioning ? 'opacity-50' : 'opacity-100'}`}>
+            <video 
+              ref={videoRef}
+              key={currentVideo} // Key changes trigger React to recreate the element
+              playsInline
+              preload="auto"
+              className="w-full h-auto"
+              style={{ maxHeight: '90vh', objectFit: 'contain' }}
+              onEnded={handleVideoEnd}
+              muted={false}
+              autoPlay={!showPlayButton} // Only autoplay if play button has been clicked
+            >
+              <source src={currentVideo} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+            
+            {/* Meet Bella button overlay */}
+            {showPlayButton && (
+              <div className="absolute inset-0 flex items-center justify-center bg-black/20">
+                <button
+                  onClick={startVideo}
+                  className="group flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
+                >
+                  <Play size={24} className="text-white animate-pulse" />
+                  <span className="text-xl font-medium">Meet Bella</span>
+                </button>
+              </div>
+            )}
+          </div>
+          
+          {/* Buttons that appear after video ends */}
+          {videoEnded && (
+            <div className="absolute inset-0" onClick={(e) => e.stopPropagation()}>
+              <div 
+                className="absolute right-8 top-1/2 transform -translate-y-1/2 flex flex-col gap-4 md:right-16"
+                onClick={(e) => e.stopPropagation()}>
+                <a
+                  href="#" 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    playNextVideo("/videos/intro2.mp4");
+                    return false;
+                  }}
+                  className="px-6 py-3 bg-gradient-to-r from-pink-400 to-pink-600 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 font-medium text-lg whitespace-nowrap inline-block text-center"
+                >
+                  Learn Bella's Story
+                </a>
+                
+                <a 
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    playNextVideo("/videos/intro3.mp4");
+                    return false;
+                  }}
+                  className="px-6 py-3 bg-gradient-to-r from-purple-400 to-purple-600 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 font-medium text-lg whitespace-nowrap inline-block text-center"
+                >
+                  Learn About The Store
+                </a>
+              </div>
             </div>
           )}
         </div>
-        
-        {/* Buttons that appear after video ends */}
-        {videoEnded && (
-          <div className="absolute inset-0" onClick={(e) => e.stopPropagation()}>
-            <div 
-              className="absolute right-8 top-1/2 transform -translate-y-1/2 flex flex-col gap-4 md:right-16"
-              onClick={(e) => e.stopPropagation()}>
-              <a
-                href="#" 
-                onClick={(e) => {
-                  e.preventDefault();
-                  e.stopPropagation();
-                  playNextVideo("/videos/intro2.mp4");
-                  return false;
-                }}
-                className="px-6 py-3 bg-gradient-to-r from-pink-400 to-pink-600 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 font-medium text-lg whitespace-nowrap inline-block text-center"
-              >
-                Learn Bella's Story
-              </a>
-              
-              <a 
-                href="#"
-                onClick={(e) => {
-                  e.preventDefault();
-                  e.stopPropagation();
-                  playNextVideo("/videos/intro3.mp4");
-                  return false;
-                }}
-                className="px-6 py-3 bg-gradient-to-r from-purple-400 to-purple-600 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 font-medium text-lg whitespace-nowrap inline-block text-center"
-              >
-                Learn About The Store
-              </a>
-            </div>
-          </div>
-        )}
-      </div>
+      )}
       
-      {/* Spacer */}
-      <div className="h-16 bg-white"></div>
+      {/* Only show spacer when not in intro screen */}
+      {!showIntroScreen && (
+        <div className="h-16 bg-white"></div>
+      )}
 
       {/* Welcome Section */}
       <TexturedSection
