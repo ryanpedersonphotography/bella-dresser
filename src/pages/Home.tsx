@@ -148,11 +148,16 @@ const Home: React.FC = () => {
           {/* Buttons that appear after video ends */}
           {videoEnded && (
             <>
-              {/* White background div that appears behind buttons */}
-              <div className="absolute inset-x-0 bottom-0 h-24 bg-white" />
-              
-              {/* Buttons positioned to the right of Bella */}
-              <div className="absolute bottom-4 right-4 flex flex-col md:flex-row gap-4 md:gap-6" onClick={(e) => e.stopPropagation()}>
+              {/* Floating buttons at specific coordinates */}
+              <div style={{ 
+                position: 'absolute',
+                top: '845px',
+                left: '930px',
+                zIndex: 50,
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '12px'
+              }} onClick={(e) => e.stopPropagation()}>
                 <a
                   href="#" 
                   onClick={(e) => {
@@ -162,6 +167,7 @@ const Home: React.FC = () => {
                     return false;
                   }}
                   className="px-6 py-3 bg-gradient-to-r from-pink-400 to-pink-600 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 font-medium text-lg whitespace-nowrap inline-block text-center"
+                  style={{ filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.5))' }}
                 >
                   Learn Bella's Story
                 </a>
@@ -175,6 +181,7 @@ const Home: React.FC = () => {
                     return false;
                   }}
                   className="px-6 py-3 bg-gradient-to-r from-purple-400 to-purple-600 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 font-medium text-lg whitespace-nowrap inline-block text-center"
+                  style={{ filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.5))' }}
                 >
                   Learn About The Store
                 </a>
