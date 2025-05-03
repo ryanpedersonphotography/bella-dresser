@@ -10,7 +10,3 @@
 
 [[plugins]]
   package = "@netlify/plugin-lighthouse"
-
-# Explicitly excluding cloudinary plugin
-# [[plugins]]
-#  package = "netlify-plugin-cloudinary"
