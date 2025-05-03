@@ -147,10 +147,12 @@ const Home: React.FC = () => {
           
           {/* Buttons that appear after video ends */}
           {videoEnded && (
-            <div className="absolute inset-0" onClick={(e) => e.stopPropagation()}>
-              <div 
-                className="absolute right-8 top-1/2 transform -translate-y-1/2 flex flex-col gap-4 md:right-16"
-                onClick={(e) => e.stopPropagation()}>
+            <>
+              {/* White background div that appears behind buttons */}
+              <div className="absolute inset-x-0 bottom-0 h-24 bg-white" />
+              
+              {/* Buttons positioned to the right of Bella */}
+              <div className="absolute bottom-4 right-4 flex flex-col md:flex-row gap-4 md:gap-6" onClick={(e) => e.stopPropagation()}>
                 <a
                   href="#" 
                   onClick={(e) => {
@@ -177,7 +179,7 @@ const Home: React.FC = () => {
                   Learn About The Store
                 </a>
               </div>
-            </div>
+            </>
           )}
         </div>
       )}
