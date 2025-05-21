@@ -84,6 +84,11 @@ const Home: React.FC = () => {
   // Use React's useCallback to create a stable function reference
   const playNextVideo = React.useCallback((videoSrc: string) => {
     try {
+      // Preload the next video before showing transition
+      const tempVideo = document.createElement('video');
+      tempVideo.preload = 'auto';
+      tempVideo.src = videoSrc;
+      
       // Update states for video transition
       setIsTransitioning(true);
       setCurrentVideo(videoSrc);
@@ -91,14 +96,22 @@ const Home: React.FC = () => {
       setVideoPlaying(true);
       setShowPlayButton(false);
       
-      // Ensure video plays after a short delay
+      // Maintain same audio settings for seamless experience
+      const wasMuted = isMuted;
+      
+      // Ensure video plays after a short delay (reduced for smoother transition)
       setTimeout(() => {
         if (videoRef.current) {
+          // Preserve mute state from previous video
+          videoRef.current.muted = wasMuted;
           const playPromise = videoRef.current.play();
           
           if (playPromise !== undefined) {
             playPromise
-              .then(() => setIsTransitioning(false))
+              .then(() => {
+                // Small delay before showing video for smoother experience
+                setTimeout(() => setIsTransitioning(false), 50);
+              })
               .catch(e => {
                 console.error("Video play failed:", e);
                 setIsTransitioning(false);
@@ -107,16 +120,16 @@ const Home: React.FC = () => {
               });
           } else {
             // For browsers where play() doesn't return a promise
-            setIsTransitioning(false);
+            setTimeout(() => setIsTransitioning(false), 50);
           }
         }
-      }, 100);
+      }, 50); // Reduced delay for faster transition
     } catch (err) {
       console.error("Error in playNextVideo:", err);
       setIsTransitioning(false);
       setShowPlayButton(true);
     }
-  }, []);
+  }, [isMuted]);
   return (
     <div className="relative">
       {/* Intro or Video Section */}
@@ -195,11 +208,11 @@ const Home: React.FC = () => {
             )}
           </div>
           
-          {/* Talk to Bella button - positioned next to the woman and wiggles periodically */}
+          {/* Talk to Bella button - repositioned 30% left and lower */}
           {!showIntroScreen && showTalkButton && (
             <button 
               onClick={talkToBella}
-              className={`absolute top-1/3 right-1/4 z-50 px-6 py-4 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 ${isWaggling ? 'animate-wiggle' : ''} flex items-center gap-2`}
+              className={`absolute top-1/2 left-1/3 z-50 px-6 py-4 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 ${isWaggling ? 'animate-wiggle' : ''} flex items-center gap-2`}
               aria-label="Talk to Bella"
               style={{
                 filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.7))'
@@ -231,14 +244,15 @@ const Home: React.FC = () => {
             </button>
           )}
 
-          {/* Buttons that appear after video ends */}
+          {/* Buttons that appear after video ends - positioned in same spot as Talk to Bella button */}
           {videoEnded && (
             <>
-              {/* Floating buttons at specific coordinates */}
+              {/* Floating buttons at same position as Talk to Bella button */}
               <div style={{ 
                 position: 'absolute',
-                top: '845px',
-                left: '930px',
+                top: '50%',
+                left: '33.33%',
+                transform: 'translate(0, -50%)',
                 zIndex: 50,
                 display: 'flex',
                 flexDirection: 'column',
@@ -252,8 +266,8 @@ const Home: React.FC = () => {
                     playNextVideo("/videos/intro2.mp4");
                     return false;
                   }}
-                  className="px-6 py-3 bg-gradient-to-r from-pink-400 to-pink-600 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 font-medium text-lg whitespace-nowrap inline-block text-center"
-                  style={{ filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.5))' }}
+                  className="px-6 py-4 bg-gradient-to-r from-pink-400 to-pink-600 text-white rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 font-medium text-lg whitespace-nowrap inline-block text-center"
+                  style={{ filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.7))' }}
                 >
                   Learn Bella's Story
                 </a>
@@ -266,8 +280,8 @@ const Home: React.FC = () => {
                     playNextVideo("/videos/intro3.mp4");
                     return false;
                   }}
-                  className="px-6 py-3 bg-gradient-to-r from-purple-400 to-purple-600 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 font-medium text-lg whitespace-nowrap inline-block text-center"
-                  style={{ filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.5))' }}
+                  className="px-6 py-4 bg-gradient-to-r from-purple-400 to-purple-600 text-white rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 font-medium text-lg whitespace-nowrap inline-block text-center"
+                  style={{ filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.7))' }}
                 >
                   Learn About The Store
                 </a>
