@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import ImageCarousel from './ImageCarousel';
+import IllustratedDressGallery, { DressItem } from './IllustratedDressGallery';
 
 export type DisplayContent = {
-  type: 'carousel' | 'grid' | 'custom';
+  type: 'carousel' | 'grid' | 'custom' | 'illustrated';
   title: string;
   images?: Array<{src: string, alt: string}>;
+  dresses?: DressItem[];
   customContent?: React.ReactNode;
   carouselSettings?: {
     imagesPerView?: number;
@@ -31,6 +33,15 @@ const FloatingDisplay: React.FC<FloatingDisplayProps> = ({
 
   const renderContent = () => {
     switch (content.type) {
+      case 'illustrated':
+        if (!content.dresses) return null;
+        return (
+          <IllustratedDressGallery 
+            dresses={content.dresses}
+            className="animate-fade-in-up"
+          />
+        );
+        
       case 'carousel':
         if (!content.images) return null;
         return (

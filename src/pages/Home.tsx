@@ -7,6 +7,7 @@ import ImageCarousel from '../components/ImageCarousel';
 import ScrollReveal from '../components/ScrollReveal';
 import WatercolorBorderedImage from '../components/WatercolorBorderedImage';
 import FloatingDisplay, { DisplayContent } from '../components/FloatingDisplay';
+import { DressItem } from '../components/IllustratedDressGallery';
 
 const Home: React.FC = () => {
   const navigate = useNavigate();
@@ -284,20 +285,48 @@ const Home: React.FC = () => {
                     playNextVideo("/videos/intro3.mp4");
                     
                     setTimeout(() => {
-                      setFloatingDisplay({
-                        type: 'carousel',
-                        title: "Bella's Favorite Dresses",
-                        images: [
-                          { src: "/images/carousel/123_1.jpg", alt: "Fashion Collection Item 1" },
-                          { src: "/images/carousel/123_1-2.jpg", alt: "Fashion Collection Item 2" },
-                          { src: "/images/carousel/123_1-3.jpg", alt: "Fashion Collection Item 3" },
-                          { src: "/images/carousel/123_1-4.jpg", alt: "Fashion Collection Item 4" },
-                          { src: "/images/carousel/123_1-5.jpg", alt: "Fashion Collection Item 5" }
-                        ],
-                        carouselSettings: {
-                          imagesPerView: 3,
-                          autoplaySpeed: 5000
+                      const dresses: DressItem[] = [
+                        { 
+                          src: "/images/carousel/123_1.jpg", 
+                          alt: "Elegant Summer Dress",
+                          name: "Provence Sunset",
+                          description: "Flowing fabric with delicate floral print",
+                          price: "$89"
+                        },
+                        { 
+                          src: "/images/carousel/123_1-2.jpg", 
+                          alt: "Chic Evening Wear",
+                          name: "Parisian Evening",
+                          description: "Perfect for dinner by the lake",
+                          price: "$124"
+                        },
+                        { 
+                          src: "/images/carousel/123_1-3.jpg", 
+                          alt: "Casual Day Dress",
+                          name: "Morning Café",
+                          description: "Comfortable yet sophisticated",
+                          price: "$67"
+                        },
+                        { 
+                          src: "/images/carousel/123_1-4.jpg", 
+                          alt: "Vintage Style Dress",
+                          name: "Vintage Rose",
+                          description: "Timeless elegance with modern comfort",
+                          price: "$98"
+                        },
+                        { 
+                          src: "/images/carousel/123_1-5.jpg", 
+                          alt: "Bohemian Dress",
+                          name: "Lake Breeze",
+                          description: "Free-spirited style for sunny days",
+                          price: "$76"
                         }
+                      ];
+                      
+                      setFloatingDisplay({
+                        type: 'illustrated',
+                        title: "Bella's Favorite Dresses",
+                        dresses: dresses
                       });
                     }, 1000);
                     
