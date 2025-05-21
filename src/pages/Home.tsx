@@ -212,22 +212,24 @@ const Home: React.FC = () => {
           {/* Talk to Bella button - positioned to the right of Bella in fixed position */}
           {!showIntroScreen && showTalkButton && (
             <div className="absolute inset-0 flex items-center justify-center">
-              <button 
-                onClick={talkToBella}
-                className={`relative px-6 py-4 bg-gradient-to-r from-pink-500 to-purple-600 
-                           text-white rounded-full shadow-xl hover:shadow-2xl 
-                           transition-all duration-300 transform hover:scale-105 
-                           ${isWaggling ? 'animate-wiggle' : ''} flex items-center gap-2
-                           xl:translate-x-32
-                           sm:translate-y-0 translate-y-48`}
-                aria-label="Talk to Bella"
-                style={{
-                  filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.7))'
-                }}
+              <div 
+                className="relative xl:translate-x-32 sm:translate-y-0 translate-y-48"
               >
-                <MessageCircle size={20} className="text-white" />
-                <span className="text-white text-lg font-medium">Talk to Bella</span>
-              </button>
+                <button 
+                  onClick={talkToBella}
+                  className={`px-6 py-4 bg-gradient-to-r from-pink-500 to-purple-600 
+                             text-white rounded-full shadow-xl hover:shadow-2xl 
+                             transition-all duration-300 transform hover:scale-105 
+                             ${isWaggling ? 'animate-wiggle' : ''} flex items-center gap-2`}
+                  aria-label="Talk to Bella"
+                  style={{
+                    filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.7))'
+                  }}
+                >
+                  <MessageCircle size={20} className="text-white" />
+                  <span className="text-white text-lg font-medium">Talk to Bella</span>
+                </button>
+              </div>
             </div>
           )}
           
