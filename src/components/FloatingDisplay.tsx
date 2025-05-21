@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ImageCarousel from './ImageCarousel';
 
 export type DisplayContent = {
@@ -25,6 +25,8 @@ const FloatingDisplay: React.FC<FloatingDisplayProps> = ({
   content,
   className = ""
 }) => {
+  const [lightboxImage, setLightboxImage] = useState<{src: string, alt: string} | null>(null);
+  
   if (!isVisible || !content) return null;
 
   const renderContent = () => {
@@ -32,14 +34,25 @@ const FloatingDisplay: React.FC<FloatingDisplayProps> = ({
       case 'carousel':
         if (!content.images) return null;
         return (
-          <div className="relative group">
-            <div className="absolute -inset-1 bg-pink-500/30 rounded-2xl opacity-30 blur-md group-hover:opacity-40 transition duration-500"></div>
-            <ImageCarousel
-              imagesPerView={content.carouselSettings?.imagesPerView || 3}
-              images={content.images}
-              autoplaySpeed={content.carouselSettings?.autoplaySpeed || 5000}
-              className="group-hover:shadow-2xl transition-all duration-500"
-            />
+          <div className="relative">
+            {/* Custom carousel for floating display with clickable images */}
+            <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide">
+              {content.images.map((image, index) => (
+                <div 
+                  key={index}
+                  className="flex-shrink-0 cursor-pointer group"
+                  onClick={() => setLightboxImage(image)}
+                >
+                  <div className="bg-white rounded-lg p-2 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                    <img 
+                      src={image.src}
+                      alt={image.alt}
+                      className="w-48 h-64 object-cover rounded-md"
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         );
       
@@ -68,32 +81,60 @@ const FloatingDisplay: React.FC<FloatingDisplayProps> = ({
   };
 
   return (
-    <div className={`absolute bottom-0 left-0 right-0 z-40 p-6 bg-white/90 backdrop-blur-md animate-fade-in-up shadow-2xl rounded-t-3xl ${className}`}>
-      <div className="max-w-4xl mx-auto">
-        <div className="flex justify-between items-center mb-4">
-          <h2 className="text-3xl font-heading font-bold text-center flex-1">
-            <span className="gradient-text">{content.title}</span>
-          </h2>
-          <button
-            onClick={onClose}
-            className="ml-4 px-4 py-2 bg-gradient-to-r from-purple-400 to-pink-400 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 text-sm font-medium"
-          >
-            ✕
-          </button>
-        </div>
-        
-        {renderContent()}
-        
-        <div className="flex justify-center mt-6">
-          <button
-            onClick={onClose}
-            className="px-6 py-2 bg-gradient-to-r from-purple-400 to-pink-400 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 text-sm font-medium"
-          >
-            Close
-          </button>
+    <>
+      {/* Main floating display with transparent background */}
+      <div className={`absolute bottom-0 left-0 right-0 z-40 p-6 animate-fade-in-up ${className}`}>
+        <div className="max-w-4xl mx-auto">
+          <div className="flex justify-between items-center mb-4">
+            <h2 className="text-3xl font-heading font-bold text-center flex-1">
+              <span className="gradient-text drop-shadow-lg">{content.title}</span>
+            </h2>
+            <button
+              onClick={onClose}
+              className="ml-4 px-4 py-2 bg-gradient-to-r from-purple-400 to-pink-400 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 text-sm font-medium"
+            >
+              ✕
+            </button>
+          </div>
+          
+          {renderContent()}
+          
+          <div className="flex justify-center mt-6">
+            <button
+              onClick={onClose}
+              className="px-6 py-2 bg-gradient-to-r from-purple-400 to-pink-400 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 text-sm font-medium"
+            >
+              Close
+            </button>
+          </div>
         </div>
       </div>
-    </div>
+
+      {/* Lightbox Modal */}
+      {lightboxImage && (
+        <div 
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm"
+          onClick={() => setLightboxImage(null)}
+        >
+          <div className="relative max-w-4xl max-h-[90vh] p-4">
+            <button
+              onClick={() => setLightboxImage(null)}
+              className="absolute -top-2 -right-2 z-10 w-8 h-8 bg-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center text-gray-600 hover:text-gray-800"
+            >
+              ✕
+            </button>
+            <div className="bg-white rounded-lg p-3 shadow-2xl">
+              <img 
+                src={lightboxImage.src}
+                alt={lightboxImage.alt}
+                className="max-w-full max-h-[80vh] object-contain rounded-md"
+                onClick={(e) => e.stopPropagation()}
+              />
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 
