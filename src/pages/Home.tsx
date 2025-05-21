@@ -209,21 +209,26 @@ const Home: React.FC = () => {
             )}
           </div>
           
-          {/* Talk to Bella button - positioned 330px to the right of Bella */}
+          {/* Talk to Bella button - positioned to the right of Bella with better responsiveness */}
           {!showIntroScreen && showTalkButton && (
-            <button 
-              onClick={talkToBella}
-              className={`absolute top-1/2 z-50 px-6 py-4 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 ${isWaggling ? 'animate-wiggle' : ''} flex items-center gap-2`}
-              aria-label="Talk to Bella"
-              style={{
-                left: 'calc(50% + 330px)',
-                transform: 'translateY(-50%)',
-                filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.7))'
-              }}
-            >
-              <MessageCircle size={20} className="text-white" />
-              <span className="text-white text-lg font-medium">Talk to Bella</span>
-            </button>
+            <div className="absolute inset-0 flex items-center justify-center">
+              <button 
+                onClick={talkToBella}
+                className={`relative px-6 py-4 bg-gradient-to-r from-pink-500 to-purple-600 
+                           text-white rounded-full shadow-xl hover:shadow-2xl 
+                           transition-all duration-300 transform hover:scale-105 
+                           ${isWaggling ? 'animate-wiggle' : ''} flex items-center gap-2
+                           md:translate-x-16 lg:translate-x-24 xl:translate-x-32
+                           sm:translate-y-0 translate-y-48`}
+                aria-label="Talk to Bella"
+                style={{
+                  filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.7))'
+                }}
+              >
+                <MessageCircle size={20} className="text-white" />
+                <span className="text-white text-lg font-medium">Talk to Bella</span>
+              </button>
+            </div>
           )}
           
           {/* Sound toggle button - visible at all times during video playback */}
@@ -247,20 +252,13 @@ const Home: React.FC = () => {
             </button>
           )}
 
-          {/* Buttons that appear after video ends - positioned in same spot as Talk to Bella button */}
+          {/* Buttons that appear after video ends - with the same responsive positioning */}
           {videoEnded && (
-            <>
-              {/* Floating buttons at same position as Talk to Bella button - 330px to the right of Bella */}
-              <div style={{ 
-                position: 'absolute',
-                top: '50%',
-                left: 'calc(50% + 330px)',
-                transform: 'translateY(-50%)',
-                zIndex: 50,
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '12px'
-              }} onClick={(e) => e.stopPropagation()}>
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div 
+                className="relative flex flex-col gap-3 md:translate-x-16 lg:translate-x-24 xl:translate-x-32 sm:translate-y-0 translate-y-48 z-50"
+                onClick={(e) => e.stopPropagation()}
+              >
                 <a
                   href="#" 
                   onClick={(e) => {
@@ -280,13 +278,11 @@ const Home: React.FC = () => {
                   onClick={(e) => {
                     e.preventDefault();
                     e.stopPropagation();
-                    // Play the same video as a placeholder
                     playNextVideo("/videos/intro3.mp4");
                     
-                    // Show the floating carousel after a short delay
                     setTimeout(() => {
                       setShowFloatingCarousel(true);
-                    }, 1000); // Wait for video to start playing
+                    }, 1000);
                     
                     return false;
                   }}
@@ -296,7 +292,7 @@ const Home: React.FC = () => {
                   Bella's Favorite Dresses
                 </a>
               </div>
-            </>
+            </div>
           )}
 
           {/* Floating Latest Arrivals carousel that appears below the video */}
