@@ -19,6 +19,7 @@ const Home: React.FC = () => {
   const [showTalkButton, setShowTalkButton] = useState(true); // Show talk to Bella button
   const [isWaggling, setIsWaggling] = useState(false); // Track if button is currently waggling
   const videoRef = useRef<HTMLVideoElement>(null);
+  const latestArrivalsRef = useRef<HTMLDivElement>(null); // Reference to Latest Arrivals section
   
   // Effect to handle periodic waggling
   useEffect(() => {
@@ -277,13 +278,25 @@ const Home: React.FC = () => {
                   onClick={(e) => {
                     e.preventDefault();
                     e.stopPropagation();
+                    // Play the same video as a placeholder
                     playNextVideo("/videos/intro3.mp4");
+                    
+                    // Scroll to the Latest Arrivals section after video starts
+                    setTimeout(() => {
+                      if (latestArrivalsRef.current) {
+                        latestArrivalsRef.current.scrollIntoView({ 
+                          behavior: 'smooth',
+                          block: 'start'
+                        });
+                      }
+                    }, 1000); // Wait for video to start playing
+                    
                     return false;
                   }}
                   className="px-6 py-4 bg-gradient-to-r from-purple-400 to-purple-600 text-white rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 font-medium text-lg whitespace-nowrap inline-block text-center"
                   style={{ filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.7))' }}
                 >
-                  Learn About The Store
+                  Bella's Favorite Dresses
                 </a>
               </div>
             </>
@@ -390,6 +403,7 @@ const Home: React.FC = () => {
         variant="primary"
         textureType="noise"
         className="section-spacing mt-0" // Removed top margin
+        ref={latestArrivalsRef} // Add ref to scroll to this section
       >
         <div className="content-container">
           <ScrollReveal animation="fade-up">
