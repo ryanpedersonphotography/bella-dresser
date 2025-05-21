@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import TexturedSection from '../components/TexturedSection';
 import CardComponent from '../components/CardComponent';
-import { Star, Sparkles, Heart, Play } from 'lucide-react';
+import { Star, Sparkles, Heart, Play, Volume2, VolumeX, MessageCircle } from 'lucide-react';
 import ImageCarousel from '../components/ImageCarousel';
 import ScrollReveal from '../components/ScrollReveal';
 import WatercolorBorderedImage from '../components/WatercolorBorderedImage';
@@ -15,6 +15,8 @@ const Home: React.FC = () => {
   const [showPlayButton, setShowPlayButton] = useState(true); // Show play button initially
   const [videoPlaying, setVideoPlaying] = useState(false); // Track if video is playing
   const [showIntroScreen, setShowIntroScreen] = useState(true); // Show intro screen with choice buttons
+  const [isMuted, setIsMuted] = useState(true); // Track if audio is muted, default to muted
+  const [showTalkButton, setShowTalkButton] = useState(true); // Show talk to Bella button
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const handleVideoEnd = () => {
@@ -30,6 +32,28 @@ const Home: React.FC = () => {
       videoRef.current.play()
         .catch(e => console.error("Video play failed:", e));
     }
+  };
+  
+  const talkToBella = () => {
+    // Unmute and play video
+    setIsMuted(false);
+    
+    if (videoRef.current) {
+      if (videoPlaying) {
+        // If video is already playing, just unmute
+        videoRef.current.muted = false;
+      } else {
+        // If video not playing, start it and unmute
+        setShowPlayButton(false);
+        setVideoPlaying(true);
+        videoRef.current.muted = false;
+        videoRef.current.play()
+          .catch(e => console.error("Video play failed:", e));
+      }
+    }
+    
+    // Hide the talk button after it's been clicked
+    setShowTalkButton(false);
   };
 
   // Use React's useCallback to create a stable function reference
@@ -124,7 +148,7 @@ const Home: React.FC = () => {
               className="w-full h-auto"
               style={{ maxHeight: '90vh', objectFit: 'contain' }}
               onEnded={handleVideoEnd}
-              muted={false}
+              muted={isMuted}
               autoPlay={!showPlayButton} // Only autoplay if play button has been clicked
             >
               <source src={currentVideo} type="video/mp4" />
@@ -145,6 +169,39 @@ const Home: React.FC = () => {
             )}
           </div>
           
+          {/* Talk to Bella button - wiggles to encourage interaction */}
+          {!showIntroScreen && showTalkButton && (
+            <button 
+              onClick={talkToBella}
+              className="absolute bottom-10 right-10 z-50 px-6 py-4 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 animate-wiggle flex items-center gap-2"
+              aria-label="Talk to Bella"
+            >
+              <MessageCircle size={20} className="text-white" />
+              <span className="text-white text-lg font-medium">Talk to Bella</span>
+            </button>
+          )}
+          
+          {/* Sound toggle button - visible at all times during video playback */}
+          {!showIntroScreen && !showPlayButton && (
+            <button 
+              onClick={() => setIsMuted(!isMuted)}
+              className="absolute top-4 right-4 z-50 p-3 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full transition-all duration-300 flex items-center gap-2"
+              aria-label={isMuted ? "Turn Sound On" : "Turn Sound Off"}
+            >
+              {isMuted ? (
+                <>
+                  <VolumeX size={18} className="text-white" />
+                  <span className="text-white text-sm font-medium">Turn Sound On</span>
+                </>
+              ) : (
+                <>
+                  <Volume2 size={18} className="text-white" />
+                  <span className="text-white text-sm font-medium">Sound On</span>
+                </>
+              )}
+            </button>
+          )}
+
           {/* Buttons that appear after video ends */}
           {videoEnded && (
             <>
