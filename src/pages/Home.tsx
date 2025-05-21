@@ -18,8 +18,8 @@ const Home: React.FC = () => {
   const [isMuted, setIsMuted] = useState(true); // Track if audio is muted, default to muted
   const [showTalkButton, setShowTalkButton] = useState(true); // Show talk to Bella button
   const [isWaggling, setIsWaggling] = useState(false); // Track if button is currently waggling
+  const [showFloatingCarousel, setShowFloatingCarousel] = useState(false); // Control floating carousel visibility
   const videoRef = useRef<HTMLVideoElement>(null);
-  const latestArrivalsRef = useRef<HTMLDivElement>(null); // Reference to Latest Arrivals section
   
   // Effect to handle periodic waggling
   useEffect(() => {
@@ -281,14 +281,9 @@ const Home: React.FC = () => {
                     // Play the same video as a placeholder
                     playNextVideo("/videos/intro3.mp4");
                     
-                    // Scroll to the Latest Arrivals section after video starts
+                    // Show the floating carousel after a short delay
                     setTimeout(() => {
-                      if (latestArrivalsRef.current) {
-                        latestArrivalsRef.current.scrollIntoView({ 
-                          behavior: 'smooth',
-                          block: 'start'
-                        });
-                      }
+                      setShowFloatingCarousel(true);
                     }, 1000); // Wait for video to start playing
                     
                     return false;
@@ -300,6 +295,55 @@ const Home: React.FC = () => {
                 </a>
               </div>
             </>
+          )}
+
+          {/* Floating Latest Arrivals carousel that appears below the video */}
+          {showFloatingCarousel && (
+            <div className="absolute bottom-0 left-0 right-0 z-40 p-6 bg-white/90 backdrop-blur-md animate-fade-in-up shadow-2xl rounded-t-3xl">
+              <div className="max-w-4xl mx-auto">
+                <h2 className="text-3xl font-heading font-bold mb-4 text-center">
+                  <span className="gradient-text">Bella's Favorite Dresses</span>
+                </h2>
+                <div className="relative group">
+                  <div className="absolute -inset-1 bg-pink-500/30 rounded-2xl opacity-30 blur-md group-hover:opacity-40 transition duration-500"></div>
+                  <ImageCarousel
+                    imagesPerView={3}
+                    images={[
+                      {
+                        src: "/images/carousel/123_1.jpg",
+                        alt: "Fashion Collection Item 1"
+                      },
+                      {
+                        src: "/images/carousel/123_1-2.jpg",
+                        alt: "Fashion Collection Item 2"
+                      },
+                      {
+                        src: "/images/carousel/123_1-3.jpg",
+                        alt: "Fashion Collection Item 3"
+                      },
+                      {
+                        src: "/images/carousel/123_1-4.jpg",
+                        alt: "Fashion Collection Item 4"
+                      },
+                      {
+                        src: "/images/carousel/123_1-5.jpg",
+                        alt: "Fashion Collection Item 5"
+                      }
+                    ]}
+                    autoplaySpeed={5000}
+                    className="group-hover:shadow-2xl transition-all duration-500"
+                  />
+                  <div className="flex justify-center mt-4">
+                    <button
+                      onClick={() => setShowFloatingCarousel(false)}
+                      className="px-4 py-2 bg-gradient-to-r from-purple-400 to-pink-400 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 text-sm font-medium"
+                    >
+                      Close
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
           )}
         </div>
       )}
@@ -403,7 +447,6 @@ const Home: React.FC = () => {
         variant="primary"
         textureType="noise"
         className="section-spacing mt-0" // Removed top margin
-        ref={latestArrivalsRef} // Add ref to scroll to this section
       >
         <div className="content-container">
           <ScrollReveal animation="fade-up">
