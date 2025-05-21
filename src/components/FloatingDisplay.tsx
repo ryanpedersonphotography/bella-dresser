@@ -85,13 +85,10 @@ const FloatingDisplay: React.FC<FloatingDisplayProps> = ({
       {/* Main floating display with transparent background */}
       <div className={`absolute bottom-0 left-0 right-0 z-40 p-6 animate-fade-in-up ${className}`}>
         <div className="max-w-4xl mx-auto">
-          <div className="flex justify-between items-center mb-4">
-            <h2 className="text-3xl font-heading font-bold text-center flex-1">
-              <span className="gradient-text drop-shadow-lg">{content.title}</span>
-            </h2>
+          <div className="flex justify-end mb-4">
             <button
               onClick={onClose}
-              className="ml-4 px-4 py-2 bg-gradient-to-r from-purple-400 to-pink-400 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 text-sm font-medium"
+              className="px-4 py-2 bg-gradient-to-r from-purple-400 to-pink-400 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 text-sm font-medium"
             >
               ✕
             </button>
