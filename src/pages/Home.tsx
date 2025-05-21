@@ -209,7 +209,7 @@ const Home: React.FC = () => {
             )}
           </div>
           
-          {/* Talk to Bella button - positioned to the right of Bella with better responsiveness */}
+          {/* Talk to Bella button - positioned to the right of Bella in fixed position */}
           {!showIntroScreen && showTalkButton && (
             <div className="absolute inset-0 flex items-center justify-center">
               <button 
@@ -218,7 +218,7 @@ const Home: React.FC = () => {
                            text-white rounded-full shadow-xl hover:shadow-2xl 
                            transition-all duration-300 transform hover:scale-105 
                            ${isWaggling ? 'animate-wiggle' : ''} flex items-center gap-2
-                           md:translate-x-16 lg:translate-x-24 xl:translate-x-32
+                           xl:translate-x-32
                            sm:translate-y-0 translate-y-48`}
                 aria-label="Talk to Bella"
                 style={{
