@@ -17,7 +17,36 @@ const Home: React.FC = () => {
   const [showIntroScreen, setShowIntroScreen] = useState(true); // Show intro screen with choice buttons
   const [isMuted, setIsMuted] = useState(true); // Track if audio is muted, default to muted
   const [showTalkButton, setShowTalkButton] = useState(true); // Show talk to Bella button
+  const [isWaggling, setIsWaggling] = useState(false); // Track if button is currently waggling
   const videoRef = useRef<HTMLVideoElement>(null);
+  
+  // Effect to handle periodic waggling
+  useEffect(() => {
+    if (!showIntroScreen && showTalkButton) {
+      // Set up interval for waggling every 3 seconds
+      const waggleInterval = setInterval(() => {
+        setIsWaggling(true);
+        // Turn off waggling after 1 second
+        setTimeout(() => {
+          setIsWaggling(false);
+        }, 1000);
+      }, 3000);
+      
+      // Initial waggle after a short delay
+      const initialTimeout = setTimeout(() => {
+        setIsWaggling(true);
+        setTimeout(() => {
+          setIsWaggling(false);
+        }, 1000);
+      }, 500);
+      
+      // Clean up
+      return () => {
+        clearInterval(waggleInterval);
+        clearTimeout(initialTimeout);
+      };
+    }
+  }, [showIntroScreen, showTalkButton]);
 
   const handleVideoEnd = () => {
     setVideoEnded(true);
@@ -26,12 +55,8 @@ const Home: React.FC = () => {
   
   const startVideo = () => {
     setShowPlayButton(false);
-    setVideoPlaying(true);
-    
-    if (videoRef.current) {
-      videoRef.current.play()
-        .catch(e => console.error("Video play failed:", e));
-    }
+    // Don't auto-play video, wait for Talk to Bella button click
+    setVideoPlaying(false);
   };
   
   const talkToBella = () => {
@@ -118,7 +143,8 @@ const Home: React.FC = () => {
               <button
                 onClick={() => {
                   setShowIntroScreen(false);
-                  setTimeout(() => startVideo(), 300);
+                  // Don't auto-start the video
+                  setTimeout(() => setShowPlayButton(false), 300);
                 }}
                 className="flex-1 group flex items-center justify-center gap-3 px-8 py-6 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
               >
@@ -169,12 +195,15 @@ const Home: React.FC = () => {
             )}
           </div>
           
-          {/* Talk to Bella button - wiggles to encourage interaction */}
+          {/* Talk to Bella button - positioned next to the woman and wiggles periodically */}
           {!showIntroScreen && showTalkButton && (
             <button 
               onClick={talkToBella}
-              className="absolute bottom-10 right-10 z-50 px-6 py-4 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 animate-wiggle flex items-center gap-2"
+              className={`absolute top-1/3 right-1/4 z-50 px-6 py-4 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 ${isWaggling ? 'animate-wiggle' : ''} flex items-center gap-2`}
               aria-label="Talk to Bella"
+              style={{
+                filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.7))'
+              }}
             >
               <MessageCircle size={20} className="text-white" />
               <span className="text-white text-lg font-medium">Talk to Bella</span>
