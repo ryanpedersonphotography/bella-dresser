@@ -8,10 +8,12 @@ import ScrollReveal from '../components/ScrollReveal';
 import WatercolorBorderedImage from '../components/WatercolorBorderedImage';
 import FloatingDisplay, { DisplayContent } from '../components/FloatingDisplay';
 import { DressItem } from '../components/IllustratedDressGallery';
+import { StoryBookButton } from '../components/StoryBookButton';
+import { StoryBookButtonGroup } from '../components/StoryBookButtonGroup';
 
 const Home: React.FC = () => {
   const navigate = useNavigate();
-  const [videoEnded, setVideoEnded] = useState(false);
+  const [, setVideoEnded] = useState(false);
   const [showPlayButton, setShowPlayButton] = useState(true); // Show play button initially
   const [videoPlaying, setVideoPlaying] = useState(false); // Track if video is playing
   const [showIntroScreen, setShowIntroScreen] = useState(true); // Show intro screen with choice buttons
@@ -134,12 +136,27 @@ const Home: React.FC = () => {
       ) : (
         /* Interactive Bella Section */
         <div className="w-full relative overflow-hidden bg-gradient-to-b from-blue-300 to-white" style={{ minHeight: '85vh' }}>
-          {/* Background Image */}
+          {/* Background Images - Positioned individually */}
           <div className="absolute inset-0">
+            {/* Left Tree - Pink/Coral */}
             <img 
-              src="/images/illustrations/Awesomebg.png"
-              alt="Beautiful background"
-              className="w-full h-full object-cover object-top scale-75 opacity-80 blur-[1px]"
+              src="/images/illustrations/tree_1.png"
+              alt="Pink watercolor tree"
+              className="absolute left-[8%] top-[20%] h-[60%] w-auto opacity-80 blur-[0.5px]"
+            />
+            
+            {/* Center Store */}
+            <img 
+              src="/images/illustrations/store.png"
+              alt="Bella's Dresser Boutique"
+              className="absolute left-1/2 top-[25%] h-[50%] w-auto transform -translate-x-1/2 opacity-85"
+            />
+            
+            {/* Right Tree - Blue/Teal */}
+            <img 
+              src="/images/illustrations/tree_2.png"
+              alt="Blue watercolor tree"
+              className="absolute right-[8%] top-[20%] h-[60%] w-auto opacity-80 blur-[0.5px]"
             />
           </div>
           
@@ -177,22 +194,22 @@ const Home: React.FC = () => {
           {!showIntroScreen && showTalkButton && (
             <div className="absolute inset-0 flex items-center justify-center">
               <div 
-                className="relative xl:translate-x-32 sm:translate-y-0 translate-y-48"
+                className="relative xl:translate-x-32 sm:translate-y-0 translate-y-48 max-w-xs"
               >
-                <button 
-                  onClick={talkToBella}
-                  className={`px-6 py-4 bg-gradient-to-r from-pink-500 to-purple-600 
-                             text-white rounded-full shadow-xl hover:shadow-2xl 
-                             transition-all duration-300 transform hover:scale-105 
-                             ${isWaggling ? 'animate-wiggle' : ''} flex items-center gap-2`}
-                  aria-label="Talk to Bella"
-                  style={{
-                    filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.7))'
-                  }}
-                >
-                  <MessageCircle size={20} className="text-white" />
-                  <span className="text-white text-lg font-medium">Talk to Bella</span>
-                </button>
+                <div className={`${isWaggling ? 'animate-wiggle' : ''}`}>
+                  <StoryBookButton 
+                    onClick={talkToBella}
+                    className="shadow-xl hover:shadow-2xl transition-all duration-300"
+                    style={{
+                      filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.7))'
+                    }}
+                  >
+                    <div className="flex items-center justify-center gap-2">
+                      <MessageCircle size={20} className="text-[#3c2f2f]" />
+                      <span>Talk to Bella</span>
+                    </div>
+                  </StoryBookButton>
+                </div>
               </div>
             </div>
           )}
@@ -227,83 +244,80 @@ const Home: React.FC = () => {
           {showButtons && (
             <div className="absolute inset-0 flex items-center justify-center">
               <div 
-                className="relative flex flex-col gap-3 md:translate-x-24 lg:translate-x-32 xl:translate-x-40 sm:translate-y-0 translate-y-48 z-50"
+                className="relative md:translate-x-24 lg:translate-x-32 xl:translate-x-40 sm:translate-y-0 translate-y-48 z-50 max-w-xs"
                 onClick={(e) => e.stopPropagation()}
               >
-                <a
-                  href="#" 
-                  onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    // TODO: Add story content display
-                    alert("Bella's story coming soon!");
-                    return false;
-                  }}
-                  className="px-6 py-4 bg-gradient-to-r from-pink-400 to-pink-600 text-white rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 font-medium text-lg whitespace-nowrap inline-block text-center"
-                  style={{ filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.7))' }}
-                >
-                  Learn Bella's Story
-                </a>
-                
-                <a 
-                  href="#"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    
-                    // Show the dresses immediately
-                    const dresses: DressItem[] = [
-                      { 
-                        src: "/images/carousel/123_1.jpg", 
-                        alt: "Elegant Summer Dress",
-                        name: "Provence Sunset",
-                        description: "Flowing fabric with delicate floral print",
-                        price: "$89"
-                      },
-                      { 
-                        src: "/images/carousel/123_1-2.jpg", 
-                        alt: "Chic Evening Wear",
-                        name: "Parisian Evening",
-                        description: "Perfect for dinner by the lake",
-                        price: "$124"
-                      },
-                      { 
-                        src: "/images/carousel/123_1-3.jpg", 
-                        alt: "Casual Day Dress",
-                        name: "Morning Café",
-                        description: "Comfortable yet sophisticated",
-                        price: "$67"
-                      },
-                      { 
-                        src: "/images/carousel/123_1-4.jpg", 
-                        alt: "Vintage Style Dress",
-                        name: "Vintage Rose",
-                        description: "Timeless elegance with modern comfort",
-                        price: "$98"
-                      },
-                      { 
-                        src: "/images/carousel/123_1-5.jpg", 
-                        alt: "Bohemian Dress",
-                        name: "Lake Breeze",
-                        description: "Free-spirited style for sunny days",
-                        price: "$76"
-                      }
-                    ];
-                    
-                    // Show the floating display immediately
-                    setFloatingDisplay({
-                      type: 'illustrated',
-                      title: "Bella's Favorite Dresses",
-                      dresses: dresses
-                    });
-                    
-                    return false;
-                  }}
-                  className="px-6 py-4 bg-gradient-to-r from-purple-400 to-purple-600 text-white rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 font-medium text-lg whitespace-nowrap inline-block text-center"
-                  style={{ filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.7))' }}
-                >
-                  Bella's Favorite Dresses
-                </a>
+                <StoryBookButtonGroup>
+                  <StoryBookButton
+                    onClick={(e) => {
+                      e?.preventDefault();
+                      e?.stopPropagation();
+                      // TODO: Add story content display
+                      alert("Bella's story coming soon!");
+                    }}
+                    className="shadow-xl hover:shadow-2xl transition-all duration-300"
+                    style={{ filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.7))' }}
+                  >
+                    Learn Bella's Story
+                  </StoryBookButton>
+                  
+                  <StoryBookButton
+                    onClick={(e) => {
+                      e?.preventDefault();
+                      e?.stopPropagation();
+                      
+                      // Show the dresses immediately
+                      const dresses: DressItem[] = [
+                        { 
+                          src: "/images/carousel/123_1.jpg", 
+                          alt: "Elegant Summer Dress",
+                          name: "Provence Sunset",
+                          description: "Flowing fabric with delicate floral print",
+                          price: "$89"
+                        },
+                        { 
+                          src: "/images/carousel/123_1-2.jpg", 
+                          alt: "Chic Evening Wear",
+                          name: "Parisian Evening",
+                          description: "Perfect for dinner by the lake",
+                          price: "$124"
+                        },
+                        { 
+                          src: "/images/carousel/123_1-3.jpg", 
+                          alt: "Casual Day Dress",
+                          name: "Morning Café",
+                          description: "Comfortable yet sophisticated",
+                          price: "$67"
+                        },
+                        { 
+                          src: "/images/carousel/123_1-4.jpg", 
+                          alt: "Vintage Style Dress",
+                          name: "Vintage Rose",
+                          description: "Timeless elegance with modern comfort",
+                          price: "$98"
+                        },
+                        { 
+                          src: "/images/carousel/123_1-5.jpg", 
+                          alt: "Bohemian Dress",
+                          name: "Lake Breeze",
+                          description: "Free-spirited style for sunny days",
+                          price: "$76"
+                        }
+                      ];
+                      
+                      // Show the floating display immediately
+                      setFloatingDisplay({
+                        type: 'illustrated',
+                        title: "Bella's Favorite Dresses",
+                        dresses: dresses
+                      });
+                    }}
+                    className="shadow-xl hover:shadow-2xl transition-all duration-300"
+                    style={{ filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.7))' }}
+                  >
+                    Bella's Favorite Dresses
+                  </StoryBookButton>
+                </StoryBookButtonGroup>
               </div>
             </div>
           )}

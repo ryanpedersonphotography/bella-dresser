@@ -51,7 +51,8 @@ docs/                    # Comprehensive documentation
 2. **ImageCarousel** - Product image carousels (shopping experience)
 3. **FloatingDisplay** - Elegant content display with lightbox (recently enhanced with transparent backgrounds)
 4. **IllustratedDressGallery** - Storybook-style gallery component (product showcase)
-5. **Design System Components** - Comprehensive component showcase library
+5. **StoryBookButton & StoryBookButtonGroup** - Vintage boutique-style button components with elegant typography and hover effects
+6. **Design System Components** - Comprehensive component showcase library
 
 ### Data Flow & State Management
 - React contexts used for design system theming
@@ -173,6 +174,9 @@ Special: .font-script class for decorative text
 ---
 
 ## Recent Changes Log
+- **2025-05-22**: Replaced Meet Bella section background with positioned individual PNG images (store.png, tree_1.png, tree_2.png) maintaining original layout and blue gradient
+- **2025-05-22**: Implemented StoryBookButton components in Home.tsx for "Talk to Bella", "Learn Bella's Story", and "Bella's Favorite Dresses" buttons with vintage boutique styling
+- **2025-05-22**: Created StoryBookButton and StoryBookButtonGroup components with vintage boutique styling, Cormorant Garamond typography, and elegant hover effects
 - **2025-05-21**: Made buttons appear immediately after clicking 'Talk to Bella' instead of waiting for video to end - improves user interaction flow
 - **2025-05-21**: Fixed "Bella's Favorite Dresses" button functionality and FloatingDisplay positioning with responsive modal overlay design
 - **2025-05-21**: Enhanced FloatingDisplay with lightbox functionality and transparent backgrounds
@@ -197,4 +201,4 @@ Special: .font-script class for decorative text
 - [ ] Enhanced boutique shopping features
 
 ---
-*Last updated: May 21, 2025 | Always update after making changes*
+*Last updated: May 22, 2025 | Always update after making changes*
