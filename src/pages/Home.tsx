@@ -144,7 +144,7 @@ const Home: React.FC = () => {
           </div>
           
           {/* Transparent Bella Video */}
-          <div className="absolute inset-0 flex items-end justify-center" style={{ paddingBottom: '-3%' }}>
+          <div className="absolute inset-0 flex items-end justify-center" style={{ paddingBottom: '-8%' }}>
             <video 
               ref={videoRef}
               playsInline
