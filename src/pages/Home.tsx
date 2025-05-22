@@ -21,6 +21,7 @@ const Home: React.FC = () => {
   const [showTalkButton, setShowTalkButton] = useState(true); // Show talk to Bella button
   const [isWaggling, setIsWaggling] = useState(false); // Track if button is currently waggling
   const [floatingDisplay, setFloatingDisplay] = useState<DisplayContent | null>(null); // Control floating display content
+  const [showButtons, setShowButtons] = useState(false); // Show interaction buttons after talking to Bella
   const videoRef = useRef<HTMLVideoElement>(null);
   
   // Effect to handle periodic waggling
@@ -54,6 +55,7 @@ const Home: React.FC = () => {
   const handleVideoEnd = () => {
     setVideoEnded(true);
     setVideoPlaying(false);
+    setShowButtons(true); // Show buttons again when video ends
   };
   
   const startVideo = () => {
@@ -82,6 +84,9 @@ const Home: React.FC = () => {
     
     // Hide the talk button after it's been clicked
     setShowTalkButton(false);
+    
+    // Show the interaction buttons immediately
+    setShowButtons(true);
   };
 
   // Use React's useCallback to create a stable function reference
@@ -98,6 +103,7 @@ const Home: React.FC = () => {
       setVideoEnded(false);
       setVideoPlaying(true);
       setShowPlayButton(false);
+      setShowButtons(false); // Hide buttons while video is playing
       
       // Maintain same audio settings for seamless experience
       const wasMuted = isMuted;
@@ -256,8 +262,8 @@ const Home: React.FC = () => {
             </button>
           )}
 
-          {/* Buttons that appear after video ends - with the same responsive positioning */}
-          {videoEnded && (
+          {/* Buttons that appear after talking to Bella - with the same responsive positioning */}
+          {showButtons && (
             <div className="absolute inset-0 flex items-center justify-center">
               <div 
                 className="relative flex flex-col gap-3 md:translate-x-16 lg:translate-x-24 xl:translate-x-32 sm:translate-y-0 translate-y-48 z-50"

@@ -173,7 +173,8 @@ Special: .font-script class for decorative text
 ---
 
 ## Recent Changes Log
-- **2025-05-21**: Modified "Bella's Favorite Dresses" button functionality - removed setTimeout delay to show FloatingDisplay immediately when clicked (CODE CHANGE ONLY - requires user testing to verify)
+- **2025-05-21**: Made buttons appear immediately after clicking 'Talk to Bella' instead of waiting for video to end - improves user interaction flow
+- **2025-05-21**: Fixed "Bella's Favorite Dresses" button functionality and FloatingDisplay positioning with responsive modal overlay design
 - **2025-05-21**: Enhanced FloatingDisplay with lightbox functionality and transparent backgrounds
 - **2025-05-21**: Created comprehensive context documentation
 
