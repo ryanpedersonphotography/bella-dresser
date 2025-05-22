@@ -12,6 +12,8 @@ import { DressItem } from '../components/IllustratedDressGallery';
 const Home: React.FC = () => {
   const navigate = useNavigate();
   const [videoEnded, setVideoEnded] = useState(false);
+  const [currentVideo, setCurrentVideo] = useState<string>("/videos/intro.mp4");
+  const [isTransitioning, setIsTransitioning] = useState(false);
   const [showPlayButton, setShowPlayButton] = useState(true); // Show play button initially
   const [videoPlaying, setVideoPlaying] = useState(false); // Track if video is playing
   const [showIntroScreen, setShowIntroScreen] = useState(true); // Show intro screen with choice buttons
@@ -87,6 +89,56 @@ const Home: React.FC = () => {
     setShowButtons(true);
   };
 
+  // Use React's useCallback to create a stable function reference
+  const playNextVideo = React.useCallback((videoSrc: string) => {
+    try {
+      // Preload the next video before showing transition
+      const tempVideo = document.createElement('video');
+      tempVideo.preload = 'auto';
+      tempVideo.src = videoSrc;
+      
+      // Update states for video transition
+      setIsTransitioning(true);
+      setCurrentVideo(videoSrc);
+      setVideoEnded(false);
+      setVideoPlaying(true);
+      setShowPlayButton(false);
+      setShowButtons(false); // Hide buttons while video is playing
+      
+      // Maintain same audio settings for seamless experience
+      const wasMuted = isMuted;
+      
+      // Ensure video plays after a short delay (reduced for smoother transition)
+      setTimeout(() => {
+        if (videoRef.current) {
+          // Preserve mute state from previous video
+          videoRef.current.muted = wasMuted;
+          const playPromise = videoRef.current.play();
+          
+          if (playPromise !== undefined) {
+            playPromise
+              .then(() => {
+                // Small delay before showing video for smoother experience
+                setTimeout(() => setIsTransitioning(false), 50);
+              })
+              .catch(e => {
+                console.error("Video play failed:", e);
+                setIsTransitioning(false);
+                // If autoplay fails, show the play button again
+                setShowPlayButton(true);
+              });
+          } else {
+            // For browsers where play() doesn't return a promise
+            setTimeout(() => setIsTransitioning(false), 50);
+          }
+        }
+      }, 50); // Reduced delay for faster transition
+    } catch (err) {
+      console.error("Error in playNextVideo:", err);
+      setIsTransitioning(false);
+      setShowPlayButton(true);
+    }
+  }, [isMuted]);
   return (
     <div className="relative">
       {/* Intro or Video Section */}
@@ -132,45 +184,38 @@ const Home: React.FC = () => {
           </div>
         </div>
       ) : (
-        /* Interactive Bella Section */
-        <div className="w-full relative overflow-hidden" style={{ minHeight: '90vh' }}>
-          {/* Background Image */}
-          <div className="absolute inset-0">
-            <img 
-              src="/images/illustrations/Awesomebg.png"
-              alt="Beautiful background"
-              className="w-full h-full object-cover"
-            />
-          </div>
-          
-          {/* Transparent Bella Video */}
-          <div className="absolute inset-0 flex items-end justify-center pb-16">
+        /* Video Section */
+        <div className="w-full relative overflow-hidden" style={{ maxHeight: '90vh' }}>
+          {/* Main video player */}
+          <div className={`transition-opacity duration-500 ${isTransitioning ? 'opacity-50' : 'opacity-100'}`}>
             <video 
               ref={videoRef}
+              key={currentVideo} // Key changes trigger React to recreate the element
               playsInline
               preload="auto"
-              loop
+              className="w-full h-auto"
+              style={{ maxHeight: '90vh', objectFit: 'contain' }}
+              onEnded={handleVideoEnd}
               muted={isMuted}
-              className="h-80 md:h-96 lg:h-[500px] w-auto object-contain"
-              autoPlay={!showPlayButton}
+              autoPlay={!showPlayButton} // Only autoplay if play button has been clicked
             >
-              <source src="/videos/bella_clean_output.webm" type="video/webm" />
+              <source src={currentVideo} type="video/mp4" />
               Your browser does not support the video tag.
             </video>
+            
+            {/* Meet Bella button overlay */}
+            {showPlayButton && (
+              <div className="absolute inset-0 flex items-center justify-center bg-black/20">
+                <button
+                  onClick={startVideo}
+                  className="group flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
+                >
+                  <Play size={24} className="text-white animate-pulse" />
+                  <span className="text-xl font-medium">Meet Bella</span>
+                </button>
+              </div>
+            )}
           </div>
-          
-          {/* Meet Bella button overlay */}
-          {showPlayButton && (
-            <div className="absolute inset-0 flex items-center justify-center bg-black/20 backdrop-blur-sm">
-              <button
-                onClick={startVideo}
-                className="group flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
-              >
-                <Play size={24} className="text-white animate-pulse" />
-                <span className="text-xl font-medium">Meet Bella</span>
-              </button>
-            </div>
-          )}
           
           {/* Talk to Bella button - positioned to the right of Bella in fixed position */}
           {!showIntroScreen && showTalkButton && (
@@ -199,12 +244,7 @@ const Home: React.FC = () => {
           {/* Sound toggle button - visible at all times during video playback */}
           {!showIntroScreen && !showPlayButton && (
             <button 
-              onClick={() => {
-                setIsMuted(!isMuted);
-                if (videoRef.current) {
-                  videoRef.current.muted = !isMuted;
-                }
-              }}
+              onClick={() => setIsMuted(!isMuted)}
               className="absolute top-4 right-4 z-50 p-3 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full transition-all duration-300 flex items-center gap-2"
               aria-label={isMuted ? "Turn Sound On" : "Turn Sound Off"}
             >
@@ -234,8 +274,7 @@ const Home: React.FC = () => {
                   onClick={(e) => {
                     e.preventDefault();
                     e.stopPropagation();
-                    // TODO: Add story content display
-                    alert("Bella's story coming soon!");
+                    playNextVideo("/videos/intro2.mp4");
                     return false;
                   }}
                   className="px-6 py-4 bg-gradient-to-r from-pink-400 to-pink-600 text-white rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 font-medium text-lg whitespace-nowrap inline-block text-center"
@@ -250,7 +289,10 @@ const Home: React.FC = () => {
                     e.preventDefault();
                     e.stopPropagation();
                     
-                    // Show the dresses immediately
+                    // Play the video first
+                    playNextVideo("/videos/intro3.mp4");
+                    
+                    // Show the dresses immediately and during video playback
                     const dresses: DressItem[] = [
                       { 
                         src: "/images/carousel/123_1.jpg", 

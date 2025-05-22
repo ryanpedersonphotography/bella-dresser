@@ -27,3 +27,5 @@ dist-ssr
 .netlify
 
 **/CLAUDE.local.md
+
+**/.claude/settings.local.json
