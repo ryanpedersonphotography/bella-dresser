@@ -139,7 +139,7 @@ const Home: React.FC = () => {
             <img 
               src="/images/illustrations/Awesomebg.png"
               alt="Beautiful background"
-              className="w-full h-full object-cover object-top scale-95 opacity-80 blur-[1px]"
+              className="w-full h-full object-cover object-top scale-75 opacity-80 blur-[1px]"
             />
           </div>
           
