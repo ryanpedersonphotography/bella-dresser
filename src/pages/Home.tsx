@@ -150,7 +150,8 @@ const Home: React.FC = () => {
               playsInline
               preload="auto"
               muted={isMuted}
-              className="h-72 md:h-80 lg:h-96 w-auto object-contain"
+              className="h-72 md:h-[345px] lg:h-[450px] w-auto object-contain"
+              style={{ filter: 'drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3))' }}
               autoPlay={!showPlayButton}
               onEnded={handleVideoEnd}
             >
