@@ -138,43 +138,45 @@ const Home: React.FC = () => {
         <div className="w-full relative overflow-hidden bg-gradient-to-b from-blue-300 to-white" style={{ minHeight: '85vh' }}>
           {/* Background Images - Positioned individually */}
           <div className="absolute inset-0">
-            {/* Left Tree - Pink/Coral */}
+            {/* Left Tree - Pink/Coral - Hidden on mobile, aligned with store on desktop */}
             <img 
               src="/images/illustrations/tree_1.png"
               alt="Pink watercolor tree"
-              className="absolute left-[8%] top-[20%] h-[60%] w-auto opacity-80 blur-[0.5px]"
+              className="absolute left-[8%] top-[25%] h-[60%] w-auto opacity-80 blur-[0.5px] hidden md:block"
             />
             
-            {/* Center Store */}
+            {/* Center Store - Moved up by 15% on mobile to prevent button clipping */}
             <img 
               src="/images/illustrations/store.png"
               alt="Bella's Dresser Boutique"
-              className="absolute left-1/2 top-[25%] h-[50%] w-auto transform -translate-x-1/2 opacity-85"
+              className="absolute left-1/2 top-[2%] md:top-[25%] h-[40%] md:h-[50%] w-auto transform -translate-x-1/2 opacity-85"
             />
             
-            {/* Right Tree - Blue/Teal */}
+            {/* Right Tree - Blue/Teal - Hidden on mobile, aligned with store on desktop */}
             <img 
               src="/images/illustrations/tree_2.png"
               alt="Blue watercolor tree"
-              className="absolute right-[8%] top-[20%] h-[60%] w-auto opacity-80 blur-[0.5px]"
+              className="absolute right-[8%] top-[25%] h-[60%] w-auto opacity-80 blur-[0.5px] hidden md:block"
             />
           </div>
           
-          {/* Transparent Bella Video */}
-          <div className="absolute inset-0 flex items-end justify-center" style={{ paddingBottom: '-8%' }}>
-            <video 
-              ref={videoRef}
-              playsInline
-              preload="auto"
-              muted={isMuted}
-              className="h-[336px] md:h-[390px] lg:h-[500px] w-auto object-contain"
-              style={{ filter: 'drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3))' }}
-              autoPlay={!showPlayButton}
-              onEnded={handleVideoEnd}
-            >
-              <source src="/videos/bella_clean_output.webm" type="video/webm" />
-              Your browser does not support the video tag.
-            </video>
+          {/* Transparent Bella Video - Large on mobile, moved up by 15% to prevent button clipping */}
+          <div className="absolute inset-0 flex justify-center md:items-end" style={{ top: '15%', paddingBottom: '-8%' }}>
+            <div className="md:flex md:items-end md:justify-center md:absolute md:inset-0" style={{ paddingBottom: '-8%' }}>
+              <video 
+                ref={videoRef}
+                playsInline
+                preload="auto"
+                muted={isMuted}
+                className="h-[500px] md:h-[390px] lg:h-[500px] w-auto object-contain z-10"
+                style={{ filter: 'drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3))' }}
+                autoPlay={!showPlayButton}
+                onEnded={handleVideoEnd}
+              >
+                <source src="/videos/bella_clean_output.webm" type="video/webm" />
+                Your browser does not support the video tag.
+              </video>
+            </div>
           </div>
           
           {/* Meet Bella button overlay */}
@@ -190,13 +192,12 @@ const Home: React.FC = () => {
             </div>
           )}
           
-          {/* Talk to Bella button - positioned to the right of Bella in fixed position */}
+          {/* Talk to Bella button - positioned on top area for mobile, to the right for desktop */}
           {!showIntroScreen && showTalkButton && (
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div 
-                className="relative xl:translate-x-32 sm:translate-y-0 translate-y-48 max-w-xs"
-              >
-                <div className={`${isWaggling ? 'animate-wiggle' : ''}`}>
+            <div className="absolute inset-0">
+              {/* Mobile positioning - moved up by 15% to prevent button clipping */}
+              <div className="absolute inset-0 flex justify-center md:hidden" style={{ top: '0%' }}>
+                <div className={`${isWaggling ? 'animate-wiggle' : ''} max-w-xs z-20`}>
                   <StoryBookButton 
                     onClick={talkToBella}
                     className="shadow-xl hover:shadow-2xl transition-all duration-300"
@@ -209,6 +210,32 @@ const Home: React.FC = () => {
                       <span>Talk to Bella</span>
                     </div>
                   </StoryBookButton>
+                </div>
+              </div>
+              
+              {/* Desktop positioning - to the right of video */}
+              <div className="hidden md:flex items-center justify-center absolute inset-0">
+                <div className="relative flex items-center justify-center w-full max-w-6xl mx-auto px-4">
+                  {/* Invisible video placeholder for positioning reference */}
+                  <div className="h-[336px] md:h-[390px] lg:h-[500px] w-auto aspect-video flex-shrink-0 opacity-0 pointer-events-none"></div>
+                  
+                  {/* Button positioned close to the right of video */}
+                  <div className="absolute left-[calc(50%+160px)] lg:left-[calc(50%+180px)] xl:left-[calc(50%+200px)] top-1/2 -translate-y-1/2 max-w-xs">
+                    <div className={`${isWaggling ? 'animate-wiggle' : ''}`}>
+                      <StoryBookButton 
+                        onClick={talkToBella}
+                        className="shadow-xl hover:shadow-2xl transition-all duration-300"
+                        style={{
+                          filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.7))'
+                        }}
+                      >
+                        <div className="flex items-center justify-center gap-2">
+                          <MessageCircle size={20} className="text-[#3c2f2f]" />
+                          <span>Talk to Bella</span>
+                        </div>
+                      </StoryBookButton>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -240,84 +267,173 @@ const Home: React.FC = () => {
             </button>
           )}
 
-          {/* Buttons that appear after talking to Bella - with the same responsive positioning */}
+          {/* Buttons that appear after talking to Bella - positioned at bottom for mobile, to the right for desktop */}
           {showButtons && (
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div 
-                className="relative md:translate-x-24 lg:translate-x-32 xl:translate-x-40 sm:translate-y-0 translate-y-48 z-50 max-w-xs"
-                onClick={(e) => e.stopPropagation()}
-              >
-                <StoryBookButtonGroup>
-                  <StoryBookButton
-                    onClick={(e) => {
-                      e?.preventDefault();
-                      e?.stopPropagation();
-                      // TODO: Add story content display
-                      alert("Bella's story coming soon!");
-                    }}
-                    className="shadow-xl hover:shadow-2xl transition-all duration-300"
-                    style={{ filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.7))' }}
-                  >
-                    Learn Bella's Story
-                  </StoryBookButton>
+            <div className="absolute inset-0">
+              {/* Mobile positioning - moved up by 15% to prevent button clipping */}
+              <div className="absolute inset-0 flex justify-center md:hidden" style={{ top: '70%' }}>
+                <div 
+                  className="z-50 max-w-xs"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <StoryBookButtonGroup>
+                    <StoryBookButton
+                      onClick={(e) => {
+                        e?.preventDefault();
+                        e?.stopPropagation();
+                        // TODO: Add story content display
+                        alert("Bella's story coming soon!");
+                      }}
+                      className="shadow-xl hover:shadow-2xl transition-all duration-300"
+                      style={{ filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.7))' }}
+                    >
+                      Learn Bella's Story
+                    </StoryBookButton>
+                    
+                    <StoryBookButton
+                      onClick={(e) => {
+                        e?.preventDefault();
+                        e?.stopPropagation();
+                        
+                        // Show the dresses immediately
+                        const dresses: DressItem[] = [
+                          { 
+                            src: "/images/carousel/123_1.jpg", 
+                            alt: "Elegant Summer Dress",
+                            name: "Provence Sunset",
+                            description: "Flowing fabric with delicate floral print",
+                            price: "$89"
+                          },
+                          { 
+                            src: "/images/carousel/123_1-2.jpg", 
+                            alt: "Chic Evening Wear",
+                            name: "Parisian Evening",
+                            description: "Perfect for dinner by the lake",
+                            price: "$124"
+                          },
+                          { 
+                            src: "/images/carousel/123_1-3.jpg", 
+                            alt: "Casual Day Dress",
+                            name: "Morning Café",
+                            description: "Comfortable yet sophisticated",
+                            price: "$67"
+                          },
+                          { 
+                            src: "/images/carousel/123_1-4.jpg", 
+                            alt: "Vintage Style Dress",
+                            name: "Vintage Rose",
+                            description: "Timeless elegance with modern comfort",
+                            price: "$98"
+                          },
+                          { 
+                            src: "/images/carousel/123_1-5.jpg", 
+                            alt: "Bohemian Dress",
+                            name: "Lake Breeze",
+                            description: "Free-spirited style for sunny days",
+                            price: "$76"
+                          }
+                        ];
+                        
+                        // Show the floating display immediately
+                        setFloatingDisplay({
+                          type: 'illustrated',
+                          title: "Bella's Favorite Dresses",
+                          dresses: dresses
+                        });
+                      }}
+                      className="shadow-xl hover:shadow-2xl transition-all duration-300"
+                      style={{ filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.7))' }}
+                    >
+                      Bella's Favorite Dresses
+                    </StoryBookButton>
+                  </StoryBookButtonGroup>
+                </div>
+              </div>
+              
+              {/* Desktop positioning - to the right of video */}
+              <div className="hidden md:flex items-center justify-center absolute inset-0">
+                <div className="relative flex items-center justify-center w-full max-w-6xl mx-auto px-4">
+                  {/* Invisible video placeholder for positioning reference */}
+                  <div className="h-[336px] md:h-[390px] lg:h-[500px] w-auto aspect-video flex-shrink-0 opacity-0 pointer-events-none"></div>
                   
-                  <StoryBookButton
-                    onClick={(e) => {
-                      e?.preventDefault();
-                      e?.stopPropagation();
-                      
-                      // Show the dresses immediately
-                      const dresses: DressItem[] = [
-                        { 
-                          src: "/images/carousel/123_1.jpg", 
-                          alt: "Elegant Summer Dress",
-                          name: "Provence Sunset",
-                          description: "Flowing fabric with delicate floral print",
-                          price: "$89"
-                        },
-                        { 
-                          src: "/images/carousel/123_1-2.jpg", 
-                          alt: "Chic Evening Wear",
-                          name: "Parisian Evening",
-                          description: "Perfect for dinner by the lake",
-                          price: "$124"
-                        },
-                        { 
-                          src: "/images/carousel/123_1-3.jpg", 
-                          alt: "Casual Day Dress",
-                          name: "Morning Café",
-                          description: "Comfortable yet sophisticated",
-                          price: "$67"
-                        },
-                        { 
-                          src: "/images/carousel/123_1-4.jpg", 
-                          alt: "Vintage Style Dress",
-                          name: "Vintage Rose",
-                          description: "Timeless elegance with modern comfort",
-                          price: "$98"
-                        },
-                        { 
-                          src: "/images/carousel/123_1-5.jpg", 
-                          alt: "Bohemian Dress",
-                          name: "Lake Breeze",
-                          description: "Free-spirited style for sunny days",
-                          price: "$76"
-                        }
-                      ];
-                      
-                      // Show the floating display immediately
-                      setFloatingDisplay({
-                        type: 'illustrated',
-                        title: "Bella's Favorite Dresses",
-                        dresses: dresses
-                      });
-                    }}
-                    className="shadow-xl hover:shadow-2xl transition-all duration-300"
-                    style={{ filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.7))' }}
+                  {/* Buttons positioned close to the right of video */}
+                  <div 
+                    className="absolute left-[calc(50%+160px)] lg:left-[calc(50%+180px)] xl:left-[calc(50%+200px)] top-1/2 -translate-y-1/2 z-50 max-w-xs"
+                    onClick={(e) => e.stopPropagation()}
                   >
-                    Bella's Favorite Dresses
-                  </StoryBookButton>
-                </StoryBookButtonGroup>
+                    <StoryBookButtonGroup>
+                      <StoryBookButton
+                        onClick={(e) => {
+                          e?.preventDefault();
+                          e?.stopPropagation();
+                          // TODO: Add story content display
+                          alert("Bella's story coming soon!");
+                        }}
+                        className="shadow-xl hover:shadow-2xl transition-all duration-300"
+                        style={{ filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.7))' }}
+                      >
+                        Learn Bella's Story
+                      </StoryBookButton>
+                      
+                      <StoryBookButton
+                        onClick={(e) => {
+                          e?.preventDefault();
+                          e?.stopPropagation();
+                          
+                          // Show the dresses immediately
+                          const dresses: DressItem[] = [
+                            { 
+                              src: "/images/carousel/123_1.jpg", 
+                              alt: "Elegant Summer Dress",
+                              name: "Provence Sunset",
+                              description: "Flowing fabric with delicate floral print",
+                              price: "$89"
+                            },
+                            { 
+                              src: "/images/carousel/123_1-2.jpg", 
+                              alt: "Chic Evening Wear",
+                              name: "Parisian Evening",
+                              description: "Perfect for dinner by the lake",
+                              price: "$124"
+                            },
+                            { 
+                              src: "/images/carousel/123_1-3.jpg", 
+                              alt: "Casual Day Dress",
+                              name: "Morning Café",
+                              description: "Comfortable yet sophisticated",
+                              price: "$67"
+                            },
+                            { 
+                              src: "/images/carousel/123_1-4.jpg", 
+                              alt: "Vintage Style Dress",
+                              name: "Vintage Rose",
+                              description: "Timeless elegance with modern comfort",
+                              price: "$98"
+                            },
+                            { 
+                              src: "/images/carousel/123_1-5.jpg", 
+                              alt: "Bohemian Dress",
+                              name: "Lake Breeze",
+                              description: "Free-spirited style for sunny days",
+                              price: "$76"
+                            }
+                          ];
+                          
+                          // Show the floating display immediately
+                          setFloatingDisplay({
+                            type: 'illustrated',
+                            title: "Bella's Favorite Dresses",
+                            dresses: dresses
+                          });
+                        }}
+                        className="shadow-xl hover:shadow-2xl transition-all duration-300"
+                        style={{ filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.7))' }}
+                      >
+                        Bella's Favorite Dresses
+                      </StoryBookButton>
+                    </StoryBookButtonGroup>
+                  </div>
+                </div>
               </div>
             </div>
           )}

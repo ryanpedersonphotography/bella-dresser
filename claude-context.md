@@ -177,6 +177,13 @@ Special: .font-script class for decorative text
 ---
 
 ## Recent Changes Log
+- **2025-05-22**: Aligned desktop tree positioning with store for visual harmony - moved both left and right trees from top 20% to top 25% to match the store's horizontal axis. Trees now form a cohesive horizontal line with the store on desktop screens while remaining hidden on mobile for clean layout.
+- **2025-05-22**: Fixed mobile button clipping by moving all elements up 15% - store moved from top 10% to 2%, Bella video from top 30% to 15%, "Talk to Bella" button from top 8% to 0%, and interaction buttons from top 85% to 70%. This prevents buttons from being clipped at the bottom of mobile viewport while maintaining optimal layout hierarchy.
+- **2025-05-22**: Refined mobile layout for tighter spacing - moved Bella video lower (top 30%) for more compact design while ensuring buttons don't block the animation. "Talk to Bella" button repositioned to top 8%, interaction buttons moved to bottom area (top 85%) to avoid overlapping with Bella video. Maintained large video size (h-[500px]) while optimizing button placement.
+- **2025-05-22**: Enhanced mobile Interactive Bella section layout - made Bella video much larger (h-[500px]) and centered in front of store without completely blocking it. Repositioned buttons to not obstruct store: "Talk to Bella" moved above store (top 5%), interaction buttons moved below store (top 65%). Added proper z-index layering for optimal visual hierarchy.
+- **2025-05-22**: Optimized Interactive Bella section for mobile screens - buttons now positioned on top of store image (moved to top 20%), store moved closer to top (from 25% to 10%), trees hidden on mobile for cleaner layout, Bella video remains prominent at bottom. Desktop layout maintains buttons to the right of video.
+- **2025-05-22**: Adjusted Bella interaction button positioning to be closer to the webm video animation while remaining non-obstructive. Reduced button offset distances from 200px-350px to 120px-200px across all responsive breakpoints for a more integrated and accessible user experience.
+- **2025-05-22**: Repositioned Bella interaction buttons to be responsive and consistently placed to the right of the webm video animation and vertically centered with it. Implemented proper responsive layout using flex containers with invisible video placeholders for consistent positioning across all breakpoints (sm, md, lg, xl).
 - **2025-05-22**: Component cleanup - analyzed all components for usage and moved 10 unused components to unused/components/ folder (DesignSystemNavbar duplicate, EnhancedImage, FloatingDisplayExample, HeroImage, HeroSection, HeroSlideshow, ProductImage, StoryBookButtonExample, TextAwareImage, ThemeSwitcher). Retained LoadingAnimation and SectionTransition as they are actively used in demo components.
 - **2025-05-22**: Cleaned up documentation - moved 4 outdated docs (design roadmap, refinement plans, CSS components guide) to unused/docs/ folder, keeping only active/relevant documentation
 - **2025-05-22**: Organized unused assets - moved 32 unused image/video files to unused/ folder, maintaining only assets currently referenced in codebase
@@ -207,4 +214,4 @@ Special: .font-script class for decorative text
 - [ ] Enhanced boutique shopping features
 
 ---
-*Last updated: May 22, 2025 | Component cleanup completed - moved 10 unused components*
+*Last updated: May 22, 2025 | Aligned desktop trees with store for visual harmony*
