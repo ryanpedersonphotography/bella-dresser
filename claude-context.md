@@ -128,9 +128,12 @@ Special: .font-script class for decorative text
 
 ## Documentation Hub
 - `docs/site-documentation.md` - Comprehensive site overview
-- `docs/design-system-guide.md` - Design system documentation  
+- `docs/bella-dresser-design-system-guide.md` - Design system documentation  
 - `docs/component-implementation-guide.md` - Component development guide
 - `docs/development-guidelines.md` - Development best practices
+- `docs/bellas-dresser-color-scheme-guide.md` - Color palette and usage guide
+- `docs/typography-implementation-guide.md` - Typography system guide
+- `unused/docs/` - Archive of outdated documentation (roadmaps, old CSS guides)
 
 ## Common Workflows
 
@@ -174,6 +177,9 @@ Special: .font-script class for decorative text
 ---
 
 ## Recent Changes Log
+- **2025-05-22**: Component cleanup - analyzed all components for usage and moved 10 unused components to unused/components/ folder (DesignSystemNavbar duplicate, EnhancedImage, FloatingDisplayExample, HeroImage, HeroSection, HeroSlideshow, ProductImage, StoryBookButtonExample, TextAwareImage, ThemeSwitcher). Retained LoadingAnimation and SectionTransition as they are actively used in demo components.
+- **2025-05-22**: Cleaned up documentation - moved 4 outdated docs (design roadmap, refinement plans, CSS components guide) to unused/docs/ folder, keeping only active/relevant documentation
+- **2025-05-22**: Organized unused assets - moved 32 unused image/video files to unused/ folder, maintaining only assets currently referenced in codebase
 - **2025-05-22**: Replaced Meet Bella section background with positioned individual PNG images (store.png, tree_1.png, tree_2.png) maintaining original layout and blue gradient
 - **2025-05-22**: Implemented StoryBookButton components in Home.tsx for "Talk to Bella", "Learn Bella's Story", and "Bella's Favorite Dresses" buttons with vintage boutique styling
 - **2025-05-22**: Created StoryBookButton and StoryBookButtonGroup components with vintage boutique styling, Cormorant Garamond typography, and elegant hover effects
@@ -201,4 +207,4 @@ Special: .font-script class for decorative text
 - [ ] Enhanced boutique shopping features
 
 ---
-*Last updated: May 22, 2025 | Always update after making changes*
+*Last updated: May 22, 2025 | Component cleanup completed - moved 10 unused components*
