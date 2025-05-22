@@ -150,7 +150,7 @@ const Home: React.FC = () => {
               playsInline
               preload="auto"
               muted={isMuted}
-              className="h-64 md:h-72 lg:h-80 w-auto object-contain"
+              className="h-72 md:h-80 lg:h-96 w-auto object-contain"
               autoPlay={!showPlayButton}
               onEnded={handleVideoEnd}
             >
