@@ -144,13 +144,13 @@ const Home: React.FC = () => {
           </div>
           
           {/* Transparent Bella Video */}
-          <div className="absolute inset-0 flex items-end justify-center pb-4">
+          <div className="absolute inset-0 flex items-end justify-center" style={{ paddingBottom: '1%' }}>
             <video 
               ref={videoRef}
               playsInline
               preload="auto"
               muted={isMuted}
-              className="h-80 md:h-[375px] lg:h-[480px] w-auto object-contain"
+              className="h-[336px] md:h-[390px] lg:h-[500px] w-auto object-contain"
               style={{ filter: 'drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3))' }}
               autoPlay={!showPlayButton}
               onEnded={handleVideoEnd}
