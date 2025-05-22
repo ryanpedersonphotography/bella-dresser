@@ -144,7 +144,7 @@ const Home: React.FC = () => {
           </div>
           
           {/* Transparent Bella Video */}
-          <div className="absolute inset-0 flex items-end justify-center pb-16">
+          <div className="absolute inset-0 flex items-end justify-center pb-8">
             <video 
               ref={videoRef}
               playsInline
@@ -226,7 +226,7 @@ const Home: React.FC = () => {
           {showButtons && (
             <div className="absolute inset-0 flex items-center justify-center">
               <div 
-                className="relative flex flex-col gap-3 md:translate-x-16 lg:translate-x-24 xl:translate-x-32 sm:translate-y-0 translate-y-48 z-50"
+                className="relative flex flex-col gap-3 md:translate-x-24 lg:translate-x-32 xl:translate-x-40 sm:translate-y-0 translate-y-48 z-50"
                 onClick={(e) => e.stopPropagation()}
               >
                 <a
