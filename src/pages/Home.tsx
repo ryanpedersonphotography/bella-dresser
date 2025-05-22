@@ -149,10 +149,10 @@ const Home: React.FC = () => {
               ref={videoRef}
               playsInline
               preload="auto"
-              loop
               muted={isMuted}
               className="h-80 md:h-96 lg:h-[500px] w-auto object-contain"
               autoPlay={!showPlayButton}
+              onEnded={handleVideoEnd}
             >
               <source src="/videos/bella_clean_output.webm" type="video/webm" />
               Your browser does not support the video tag.
