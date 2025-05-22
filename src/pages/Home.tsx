@@ -133,13 +133,13 @@ const Home: React.FC = () => {
         </div>
       ) : (
         /* Interactive Bella Section */
-        <div className="w-full relative overflow-hidden bg-blue-400" style={{ minHeight: '100vh' }}>
+        <div className="w-full relative overflow-hidden bg-blue-400" style={{ minHeight: '90vh' }}>
           {/* Background Image */}
           <div className="absolute inset-0">
             <img 
               src="/images/illustrations/Awesomebg.png"
               alt="Beautiful background"
-              className="w-full h-full object-cover scale-105 opacity-80 blur-sm"
+              className="w-full h-full object-cover scale-105 opacity-80 blur-[2px]"
             />
           </div>
           
