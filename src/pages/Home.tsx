@@ -133,13 +133,13 @@ const Home: React.FC = () => {
         </div>
       ) : (
         /* Interactive Bella Section */
-        <div className="w-full relative overflow-hidden" style={{ minHeight: '90vh' }}>
+        <div className="w-full relative overflow-hidden" style={{ minHeight: '100vh' }}>
           {/* Background Image */}
           <div className="absolute inset-0">
             <img 
               src="/images/illustrations/Awesomebg.png"
               alt="Beautiful background"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover scale-105"
             />
           </div>
           
@@ -150,7 +150,7 @@ const Home: React.FC = () => {
               playsInline
               preload="auto"
               muted={isMuted}
-              className="h-80 md:h-96 lg:h-[500px] w-auto object-contain"
+              className="h-64 md:h-72 lg:h-80 w-auto object-contain"
               autoPlay={!showPlayButton}
               onEnded={handleVideoEnd}
             >
