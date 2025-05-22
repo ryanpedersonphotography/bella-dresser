@@ -139,18 +139,18 @@ const Home: React.FC = () => {
             <img 
               src="/images/illustrations/Awesomebg.png"
               alt="Beautiful background"
-              className="w-full h-full object-cover scale-105 opacity-80 blur-[2px]"
+              className="w-full h-full object-cover scale-105 opacity-80 blur-[1px]"
             />
           </div>
           
           {/* Transparent Bella Video */}
-          <div className="absolute inset-0 flex items-end justify-center pb-8">
+          <div className="absolute inset-0 flex items-end justify-center pb-4">
             <video 
               ref={videoRef}
               playsInline
               preload="auto"
               muted={isMuted}
-              className="h-72 md:h-[345px] lg:h-[450px] w-auto object-contain"
+              className="h-80 md:h-[375px] lg:h-[480px] w-auto object-contain"
               style={{ filter: 'drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3))' }}
               autoPlay={!showPlayButton}
               onEnded={handleVideoEnd}
