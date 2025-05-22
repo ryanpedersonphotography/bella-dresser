@@ -282,53 +282,55 @@ const Home: React.FC = () => {
                   onClick={(e) => {
                     e.preventDefault();
                     e.stopPropagation();
+                    
+                    // Play the video first
                     playNextVideo("/videos/intro3.mp4");
                     
-                    setTimeout(() => {
-                      const dresses: DressItem[] = [
-                        { 
-                          src: "/images/carousel/123_1.jpg", 
-                          alt: "Elegant Summer Dress",
-                          name: "Provence Sunset",
-                          description: "Flowing fabric with delicate floral print",
-                          price: "$89"
-                        },
-                        { 
-                          src: "/images/carousel/123_1-2.jpg", 
-                          alt: "Chic Evening Wear",
-                          name: "Parisian Evening",
-                          description: "Perfect for dinner by the lake",
-                          price: "$124"
-                        },
-                        { 
-                          src: "/images/carousel/123_1-3.jpg", 
-                          alt: "Casual Day Dress",
-                          name: "Morning Café",
-                          description: "Comfortable yet sophisticated",
-                          price: "$67"
-                        },
-                        { 
-                          src: "/images/carousel/123_1-4.jpg", 
-                          alt: "Vintage Style Dress",
-                          name: "Vintage Rose",
-                          description: "Timeless elegance with modern comfort",
-                          price: "$98"
-                        },
-                        { 
-                          src: "/images/carousel/123_1-5.jpg", 
-                          alt: "Bohemian Dress",
-                          name: "Lake Breeze",
-                          description: "Free-spirited style for sunny days",
-                          price: "$76"
-                        }
-                      ];
-                      
-                      setFloatingDisplay({
-                        type: 'illustrated',
-                        title: "Bella's Favorite Dresses",
-                        dresses: dresses
-                      });
-                    }, 1000);
+                    // Show the dresses immediately and during video playback
+                    const dresses: DressItem[] = [
+                      { 
+                        src: "/images/carousel/123_1.jpg", 
+                        alt: "Elegant Summer Dress",
+                        name: "Provence Sunset",
+                        description: "Flowing fabric with delicate floral print",
+                        price: "$89"
+                      },
+                      { 
+                        src: "/images/carousel/123_1-2.jpg", 
+                        alt: "Chic Evening Wear",
+                        name: "Parisian Evening",
+                        description: "Perfect for dinner by the lake",
+                        price: "$124"
+                      },
+                      { 
+                        src: "/images/carousel/123_1-3.jpg", 
+                        alt: "Casual Day Dress",
+                        name: "Morning Café",
+                        description: "Comfortable yet sophisticated",
+                        price: "$67"
+                      },
+                      { 
+                        src: "/images/carousel/123_1-4.jpg", 
+                        alt: "Vintage Style Dress",
+                        name: "Vintage Rose",
+                        description: "Timeless elegance with modern comfort",
+                        price: "$98"
+                      },
+                      { 
+                        src: "/images/carousel/123_1-5.jpg", 
+                        alt: "Bohemian Dress",
+                        name: "Lake Breeze",
+                        description: "Free-spirited style for sunny days",
+                        price: "$76"
+                      }
+                    ];
+                    
+                    // Show the floating display immediately
+                    setFloatingDisplay({
+                      type: 'illustrated',
+                      title: "Bella's Favorite Dresses",
+                      dresses: dresses
+                    });
                     
                     return false;
                   }}
@@ -341,12 +343,6 @@ const Home: React.FC = () => {
             </div>
           )}
 
-          {/* Floating Display Component */}
-          <FloatingDisplay
-            isVisible={!!floatingDisplay}
-            onClose={() => setFloatingDisplay(null)}
-            content={floatingDisplay || undefined}
-          />
         </div>
       )}
       
@@ -354,6 +350,7 @@ const Home: React.FC = () => {
       {!showIntroScreen && (
         <div className="h-16 bg-white"></div>
       )}
+      
 
       {/* Welcome Section */}
       <TexturedSection
@@ -629,6 +626,13 @@ const Home: React.FC = () => {
           </div>
         </div>
       </TexturedSection>
+      
+      {/* Floating Display Component - positioned at root level to overlay entire page */}
+      <FloatingDisplay
+        isVisible={!!floatingDisplay}
+        onClose={() => setFloatingDisplay(null)}
+        content={floatingDisplay || undefined}
+      />
     </div>
   );
 };
