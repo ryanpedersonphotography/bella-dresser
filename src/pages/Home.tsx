@@ -307,7 +307,7 @@ const Home: React.FC = () => {
                           setTimeout(() => {
                             setShowDressCards(false);
                             setIsExitingCards(false);
-                          }, 800); // Match animation duration
+                          }, 600); // Match animation duration
                         } else {
                           setShowDressCards(true);
                         }
@@ -357,7 +357,7 @@ const Home: React.FC = () => {
                             setTimeout(() => {
                               setShowDressCards(false);
                               setIsExitingCards(false);
-                            }, 800); // Match animation duration
+                            }, 600); // Match animation duration
                           } else {
                             setShowDressCards(true);
                           }
