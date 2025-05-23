@@ -135,41 +135,46 @@ const Home: React.FC = () => {
         </div>
       ) : (
         /* Interactive Bella Section */
-        <div className="w-full relative overflow-hidden bg-gradient-to-b from-blue-300 to-white" style={{ minHeight: '85vh' }}>
+        <div className="w-full relative overflow-hidden" style={{ minHeight: '85vh' }}>
+          {/* Reversed gradient background - pinkish hue at top */}
+          <div className="absolute inset-x-0 top-[-8%] h-[42%] md:h-[55%] bg-gradient-to-b from-pink-100 to-blue-300"></div>
           {/* Background Images - Positioned individually */}
           <div className="absolute inset-0">
-            {/* Left Tree - Pink/Coral - Hidden on mobile, aligned with store on desktop */}
+            {/* Left Tree - Pink/Coral - Hidden on mobile, moved 8% closer to store */}
             <img 
               src="/images/illustrations/tree_1.png"
               alt="Pink watercolor tree"
-              className="absolute left-[8%] top-[25%] h-[60%] w-auto opacity-80 blur-[0.5px] hidden md:block"
+              className="absolute left-[16%] top-[-13%] h-[60%] w-auto opacity-80 blur-[0.5px] hidden md:block"
+              style={{ filter: 'blur(0.5px) drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3))' }}
             />
             
-            {/* Center Store - Moved up by 15% on mobile to prevent button clipping */}
+            {/* Center Store - Moved up by 15% on mobile, moved down 10% from previous desktop position */}
             <img 
               src="/images/illustrations/store.png"
               alt="Bella's Dresser Boutique"
-              className="absolute left-1/2 top-[2%] md:top-[25%] h-[40%] md:h-[50%] w-auto transform -translate-x-1/2 opacity-85"
+              className="absolute left-1/2 top-[2%] md:top-[5%] h-[40%] md:h-[50%] w-auto transform -translate-x-1/2 opacity-85"
+              style={{ filter: 'drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3))' }}
             />
             
-            {/* Right Tree - Blue/Teal - Hidden on mobile, aligned with store on desktop */}
+            {/* Right Tree - Blue/Teal - Hidden on mobile, moved 3% closer to store */}
             <img 
               src="/images/illustrations/tree_2.png"
               alt="Blue watercolor tree"
-              className="absolute right-[8%] top-[25%] h-[60%] w-auto opacity-80 blur-[0.5px] hidden md:block"
+              className="absolute right-[19%] top-[-13%] h-[60%] w-auto opacity-80 blur-[0.5px] hidden md:block"
+              style={{ filter: 'blur(0.5px) drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3))' }}
             />
           </div>
           
-          {/* Transparent Bella Video - Large on mobile, moved up by 15% to prevent button clipping */}
-          <div className="absolute inset-0 flex justify-center md:items-end" style={{ top: '15%', paddingBottom: '-8%' }}>
-            <div className="md:flex md:items-end md:justify-center md:absolute md:inset-0" style={{ paddingBottom: '-8%' }}>
+          {/* Transparent Bella Video - Made 10% bigger and moved down 5% */}
+          <div className="absolute inset-0 flex justify-center" style={{ top: '20%' }}>
+            <div className="md:flex md:justify-center md:absolute md:inset-0" style={{ top: '13%' }}>
               <video 
                 ref={videoRef}
                 playsInline
                 preload="auto"
                 muted={isMuted}
-                className="h-[500px] md:h-[390px] lg:h-[500px] w-auto object-contain z-10"
-                style={{ filter: 'drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3))' }}
+                className="h-[550px] md:h-[515px] lg:h-[660px] w-auto object-contain z-10"
+                style={{ filter: 'drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3))', opacity: 1 }}
                 autoPlay={!showPlayButton}
                 onEnded={handleVideoEnd}
               >
@@ -219,8 +224,8 @@ const Home: React.FC = () => {
                   {/* Invisible video placeholder for positioning reference */}
                   <div className="h-[336px] md:h-[390px] lg:h-[500px] w-auto aspect-video flex-shrink-0 opacity-0 pointer-events-none"></div>
                   
-                  {/* Button positioned close to the right of video */}
-                  <div className="absolute left-[calc(50%+160px)] lg:left-[calc(50%+180px)] xl:left-[calc(50%+200px)] top-1/2 -translate-y-1/2 max-w-xs">
+                  {/* Button positioned close to the right of video, moved down 17% */}
+                  <div className="absolute left-[calc(50%+160px)] lg:left-[calc(50%+180px)] xl:left-[calc(50%+200px)] top-[calc(50%+17%)] -translate-y-1/2 max-w-xs">
                     <div className={`${isWaggling ? 'animate-wiggle' : ''}`}>
                       <StoryBookButton 
                         onClick={talkToBella}
@@ -356,9 +361,9 @@ const Home: React.FC = () => {
                   {/* Invisible video placeholder for positioning reference */}
                   <div className="h-[336px] md:h-[390px] lg:h-[500px] w-auto aspect-video flex-shrink-0 opacity-0 pointer-events-none"></div>
                   
-                  {/* Buttons positioned close to the right of video */}
+                  {/* Buttons positioned close to the right of video, moved down 17% */}
                   <div 
-                    className="absolute left-[calc(50%+160px)] lg:left-[calc(50%+180px)] xl:left-[calc(50%+200px)] top-1/2 -translate-y-1/2 z-50 max-w-xs"
+                    className="absolute left-[calc(50%+160px)] lg:left-[calc(50%+180px)] xl:left-[calc(50%+200px)] top-[calc(50%+17%)] -translate-y-1/2 z-50 max-w-xs"
                     onClick={(e) => e.stopPropagation()}
                   >
                     <StoryBookButtonGroup>
