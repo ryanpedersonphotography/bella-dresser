@@ -33,49 +33,12 @@ const WhimsicalDressCard: React.FC<WhimsicalDressCardProps> = ({
         fontFamily: '"Cormorant Garamond", serif',
       } as React.CSSProperties}
     >
-      {/* Hand-drawn border SVG */}
-      <svg 
-        className="absolute inset-0 w-full h-full pointer-events-none z-10 
-                   transition-all duration-300 ease-out
-                   group-hover:scale-110 group-hover:-translate-x-1 group-hover:-translate-y-1"
-        viewBox="0 0 220 300"
-        preserveAspectRatio="none"
-      >
-        <path
-          d="M 12 25 
-             C 10 12, 10 10, 22 8
-             L 190 10
-             C 208 8, 210 10, 208 28
-             L 210 270
-             C 212 288, 210 290, 192 288
-             L 28 290
-             C 10 292, 8 290, 10 272
-             Z"
-          fill="none"
-          stroke="#cfb68e"
-          strokeWidth="2.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeDasharray="0"
-          className="transition-all duration-300 group-hover:stroke-[#b09d7a]"
-          style={{
-            filter: 'url(#hand-drawn-filter)'
-          }}
-        />
-        <defs>
-          <filter id="hand-drawn-filter">
-            <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="3" result="noise" seed="5" />
-            <feDisplacementMap in="SourceGraphic" in2="noise" scale="0.7" />
-          </filter>
-        </defs>
-      </svg>
-      
-      <div className="bg-[#fcf4e6] rounded-xl 
+      <div className="bg-[#fcf4e6] border-2 border-[#cfb68e] rounded-xl 
                       shadow-[0_4px_8px_rgba(0,0,0,0.05)] overflow-hidden 
                       transform hover:scale-105 hover:-translate-y-1 
                       hover:shadow-[0_6px_12px_rgba(0,0,0,0.08)]
                       transition-all duration-200 ease-in-out
-                      relative hand-drawn-border"
+                      relative"
       >
         
         {/* Image container */}
