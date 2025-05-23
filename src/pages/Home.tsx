@@ -24,6 +24,8 @@ const Home: React.FC = () => {
   const [showButtons, setShowButtons] = useState(false); // Show interaction buttons after talking to Bella
   const [showDressCards, setShowDressCards] = useState(false); // Show dress cards on sides
   const [isExitingCards, setIsExitingCards] = useState(false); // Track exit animation
+  const [showStoryVideo, setShowStoryVideo] = useState(false); // Show Bella's story video
+  const [storyEnded, setStoryEnded] = useState(false); // Track if story has ended
   const videoRef = useRef<HTMLVideoElement>(null);
   
   // Effect to handle periodic waggling
@@ -97,40 +99,126 @@ const Home: React.FC = () => {
       {showIntroScreen ? (
         /* Intro Screen with choice buttons */
         <div className="w-full relative overflow-hidden bg-gradient-to-b from-pink-100 to-purple-100" style={{ minHeight: '90vh' }}>
-          <div className="absolute inset-0 flex flex-col items-center justify-center p-6">
-            <div className="mb-8">
-              <img 
-                src="/images/illustrations/bella_dresser_larger.png" 
-                alt="Bella's Dresser Boutique" 
-                className="w-full max-w-lg mx-auto"
-              />
-            </div>
+          {/* Magical sparkle overlay */}
+          <div className="absolute inset-0">
+            {/* Floating sparkles */}
+            <div className="absolute top-[10%] left-[15%] w-4 h-4 bg-white rounded-full animate-pulse opacity-60"></div>
+            <div className="absolute top-[20%] right-[20%] w-3 h-3 bg-yellow-200 rounded-full animate-pulse opacity-70" style={{ animationDelay: '0.5s' }}></div>
+            <div className="absolute top-[30%] left-[25%] w-2 h-2 bg-purple-300 rounded-full animate-pulse opacity-80" style={{ animationDelay: '1s' }}></div>
+            <div className="absolute top-[15%] right-[35%] w-3 h-3 bg-pink-200 rounded-full animate-pulse opacity-60" style={{ animationDelay: '1.5s' }}></div>
+            <div className="absolute bottom-[30%] left-[20%] w-4 h-4 bg-white rounded-full animate-pulse opacity-70" style={{ animationDelay: '2s' }}></div>
+            <div className="absolute bottom-[20%] right-[25%] w-2 h-2 bg-yellow-100 rounded-full animate-pulse opacity-80" style={{ animationDelay: '0.3s' }}></div>
+            <div className="absolute top-[40%] right-[15%] w-3 h-3 bg-purple-200 rounded-full animate-pulse opacity-60" style={{ animationDelay: '0.7s' }}></div>
+            <div className="absolute bottom-[40%] left-[35%] w-2 h-2 bg-pink-300 rounded-full animate-pulse opacity-70" style={{ animationDelay: '1.2s' }}></div>
             
-            <h1 className="text-5xl md:text-6xl font-bold mb-12 text-center" style={{ 
+            {/* Magical star bursts */}
+            <svg className="absolute top-[25%] left-[10%] w-8 h-8 text-purple-300 opacity-40 animate-spin-slow" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0l1.5 5.5L19 6l-5.5 1.5L12 13l-1.5-5.5L5 6l5.5-1.5L12 0z"/>
+            </svg>
+            <svg className="absolute top-[60%] right-[12%] w-6 h-6 text-pink-300 opacity-50 animate-spin-slow" style={{ animationDelay: '1.5s' }} viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0l1.5 5.5L19 6l-5.5 1.5L12 13l-1.5-5.5L5 6l5.5-1.5L12 0z"/>
+            </svg>
+            <svg className="absolute bottom-[35%] left-[15%] w-5 h-5 text-yellow-200 opacity-40 animate-spin-slow" style={{ animationDelay: '2.5s' }} viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0l1.5 5.5L19 6l-5.5 1.5L12 13l-1.5-5.5L5 6l5.5-1.5L12 0z"/>
+            </svg>
+            
+            {/* Fairy dust trails */}
+            <div className="absolute inset-0 opacity-20">
+              <div className="absolute top-0 left-[20%] w-px h-full bg-gradient-to-b from-transparent via-purple-300 to-transparent animate-shimmer"></div>
+              <div className="absolute top-0 right-[30%] w-px h-full bg-gradient-to-b from-transparent via-pink-300 to-transparent animate-shimmer" style={{ animationDelay: '1s' }}></div>
+              <div className="absolute top-0 left-[40%] w-px h-full bg-gradient-to-b from-transparent via-yellow-200 to-transparent animate-shimmer" style={{ animationDelay: '2s' }}></div>
+              <div className="absolute top-0 right-[45%] w-px h-full bg-gradient-to-b from-transparent via-purple-200 to-transparent animate-shimmer" style={{ animationDelay: '1.5s' }}></div>
+            </div>
+          </div>
+          
+          <div className="absolute inset-0 flex flex-col items-center justify-center p-6 z-10">
+            <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold mb-12 text-center relative" style={{ 
               fontFamily: "'Dancing Script', cursive",
-              color: '#4A1D96'
+              color: '#4A1D96',
+              textShadow: '0 0 20px rgba(74, 29, 150, 0.3), 0 0 40px rgba(74, 29, 150, 0.1)'
             }}>
               Welcome to Bella's Dresser
             </h1>
             
-            <div className="flex flex-col md:flex-row gap-6 w-full max-w-xl">
+            <div className="flex flex-col md:flex-row gap-8 w-full max-w-3xl">
+              {/* Fairytale Card Button 1 */}
               <button
                 onClick={() => {
                   setShowIntroScreen(false);
                   // Don't auto-start the video
                   setTimeout(() => setShowPlayButton(false), 300);
                 }}
-                className="flex-1 group flex items-center justify-center gap-3 px-8 py-6 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
+                className="flex-1 group"
               >
-                <Play size={24} className="text-white animate-pulse" />
-                <span className="text-xl font-medium">Meet Bella (Interactive Experience)</span>
+                <div className="relative bg-gradient-to-b from-[#f9f5eb] to-[#f5e6d3] rounded-2xl p-6 shadow-lg border-3 border-[#d4a574] transform transition-all duration-300 hover:scale-[1.03] hover:shadow-2xl"
+                     style={{
+                       background: 'linear-gradient(135deg, #faf8f3 0%, #f9f5eb 50%, #f5e6d3 100%)',
+                       boxShadow: '0 6px 20px rgba(139, 69, 19, 0.12), inset 0 1px 0 rgba(255,255,255,0.6)'
+                     }}>
+                  {/* Corner flourishes */}
+                  <div className="absolute top-0 left-0 w-12 h-12 opacity-20"
+                       style={{
+                         backgroundImage: `url("data:image/svg+xml,%3Csvg width='48' height='48' viewBox='0 0 48 48' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6 6C6 6 12 12 24 12C12 12 6 18 6 18' stroke='%234A1D96' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E")`,
+                         backgroundRepeat: 'no-repeat'
+                       }}></div>
+                  <div className="absolute top-0 right-0 w-12 h-12 opacity-20 rotate-90"
+                       style={{
+                         backgroundImage: `url("data:image/svg+xml,%3Csvg width='48' height='48' viewBox='0 0 48 48' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6 6C6 6 12 12 24 12C12 12 6 18 6 18' stroke='%234A1D96' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E")`,
+                         backgroundRepeat: 'no-repeat'
+                       }}></div>
+                  
+                  <div className="flex items-center justify-center gap-3">
+                    <div className="text-4xl animate-bounce-gentle">✨</div>
+                    <span className="text-2xl md:text-3xl font-bold" style={{ 
+                      fontFamily: "'Dancing Script', cursive",
+                      color: '#4A1D96'
+                    }}>Meet Bella</span>
+                  </div>
+                  <p className="text-base md:text-lg text-[#3c2f2f] mt-2 text-center" style={{ fontFamily: "'Georgia', serif" }}>
+                    Interactive Experience
+                  </p>
+                  
+                  {/* Sparkle effect on hover */}
+                  <div className="absolute -inset-1 bg-gradient-to-r from-pink-200 to-purple-200 rounded-2xl opacity-0 group-hover:opacity-15 blur-xl transition-opacity duration-300"></div>
+                </div>
               </button>
               
+              {/* Fairytale Card Button 2 */}
               <button
                 onClick={() => navigate('/no-header')}
-                className="flex-1 px-8 py-6 bg-gradient-to-r from-purple-400 to-pink-400 text-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 font-medium text-xl"
+                className="flex-1 group"
               >
-                Simple Site Experience
+                <div className="relative bg-gradient-to-b from-[#f9f5eb] to-[#f5e6d3] rounded-2xl p-6 shadow-lg border-3 border-[#d4a574] transform transition-all duration-300 hover:scale-[1.03] hover:shadow-2xl"
+                     style={{
+                       background: 'linear-gradient(135deg, #faf8f3 0%, #f9f5eb 50%, #f5e6d3 100%)',
+                       boxShadow: '0 6px 20px rgba(139, 69, 19, 0.12), inset 0 1px 0 rgba(255,255,255,0.6)'
+                     }}>
+                  {/* Corner flourishes */}
+                  <div className="absolute top-0 left-0 w-12 h-12 opacity-20"
+                       style={{
+                         backgroundImage: `url("data:image/svg+xml,%3Csvg width='48' height='48' viewBox='0 0 48 48' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6 6C6 6 12 12 24 12C12 12 6 18 6 18' stroke='%234A1D96' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E")`,
+                         backgroundRepeat: 'no-repeat'
+                       }}></div>
+                  <div className="absolute top-0 right-0 w-12 h-12 opacity-20 rotate-90"
+                       style={{
+                         backgroundImage: `url("data:image/svg+xml,%3Csvg width='48' height='48' viewBox='0 0 48 48' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6 6C6 6 12 12 24 12C12 12 6 18 6 18' stroke='%234A1D96' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E")`,
+                         backgroundRepeat: 'no-repeat'
+                       }}></div>
+                  
+                  <div className="flex items-center justify-center gap-3">
+                    <div className="text-4xl animate-bounce-gentle">🌸</div>
+                    <span className="text-2xl md:text-3xl font-bold" style={{ 
+                      fontFamily: "'Dancing Script', cursive",
+                      color: '#4A1D96'
+                    }}>Browse Boutique</span>
+                  </div>
+                  <p className="text-base md:text-lg text-[#3c2f2f] mt-2 text-center" style={{ fontFamily: "'Georgia', serif" }}>
+                    Simple Site Experience
+                  </p>
+                  
+                  {/* Sparkle effect on hover */}
+                  <div className="absolute -inset-1 bg-gradient-to-r from-pink-200 to-purple-200 rounded-2xl opacity-0 group-hover:opacity-15 blur-xl transition-opacity duration-300"></div>
+                </div>
               </button>
             </div>
           </div>
@@ -171,16 +259,24 @@ const Home: React.FC = () => {
           <div className="absolute inset-0 flex justify-center" style={{ top: '20%' }}>
             <div className="md:flex md:justify-center md:absolute md:inset-0" style={{ top: '13%' }}>
               <VideoWithFallbackAlt
+                key={showStoryVideo ? "story" : "bella"}
                 ref={videoRef}
-                webmSrc="/videos/bella_clean_output.webm"
-                fallbackSrc="/videos/bella_clean_output_alpha.mov"
+                webmSrc={showStoryVideo ? "/videos/story_transparent.webm" : "/videos/bella_clean_output.webm"}
+                fallbackSrc={showStoryVideo ? "/videos/story_transparent.mov" : "/videos/bella_clean_output_alpha.mov"}
                 playsInline
                 preload="auto"
-                muted={isMuted}
+                muted={showStoryVideo ? false : isMuted}
                 className="h-[550px] md:h-[515px] lg:h-[660px] w-auto object-contain z-10"
                 style={{ filter: 'drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3))', opacity: 1 }}
-                autoPlay={!showPlayButton}
-                onEnded={handleVideoEnd}
+                autoPlay={showStoryVideo ? true : !showPlayButton}
+                onEnded={() => {
+                  if (showStoryVideo) {
+                    setStoryEnded(true);
+                    // Don't reset showStoryVideo - keep video visible on last frame
+                  } else {
+                    handleVideoEnd();
+                  }
+                }}
               />
             </div>
           </div>
@@ -283,40 +379,69 @@ const Home: React.FC = () => {
                   onClick={(e) => e.stopPropagation()}
                 >
                   <StoryBookButtonGroup>
-                    <StoryBookButton
-                      onClick={(e) => {
-                        e?.preventDefault();
-                        e?.stopPropagation();
-                        // TODO: Add story content display
-                        alert("Bella's story coming soon!");
-                      }}
-                      className="shadow-xl hover:shadow-2xl transition-all duration-300"
-                      style={{ filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.7))' }}
-                    >
-                      Learn Bella's Story
-                    </StoryBookButton>
-                    
-                    <StoryBookButton
-                      onClick={(e) => {
-                        e?.preventDefault();
-                        e?.stopPropagation();
+                    {!storyEnded ? (
+                      <>
+                        <StoryBookButton
+                          onClick={(e) => {
+                            e?.preventDefault();
+                            e?.stopPropagation();
+                            setShowStoryVideo(true);
+                          }}
+                          className="shadow-xl hover:shadow-2xl transition-all duration-300"
+                          style={{ filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.7))' }}
+                        >
+                          Learn Bella's Story
+                        </StoryBookButton>
                         
-                        // Toggle dress cards with exit animation
-                        if (showDressCards) {
-                          setIsExitingCards(true);
-                          setTimeout(() => {
-                            setShowDressCards(false);
-                            setIsExitingCards(false);
-                          }, 600); // Match animation duration
-                        } else {
-                          setShowDressCards(true);
-                        }
-                      }}
-                      className="shadow-xl hover:shadow-2xl transition-all duration-300"
-                      style={{ filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.7))' }}
-                    >
-                      Bella's Favorite Dresses
-                    </StoryBookButton>
+                        <StoryBookButton
+                          onClick={(e) => {
+                            e?.preventDefault();
+                            e?.stopPropagation();
+                            
+                            // Toggle dress cards with exit animation
+                            if (showDressCards) {
+                              setIsExitingCards(true);
+                              setTimeout(() => {
+                                setShowDressCards(false);
+                                setIsExitingCards(false);
+                              }, 600); // Match animation duration
+                            } else {
+                              setShowDressCards(true);
+                            }
+                          }}
+                          className="shadow-xl hover:shadow-2xl transition-all duration-300"
+                          style={{ filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.7))' }}
+                        >
+                          Bella's Favorite Dresses
+                        </StoryBookButton>
+                      </>
+                    ) : (
+                      <>
+                        <StoryBookButton
+                          onClick={(e) => {
+                            e?.preventDefault();
+                            e?.stopPropagation();
+                            // TODO: Implement Paris video or content
+                          }}
+                          className="shadow-xl hover:shadow-2xl transition-all duration-300"
+                          style={{ filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.7))' }}
+                        >
+                          Why Paris Inspires Me
+                        </StoryBookButton>
+                        
+                        <StoryBookButton
+                          onClick={(e) => {
+                            e?.preventDefault();
+                            e?.stopPropagation();
+                            // TODO: Navigate to dress exploration
+                          }}
+                          className="shadow-xl hover:shadow-2xl transition-all duration-300"
+                          style={{ filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.7))' }}
+                        >
+                          Start Exploring Dresses
+                        </StoryBookButton>
+                      </>
+                    )}
                   </StoryBookButtonGroup>
                 </div>
               </div>
@@ -333,40 +458,69 @@ const Home: React.FC = () => {
                     onClick={(e) => e.stopPropagation()}
                   >
                     <StoryBookButtonGroup>
-                      <StoryBookButton
-                        onClick={(e) => {
-                          e?.preventDefault();
-                          e?.stopPropagation();
-                          // TODO: Add story content display
-                          alert("Bella's story coming soon!");
-                        }}
-                        className="shadow-xl hover:shadow-2xl transition-all duration-300"
-                        style={{ filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.7))' }}
-                      >
-                        Learn Bella's Story
-                      </StoryBookButton>
-                      
-                      <StoryBookButton
-                        onClick={(e) => {
-                          e?.preventDefault();
-                          e?.stopPropagation();
+                      {!storyEnded ? (
+                        <>
+                          <StoryBookButton
+                            onClick={(e) => {
+                              e?.preventDefault();
+                              e?.stopPropagation();
+                              setShowStoryVideo(true);
+                            }}
+                            className="shadow-xl hover:shadow-2xl transition-all duration-300"
+                            style={{ filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.7))' }}
+                          >
+                            Learn Bella's Story
+                          </StoryBookButton>
                           
-                          // Toggle dress cards with exit animation
-                          if (showDressCards) {
-                            setIsExitingCards(true);
-                            setTimeout(() => {
-                              setShowDressCards(false);
-                              setIsExitingCards(false);
-                            }, 600); // Match animation duration
-                          } else {
-                            setShowDressCards(true);
-                          }
-                        }}
-                        className="shadow-xl hover:shadow-2xl transition-all duration-300"
-                        style={{ filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.7))' }}
-                      >
-                        Bella's Favorite Dresses
-                      </StoryBookButton>
+                          <StoryBookButton
+                            onClick={(e) => {
+                              e?.preventDefault();
+                              e?.stopPropagation();
+                              
+                              // Toggle dress cards with exit animation
+                              if (showDressCards) {
+                                setIsExitingCards(true);
+                                setTimeout(() => {
+                                  setShowDressCards(false);
+                                  setIsExitingCards(false);
+                                }, 600); // Match animation duration
+                              } else {
+                                setShowDressCards(true);
+                              }
+                            }}
+                            className="shadow-xl hover:shadow-2xl transition-all duration-300"
+                            style={{ filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.7))' }}
+                          >
+                            Bella's Favorite Dresses
+                          </StoryBookButton>
+                        </>
+                      ) : (
+                        <>
+                          <StoryBookButton
+                            onClick={(e) => {
+                              e?.preventDefault();
+                              e?.stopPropagation();
+                              // TODO: Implement Paris video or content
+                            }}
+                            className="shadow-xl hover:shadow-2xl transition-all duration-300"
+                            style={{ filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.7))' }}
+                          >
+                            Why Paris Inspires Me
+                          </StoryBookButton>
+                          
+                          <StoryBookButton
+                            onClick={(e) => {
+                              e?.preventDefault();
+                              e?.stopPropagation();
+                              // TODO: Navigate to dress exploration
+                            }}
+                            className="shadow-xl hover:shadow-2xl transition-all duration-300"
+                            style={{ filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.7))' }}
+                          >
+                            Start Exploring Dresses
+                          </StoryBookButton>
+                        </>
+                      )}
                     </StoryBookButtonGroup>
                   </div>
                 </div>
@@ -512,8 +666,11 @@ const Home: React.FC = () => {
         <div className="content-container">
           <ScrollReveal animation="fade-up">
             <div className="max-w-2xl mx-auto text-center mb-16">
-              <h2 className="text-4xl font-heading font-bold mb-4">
-                <span className="gradient-text">Latest Arrivals</span>
+              <h2 className="text-5xl md:text-6xl font-bold mb-4" style={{ 
+                fontFamily: "'Dancing Script', cursive",
+                color: '#4A1D96'
+              }}>
+                Latest Arrivals
               </h2>
             </div>
           </ScrollReveal>
@@ -559,8 +716,11 @@ const Home: React.FC = () => {
         <div className="content-container">
           <div className="asymmetric-layout">
             <ScrollReveal animation="fade-right" className="asymmetric-layout-content">
-              <h2 className="text-4xl font-heading font-bold mb-4">
-                <span className="gradient-text">European Elegance Meets Minnesota Charm</span>
+              <h2 className="text-4xl md:text-5xl font-bold mb-4" style={{ 
+                fontFamily: "'Dancing Script', cursive",
+                color: '#4A1D96'
+              }}>
+                European Elegance Meets Minnesota Charm
               </h2>
               <p className="text-xl text-cosmic/70 mb-6 font-body leading-relaxed">
                 Experience our carefully curated collection of unique pieces that blend sophisticated European style with comfortable
@@ -623,8 +783,11 @@ const Home: React.FC = () => {
               />
             </ScrollReveal>
             <ScrollReveal animation="fade-left" className="asymmetric-layout-content order-1 md:order-2">
-              <h2 className="text-4xl font-heading font-bold mb-4">
-                <span className="gradient-text">Small Town Boutique, Big City Style</span>
+              <h2 className="text-4xl md:text-5xl font-bold mb-4" style={{ 
+                fontFamily: "'Dancing Script', cursive",
+                color: '#4A1D96'
+              }}>
+                Small Town Boutique, Big City Style
               </h2>
               <p className="text-xl text-cosmic/70 mb-6 font-body leading-relaxed">
                 Discover our handpicked selection of contemporary fashion that brings the latest trends to Pequot Lakes.
@@ -647,41 +810,87 @@ const Home: React.FC = () => {
         <div className="content-container">
           <ScrollReveal animation="fade-up">
             <div className="text-center max-w-3xl mx-auto mb-20">
-              <h2 className="text-5xl font-heading font-bold mb-6 tracking-tight">
-                <span className="gradient-text">
-                  Our Boutique Experience
-                </span>
+              <h2 className="text-5xl md:text-6xl font-bold mb-6" style={{ 
+                fontFamily: "'Dancing Script', cursive",
+                color: '#4A1D96'
+              }}>
+                Our Boutique Experience
               </h2>
             </div>
           </ScrollReveal>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-16">
             {[
               {
-                icon: Heart,
-                title: "Personal Styling",
-                description: "One-on-one attention to help you find the perfect pieces for your style and occasion. Our expert stylists guide you through every fashion decision, ensuring you look and feel confident."
+                emoji: "👗",
+                title: "Personal Styling Magic",
+                description: "Step into our enchanted boutique where our fairy godmother stylists help you discover your perfect look. Every visit is a magical transformation!"
               },
               {
-                icon: Star,
-                title: "Unique Selection",
-                description: "Carefully curated collection featuring both European and local designers. Each piece is handpicked to bring something special to your wardrobe, blending international trends with Minnesota charm."
+                emoji: "✨",
+                title: "Treasures from Afar",
+                description: "Our boutique is filled with hidden gems from distant lands - each piece tells a story of European elegance meeting Minnesota magic."
               },
               {
-                icon: Sparkles,
-                title: "Lakeside Fashion",
-                description: "Styles that transition seamlessly from beach to evening events. Perfect for the Minnesota lifestyle where every day brings new adventures, from morning lakeside walks to elegant dinner parties."
+                emoji: "🌸",
+                title: "Lakeside Enchantment",
+                description: "From sunrise strolls to moonlit soirées, our collection weaves together comfort and charm for every chapter of your day."
               }
             ].map((item, index) => (
               <ScrollReveal key={index} animation="fade-up" delay={index * 200}>
-                <div className="transform hover:scale-[1.02] transition-all duration-500">
-                  <CardComponent
-                    variant="feature"
-                    icon={item.icon}
-                    title={item.title}
-                    className="h-full bg-gradient-to-br from-cloud/50 to-lavender/30 shadow-xl hover:shadow-2xl"
-                  >
-                    {item.description}
-                  </CardComponent>
+                <div className="relative group">
+                  {/* Storybook-style card */}
+                  <div className="relative bg-gradient-to-b from-[#f9f5eb] to-[#f5e6d3] rounded-3xl p-8 shadow-lg border-4 border-[#d4a574] transform transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl"
+                       style={{
+                         background: 'linear-gradient(135deg, #faf8f3 0%, #f9f5eb 50%, #f5e6d3 100%)',
+                         boxShadow: '0 8px 30px rgba(139, 69, 19, 0.15), inset 0 1px 0 rgba(255,255,255,0.6)'
+                       }}>
+                    {/* Decorative corner flourishes */}
+                    <div className="absolute top-0 left-0 w-16 h-16 opacity-30"
+                         style={{
+                           backgroundImage: `url("data:image/svg+xml,%3Csvg width='64' height='64' viewBox='0 0 64 64' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M8 8C8 8 16 16 32 16C16 16 8 24 8 24' stroke='%234A1D96' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E")`,
+                           backgroundRepeat: 'no-repeat'
+                         }}></div>
+                    <div className="absolute top-0 right-0 w-16 h-16 opacity-30 rotate-90"
+                         style={{
+                           backgroundImage: `url("data:image/svg+xml,%3Csvg width='64' height='64' viewBox='0 0 64 64' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M8 8C8 8 16 16 32 16C16 16 8 24 8 24' stroke='%234A1D96' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E")`,
+                           backgroundRepeat: 'no-repeat'
+                         }}></div>
+                    
+                    {/* Emoji icon */}
+                    <div className="text-6xl mb-6 text-center animate-bounce-gentle">
+                      {item.emoji}
+                    </div>
+                    
+                    {/* Title */}
+                    <h3 className="text-2xl md:text-3xl font-bold mb-4 text-center" 
+                        style={{ 
+                          fontFamily: "'Dancing Script', cursive",
+                          color: '#4A1D96'
+                        }}>
+                      {item.title}
+                    </h3>
+                    
+                    {/* Description */}
+                    <p className="text-lg text-[#3c2f2f] text-center leading-relaxed"
+                       style={{ fontFamily: "'Georgia', serif" }}>
+                      {item.description}
+                    </p>
+                    
+                    {/* Decorative bottom flourishes */}
+                    <div className="absolute bottom-0 left-0 w-16 h-16 opacity-30 rotate-180"
+                         style={{
+                           backgroundImage: `url("data:image/svg+xml,%3Csvg width='64' height='64' viewBox='0 0 64 64' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M8 8C8 8 16 16 32 16C16 16 8 24 8 24' stroke='%234A1D96' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E")`,
+                           backgroundRepeat: 'no-repeat'
+                         }}></div>
+                    <div className="absolute bottom-0 right-0 w-16 h-16 opacity-30 -rotate-90"
+                         style={{
+                           backgroundImage: `url("data:image/svg+xml,%3Csvg width='64' height='64' viewBox='0 0 64 64' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M8 8C8 8 16 16 32 16C16 16 8 24 8 24' stroke='%234A1D96' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E")`,
+                           backgroundRepeat: 'no-repeat'
+                         }}></div>
+                  </div>
+                  
+                  {/* Sparkle effects on hover */}
+                  <div className="absolute -inset-1 bg-gradient-to-r from-pink-200 to-purple-200 rounded-3xl opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500"></div>
                 </div>
               </ScrollReveal>
             ))}
