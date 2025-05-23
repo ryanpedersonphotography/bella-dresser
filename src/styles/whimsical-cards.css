@@ -16,25 +16,19 @@
   }
 }
 
-@keyframes gentleFloat {
-  0%, 100% {
-    transform: translateY(-50%) translateX(0) rotate(0deg);
-  }
-  25% {
-    transform: translateY(-52%) translateX(var(--float-distance, 0)) rotate(0.5deg);
-  }
-  50% {
-    transform: translateY(-48%) translateX(0) rotate(-0.5deg);
-  }
-  75% {
-    transform: translateY(-52%) translateX(calc(var(--float-distance, 0) * -0.5)) rotate(0.3deg);
-  }
+.animate-slideInAndFloat {
+  animation: slideInAndFloat 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  animation-delay: var(--animation-delay, 0);
 }
 
-.animate-slideInAndFloat {
-  animation: slideInAndFloat 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards,
-             gentleFloat 6s ease-in-out infinite;
-  animation-delay: var(--animation-delay, 0), calc(var(--animation-delay, 0) + 1.2s);
+/* Muted image effect */
+.dress-card-image {
+  filter: grayscale(60%) brightness(0.8) contrast(0.9);
+  transition: filter 0.5s ease-in-out;
+}
+
+.dress-card-image:hover {
+  filter: grayscale(0%) brightness(1) contrast(1);
 }
 
 /* Sparkle effects */
