@@ -357,9 +357,9 @@ const Home: React.FC = () => {
             </div>
           )}
           
-          {/* Whimsical Dress Cards - Show to the left of Bella */}
+          {/* Whimsical Dress Cards - Show to the left of Bella, aligned with buttons */}
           {showDressCards && (
-            <div className="absolute top-1/2 -translate-y-1/2 left-[5%] lg:left-[15%] 
+            <div className="absolute top-[calc(50%+17%)] -translate-y-1/2 left-[5%] lg:left-[15%] 
                             flex gap-4 z-20">
               <WhimsicalDressCard
                 image="/images/carousel/123_1-2.jpg"
