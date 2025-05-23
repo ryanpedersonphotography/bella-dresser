@@ -14,32 +14,22 @@ const VideoWithFallback = forwardRef<HTMLVideoElement, VideoWithFallbackProps>((
   className = '', 
   ...props 
 }, ref) => {
-  const [supportsWebM, setSupportsWebM] = useState(true);
+  const [isSafari, setIsSafari] = useState(false);
   
   useEffect(() => {
-    // Check WebM support instead of browser detection
-    const checkWebMSupport = () => {
-      const video = document.createElement('video');
-      const canPlayWebM = video.canPlayType('video/webm; codecs="vp9"') !== '' || 
-                         video.canPlayType('video/webm; codecs="vp8"') !== '';
-      
-      // Also check for Safari specifically as a fallback
-      const ua = navigator.userAgent;
-      const isSafari = /^((?!chrome|android).)*safari/i.test(ua);
-      
-      console.log('Video format detection:', { 
-        canPlayWebM, 
-        isSafari, 
-        userAgent: ua,
-        willUseWebM: canPlayWebM && !isSafari 
-      });
-      
-      setSupportsWebM(canPlayWebM && !isSafari);
-    };
+    // Simple Safari detection - runs immediately
+    const ua = window.navigator.userAgent;
+    const safari = /safari/i.test(ua) && !/chrome/i.test(ua);
     
-    checkWebMSupport();
+    console.log('Safari detection:', { 
+      userAgent: ua,
+      isSafari: safari
+    });
+    
+    setIsSafari(safari);
   }, []);
 
+  // For Safari, put MOV first. For others, put WebM first.
   return (
     <video
       ref={ref}
@@ -47,14 +37,30 @@ const VideoWithFallback = forwardRef<HTMLVideoElement, VideoWithFallbackProps>((
       poster={poster}
       {...props}
     >
-      {supportsWebM && webmSrc && (
-        <source src={webmSrc} type="video/webm" />
-      )}
-      {fallbackSrc && (
-        <source 
-          src={fallbackSrc} 
-          type={fallbackSrc.endsWith('.mov') ? 'video/quicktime' : 'video/mp4'} 
-        />
+      {isSafari ? (
+        <>
+          {fallbackSrc && (
+            <source 
+              src={fallbackSrc} 
+              type={fallbackSrc.endsWith('.mov') ? 'video/quicktime' : 'video/mp4'} 
+            />
+          )}
+          {webmSrc && (
+            <source src={webmSrc} type="video/webm" />
+          )}
+        </>
+      ) : (
+        <>
+          {webmSrc && (
+            <source src={webmSrc} type="video/webm" />
+          )}
+          {fallbackSrc && (
+            <source 
+              src={fallbackSrc} 
+              type={fallbackSrc.endsWith('.mov') ? 'video/quicktime' : 'video/mp4'} 
+            />
+          )}
+        </>
       )}
       Your browser does not support the video tag.
     </video>
