@@ -31,6 +31,60 @@
   filter: grayscale(0%) brightness(1) contrast(1);
 }
 
+/* Hand-drawn border effect */
+.hand-drawn-border {
+  position: relative;
+  border: none !important;
+}
+
+.hand-drawn-border::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border: 2px solid #cfb68e;
+  border-radius: 12px;
+  background: transparent;
+  pointer-events: none;
+  z-index: 1;
+  
+  /* Create hand-drawn effect with multiple shadows */
+  filter: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='roughPaper'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.03' numOctaves='5' result='noise' /%3E%3CfeDisplacementMap in='SourceGraphic' in2='noise' scale='1.5' /%3E%3C/filter%3E%3C/svg%3E#roughPaper");
+}
+
+/* Alternative approach with clip-path for more organic shape */
+.hand-drawn-card {
+  clip-path: polygon(
+    0% 15px,
+    15px 0%,
+    calc(100% - 15px) 0%,
+    100% 15px,
+    100% calc(100% - 15px),
+    calc(100% - 15px) 100%,
+    15px 100%,
+    0% calc(100% - 15px)
+  );
+}
+
+/* Sketchy border animation on hover */
+.hand-drawn-border:hover::before {
+  animation: sketch 0.5s ease-in-out;
+}
+
+@keyframes sketch {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(0.5px, -0.5px) rotate(0.1deg);
+  }
+  50% {
+    transform: translate(-0.5px, 0.5px) rotate(-0.1deg);
+  }
+  75% {
+    transform: translate(0.5px, 0.5px) rotate(0.1deg);
+  }
+}
+
 /* Sparkle effects */
 @keyframes sparkle {
   0%, 100% { 
