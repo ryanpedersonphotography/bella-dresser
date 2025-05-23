@@ -359,7 +359,7 @@ const Home: React.FC = () => {
           
           {/* Whimsical Dress Cards - Show to the left of Bella, below gradient */}
           {showDressCards && (
-            <div className="absolute bottom-[-10%] left-[5%] lg:left-[15%] 
+            <div className="absolute bottom-[-20%] left-[5%] lg:left-[15%] 
                             flex gap-4 z-20">
               <WhimsicalDressCard
                 image="/images/carousel/123_1-2.jpg"
