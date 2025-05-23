@@ -7,6 +7,7 @@ interface WhimsicalDressCardProps {
   price: string;
   description?: string;
   delay?: number;
+  isExiting?: boolean;
 }
 
 const WhimsicalDressCard: React.FC<WhimsicalDressCardProps> = ({ 
@@ -14,7 +15,8 @@ const WhimsicalDressCard: React.FC<WhimsicalDressCardProps> = ({
   title, 
   price, 
   description,
-  delay = 0 
+  delay = 0,
+  isExiting = false
 }) => {
   const slideDirection = '-translate-x-full';
   
@@ -23,7 +25,7 @@ const WhimsicalDressCard: React.FC<WhimsicalDressCardProps> = ({
       className={`
         w-[180px] lg:w-[220px]
         transform transition-all duration-1000 ease-out
-        animate-slideInAndFloat
+        ${isExiting ? 'animate-slideOutAndFloat' : 'animate-slideInAndFloat'}
         relative group
       `}
       style={{

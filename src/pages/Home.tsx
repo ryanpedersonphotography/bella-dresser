@@ -23,6 +23,7 @@ const Home: React.FC = () => {
   const [isWaggling, setIsWaggling] = useState(false); // Track if button is currently waggling
   const [showButtons, setShowButtons] = useState(false); // Show interaction buttons after talking to Bella
   const [showDressCards, setShowDressCards] = useState(false); // Show dress cards on sides
+  const [isExitingCards, setIsExitingCards] = useState(false); // Track exit animation
   const videoRef = useRef<HTMLVideoElement>(null);
   
   // Effect to handle periodic waggling
@@ -300,8 +301,16 @@ const Home: React.FC = () => {
                         e?.preventDefault();
                         e?.stopPropagation();
                         
-                        // Toggle dress cards visibility
-                        setShowDressCards(!showDressCards);
+                        // Toggle dress cards with exit animation
+                        if (showDressCards) {
+                          setIsExitingCards(true);
+                          setTimeout(() => {
+                            setShowDressCards(false);
+                            setIsExitingCards(false);
+                          }, 1000); // Match animation duration
+                        } else {
+                          setShowDressCards(true);
+                        }
                       }}
                       className="shadow-xl hover:shadow-2xl transition-all duration-300"
                       style={{ filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.7))' }}
@@ -342,8 +351,16 @@ const Home: React.FC = () => {
                           e?.preventDefault();
                           e?.stopPropagation();
                           
-                          // Toggle dress cards visibility
-                          setShowDressCards(!showDressCards);
+                          // Toggle dress cards with exit animation
+                          if (showDressCards) {
+                            setIsExitingCards(true);
+                            setTimeout(() => {
+                              setShowDressCards(false);
+                              setIsExitingCards(false);
+                            }, 1000); // Match animation duration
+                          } else {
+                            setShowDressCards(true);
+                          }
                         }}
                         className="shadow-xl hover:shadow-2xl transition-all duration-300"
                         style={{ filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.7))' }}
@@ -366,21 +383,24 @@ const Home: React.FC = () => {
                 title="Vintage Rose"
                 price="$98"
                 description="Timeless elegance"
-                delay={0}
+                delay={isExitingCards ? 300 : 0}
+                isExiting={isExitingCards}
               />
               <WhimsicalDressCard
                 image="/images/carousel/123_1-2.jpg"
                 title="Parisian Evening"
                 price="$124"
                 description="Elegant dinner wear"
-                delay={150}
+                delay={isExitingCards ? 150 : 150}
+                isExiting={isExitingCards}
               />
               <WhimsicalDressCard
                 image="/images/carousel/123_1-3.jpg"
                 title="Morning Café"
                 price="$67"
                 description="Comfortable chic"
-                delay={300}
+                delay={isExitingCards ? 0 : 300}
+                isExiting={isExitingCards}
               />
             </div>
           )}
