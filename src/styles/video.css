@@ -1,0 +1,17 @@
+.video-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.hero-video {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* Ensure transparent videos blend properly */
+.transparent-video {
+  mix-blend-mode: normal;
+  background: transparent;
+}

@@ -10,6 +10,7 @@ import FloatingDisplay, { DisplayContent } from '../components/FloatingDisplay';
 import { DressItem } from '../components/IllustratedDressGallery';
 import { StoryBookButton } from '../components/StoryBookButton';
 import { StoryBookButtonGroup } from '../components/StoryBookButtonGroup';
+import VideoWithFallback from '../components/VideoWithFallback';
 
 const Home: React.FC = () => {
   const navigate = useNavigate();
@@ -168,8 +169,10 @@ const Home: React.FC = () => {
           {/* Transparent Bella Video - Made 10% bigger and moved down 5% */}
           <div className="absolute inset-0 flex justify-center" style={{ top: '20%' }}>
             <div className="md:flex md:justify-center md:absolute md:inset-0" style={{ top: '13%' }}>
-              <video 
+              <VideoWithFallback
                 ref={videoRef}
+                webmSrc="/videos/bella_clean_output.webm"
+                fallbackSrc="/videos/bella_clean_output.mov"
                 playsInline
                 preload="auto"
                 muted={isMuted}
@@ -177,10 +180,7 @@ const Home: React.FC = () => {
                 style={{ filter: 'drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3))', opacity: 1 }}
                 autoPlay={!showPlayButton}
                 onEnded={handleVideoEnd}
-              >
-                <source src="/videos/bella_clean_output.webm" type="video/webm" />
-                Your browser does not support the video tag.
-              </video>
+              />
             </div>
           </div>
           
