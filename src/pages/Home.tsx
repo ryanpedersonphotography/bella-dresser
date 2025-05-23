@@ -359,21 +359,28 @@ const Home: React.FC = () => {
           
           {/* Whimsical Dress Cards - Show to the left of Bella, below gradient */}
           {showDressCards && (
-            <div className="absolute bottom-[-10%] left-[5%] lg:left-[15%] 
+            <div className="absolute bottom-[-10%] left-[5%] lg:left-[10%] 
                             flex gap-4 z-20">
+              <WhimsicalDressCard
+                image="/images/carousel/123_1-4.jpg"
+                title="Vintage Rose"
+                price="$98"
+                description="Timeless elegance"
+                delay={0}
+              />
               <WhimsicalDressCard
                 image="/images/carousel/123_1-2.jpg"
                 title="Parisian Evening"
                 price="$124"
                 description="Elegant dinner wear"
-                delay={0}
+                delay={150}
               />
               <WhimsicalDressCard
                 image="/images/carousel/123_1-3.jpg"
                 title="Morning Café"
                 price="$67"
                 description="Comfortable chic"
-                delay={200}
+                delay={300}
               />
             </div>
           )}
