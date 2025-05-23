@@ -357,49 +357,25 @@ const Home: React.FC = () => {
             </div>
           )}
           
-          {/* Whimsical Dress Cards - Show on both sides of Bella */}
+          {/* Whimsical Dress Cards - Show to the left of Bella */}
           {showDressCards && (
-            <>
-              {/* Left side cards */}
+            <div className="absolute top-1/2 -translate-y-1/2 left-[5%] lg:left-[15%] 
+                            flex gap-4 z-20">
               <WhimsicalDressCard
                 image="/images/carousel/123_1-2.jpg"
                 title="Parisian Evening"
                 price="$124"
                 description="Elegant dinner wear"
-                side="left"
-                position="top"
                 delay={0}
               />
-              <WhimsicalDressCard
-                image="/images/carousel/123_1-4.jpg"
-                title="Vintage Rose"
-                price="$98"
-                description="Timeless elegance"
-                side="left"
-                position="bottom"
-                delay={150}
-              />
-              
-              {/* Right side cards */}
               <WhimsicalDressCard
                 image="/images/carousel/123_1-3.jpg"
                 title="Morning Café"
                 price="$67"
                 description="Comfortable chic"
-                side="right"
-                position="top"
-                delay={300}
+                delay={200}
               />
-              <WhimsicalDressCard
-                image="/images/carousel/123_1-5.jpg"
-                title="Lake Breeze"
-                price="$76"
-                description="Free-spirited style"
-                side="right"
-                position="bottom"
-                delay={450}
-              />
-            </>
+            </div>
           )}
 
         </div>

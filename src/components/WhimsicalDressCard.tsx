@@ -6,8 +6,6 @@ interface WhimsicalDressCardProps {
   title: string;
   price: string;
   description?: string;
-  side: 'left' | 'right';
-  position: 'top' | 'bottom';
   delay?: number;
 }
 
@@ -16,18 +14,13 @@ const WhimsicalDressCard: React.FC<WhimsicalDressCardProps> = ({
   title, 
   price, 
   description,
-  side,
-  position,
   delay = 0 
 }) => {
-  const slideDirection = side === 'left' ? '-translate-x-full' : 'translate-x-full';
-  const verticalPosition = position === 'top' ? 'top-[30%]' : 'top-[60%]';
+  const slideDirection = '-translate-x-full';
   
   return (
     <div 
       className={`
-        absolute ${verticalPosition} -translate-y-1/2 
-        ${side === 'left' ? 'left-[5%] lg:left-[10%]' : 'right-[5%] lg:right-[10%]'}
         w-[180px] lg:w-[220px]
         transform transition-all duration-1000 ease-out
         animate-slideInAndFloat
@@ -35,7 +28,7 @@ const WhimsicalDressCard: React.FC<WhimsicalDressCardProps> = ({
       style={{
         animationDelay: `${delay}ms`,
         '--slide-from': slideDirection,
-        '--float-distance': side === 'left' ? '-10px' : '10px',
+        '--float-distance': '-10px',
         fontFamily: '"Cormorant Garamond", serif',
       } as React.CSSProperties}
     >
