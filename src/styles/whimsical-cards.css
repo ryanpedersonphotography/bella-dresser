@@ -19,18 +19,11 @@
 @keyframes slideOutAndFloat {
   0% {
     opacity: 1;
-    transform: translateY(-50%) translateX(0) scale(1) rotate(0deg);
-  }
-  30% {
-    transform: translateY(-50%) translateX(0) scale(0.95) rotate(-1deg);
-  }
-  50% {
-    opacity: 1;
-    transform: translateY(-50%) translateX(0) scale(1.05) rotate(2deg);
+    transform: translateX(0) scale(1) rotate(0deg);
   }
   100% {
     opacity: 0;
-    transform: translateY(-50%) translateX(var(--slide-from, 0)) scale(0.8) rotate(-10deg);
+    transform: translateX(-200px) scale(0.9) rotate(-5deg);
   }
 }
 
@@ -40,7 +33,7 @@
 }
 
 .animate-slideOutAndFloat {
-  animation: slideOutAndFloat 1s cubic-bezier(0.64, 0, 0.78, 0) forwards;
+  animation: slideOutAndFloat 0.8s cubic-bezier(0.4, 0, 1, 1) forwards;
   animation-delay: var(--animation-delay, 0);
 }
 
