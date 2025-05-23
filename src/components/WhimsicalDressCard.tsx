@@ -24,7 +24,6 @@ const WhimsicalDressCard: React.FC<WhimsicalDressCardProps> = ({
     <div 
       className={`
         w-[180px] lg:w-[220px]
-        transform transition-all duration-1000 ease-out
         ${isExiting ? 'animate-slideOutAndFloat' : 'animate-slideInAndFloat'}
         relative group
       `}
@@ -33,6 +32,7 @@ const WhimsicalDressCard: React.FC<WhimsicalDressCardProps> = ({
         '--slide-from': slideDirection,
         '--float-distance': '-10px',
         fontFamily: '"Cormorant Garamond", serif',
+        animationFillMode: 'both',
       } as React.CSSProperties}
     >
       <div className="bg-[#fcf4e6] border-2 border-[#cfb68e] rounded-xl 
