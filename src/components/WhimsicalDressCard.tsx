@@ -24,7 +24,7 @@ const WhimsicalDressCard: React.FC<WhimsicalDressCardProps> = ({
         w-[180px] lg:w-[220px]
         transform transition-all duration-1000 ease-out
         animate-slideInAndFloat
-        relative
+        relative group
       `}
       style={{
         animationDelay: `${delay}ms`,
@@ -35,7 +35,9 @@ const WhimsicalDressCard: React.FC<WhimsicalDressCardProps> = ({
     >
       {/* Hand-drawn border SVG */}
       <svg 
-        className="absolute inset-0 w-full h-full pointer-events-none z-10"
+        className="absolute inset-0 w-full h-full pointer-events-none z-10 
+                   transition-all duration-300 ease-out
+                   group-hover:scale-110 group-hover:-translate-x-1 group-hover:-translate-y-1"
         viewBox="0 0 220 300"
         preserveAspectRatio="none"
       >
@@ -55,6 +57,7 @@ const WhimsicalDressCard: React.FC<WhimsicalDressCardProps> = ({
           strokeLinecap="round"
           strokeLinejoin="round"
           strokeDasharray="0"
+          className="transition-all duration-300 group-hover:stroke-[#b09d7a]"
           style={{
             filter: 'url(#hand-drawn-filter)'
           }}
