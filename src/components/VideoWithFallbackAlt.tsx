@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react';
-import { useSafariDetection } from '../hooks/useSafariDetection';
+import { isSafari, isIOS } from 'react-device-detect';
 
 interface VideoWithFallbackProps extends React.VideoHTMLAttributes<HTMLVideoElement> {
   webmSrc?: string;
@@ -8,22 +8,25 @@ interface VideoWithFallbackProps extends React.VideoHTMLAttributes<HTMLVideoElem
   className?: string;
 }
 
-const VideoWithFallback = forwardRef<HTMLVideoElement, VideoWithFallbackProps>(({ 
+const VideoWithFallbackAlt = forwardRef<HTMLVideoElement, VideoWithFallbackProps>(({ 
   webmSrc, 
   fallbackSrc, 
   poster, 
   className = '', 
   ...props 
 }, ref) => {
-  const isSafari = useSafariDetection();
+  // Use react-device-detect for reliable Safari detection
+  const useFallback = isSafari || isIOS;
   
-  // Don't render until we know the browser
-  if (isSafari === null) {
-    return null;
-  }
+  console.log('VideoWithFallbackAlt - Browser Detection:', {
+    isSafari,
+    isIOS,
+    useFallback,
+    userAgent: navigator.userAgent
+  });
   
-  // For Safari, ONLY render MOV/MP4 source
-  if (isSafari && fallbackSrc) {
+  // For Safari/iOS, ONLY render MOV/MP4 source
+  if (useFallback && fallbackSrc) {
     return (
       <video
         ref={ref}
@@ -62,6 +65,6 @@ const VideoWithFallback = forwardRef<HTMLVideoElement, VideoWithFallbackProps>((
   );
 });
 
-VideoWithFallback.displayName = 'VideoWithFallback';
+VideoWithFallbackAlt.displayName = 'VideoWithFallbackAlt';
 
-export default VideoWithFallback;
+export default VideoWithFallbackAlt;
