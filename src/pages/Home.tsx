@@ -6,11 +6,11 @@ import { Star, Sparkles, Heart, Play, Volume2, VolumeX, MessageCircle } from 'lu
 import ImageCarousel from '../components/ImageCarousel';
 import ScrollReveal from '../components/ScrollReveal';
 import WatercolorBorderedImage from '../components/WatercolorBorderedImage';
-import FloatingDisplay, { DisplayContent } from '../components/FloatingDisplay';
-import { DressItem } from '../components/IllustratedDressGallery';
 import { StoryBookButton } from '../components/StoryBookButton';
 import { StoryBookButtonGroup } from '../components/StoryBookButtonGroup';
 import VideoWithFallbackAlt from '../components/VideoWithFallbackAlt';
+import WhimsicalDressCard from '../components/WhimsicalDressCard';
+import '../styles/whimsical-cards.css';
 
 const Home: React.FC = () => {
   const navigate = useNavigate();
@@ -21,8 +21,8 @@ const Home: React.FC = () => {
   const [isMuted, setIsMuted] = useState(true); // Track if audio is muted, default to muted
   const [showTalkButton, setShowTalkButton] = useState(true); // Show talk to Bella button
   const [isWaggling, setIsWaggling] = useState(false); // Track if button is currently waggling
-  const [floatingDisplay, setFloatingDisplay] = useState<DisplayContent | null>(null); // Control floating display content
   const [showButtons, setShowButtons] = useState(false); // Show interaction buttons after talking to Bella
+  const [showDressCards, setShowDressCards] = useState(false); // Show dress cards on sides
   const videoRef = useRef<HTMLVideoElement>(null);
   
   // Effect to handle periodic waggling
@@ -300,51 +300,8 @@ const Home: React.FC = () => {
                         e?.preventDefault();
                         e?.stopPropagation();
                         
-                        // Show the dresses immediately
-                        const dresses: DressItem[] = [
-                          { 
-                            src: "/images/carousel/123_1.jpg", 
-                            alt: "Elegant Summer Dress",
-                            name: "Provence Sunset",
-                            description: "Flowing fabric with delicate floral print",
-                            price: "$89"
-                          },
-                          { 
-                            src: "/images/carousel/123_1-2.jpg", 
-                            alt: "Chic Evening Wear",
-                            name: "Parisian Evening",
-                            description: "Perfect for dinner by the lake",
-                            price: "$124"
-                          },
-                          { 
-                            src: "/images/carousel/123_1-3.jpg", 
-                            alt: "Casual Day Dress",
-                            name: "Morning Café",
-                            description: "Comfortable yet sophisticated",
-                            price: "$67"
-                          },
-                          { 
-                            src: "/images/carousel/123_1-4.jpg", 
-                            alt: "Vintage Style Dress",
-                            name: "Vintage Rose",
-                            description: "Timeless elegance with modern comfort",
-                            price: "$98"
-                          },
-                          { 
-                            src: "/images/carousel/123_1-5.jpg", 
-                            alt: "Bohemian Dress",
-                            name: "Lake Breeze",
-                            description: "Free-spirited style for sunny days",
-                            price: "$76"
-                          }
-                        ];
-                        
-                        // Show the floating display immediately
-                        setFloatingDisplay({
-                          type: 'illustrated',
-                          title: "Bella's Favorite Dresses",
-                          dresses: dresses
-                        });
+                        // Toggle dress cards visibility
+                        setShowDressCards(!showDressCards);
                       }}
                       className="shadow-xl hover:shadow-2xl transition-all duration-300"
                       style={{ filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.7))' }}
@@ -385,51 +342,8 @@ const Home: React.FC = () => {
                           e?.preventDefault();
                           e?.stopPropagation();
                           
-                          // Show the dresses immediately
-                          const dresses: DressItem[] = [
-                            { 
-                              src: "/images/carousel/123_1.jpg", 
-                              alt: "Elegant Summer Dress",
-                              name: "Provence Sunset",
-                              description: "Flowing fabric with delicate floral print",
-                              price: "$89"
-                            },
-                            { 
-                              src: "/images/carousel/123_1-2.jpg", 
-                              alt: "Chic Evening Wear",
-                              name: "Parisian Evening",
-                              description: "Perfect for dinner by the lake",
-                              price: "$124"
-                            },
-                            { 
-                              src: "/images/carousel/123_1-3.jpg", 
-                              alt: "Casual Day Dress",
-                              name: "Morning Café",
-                              description: "Comfortable yet sophisticated",
-                              price: "$67"
-                            },
-                            { 
-                              src: "/images/carousel/123_1-4.jpg", 
-                              alt: "Vintage Style Dress",
-                              name: "Vintage Rose",
-                              description: "Timeless elegance with modern comfort",
-                              price: "$98"
-                            },
-                            { 
-                              src: "/images/carousel/123_1-5.jpg", 
-                              alt: "Bohemian Dress",
-                              name: "Lake Breeze",
-                              description: "Free-spirited style for sunny days",
-                              price: "$76"
-                            }
-                          ];
-                          
-                          // Show the floating display immediately
-                          setFloatingDisplay({
-                            type: 'illustrated',
-                            title: "Bella's Favorite Dresses",
-                            dresses: dresses
-                          });
+                          // Toggle dress cards visibility
+                          setShowDressCards(!showDressCards);
                         }}
                         className="shadow-xl hover:shadow-2xl transition-all duration-300"
                         style={{ filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.7))' }}
@@ -441,6 +355,28 @@ const Home: React.FC = () => {
                 </div>
               </div>
             </div>
+          )}
+          
+          {/* Whimsical Dress Cards - Show on both sides of Bella */}
+          {showDressCards && (
+            <>
+              <WhimsicalDressCard
+                image="/images/carousel/123_1-2.jpg"
+                title="Parisian Evening"
+                price="$124"
+                description="Perfect for dinner by the lake"
+                side="left"
+                delay={0}
+              />
+              <WhimsicalDressCard
+                image="/images/carousel/123_1-3.jpg"
+                title="Morning Café"
+                price="$67"
+                description="Comfortable yet sophisticated"
+                side="right"
+                delay={200}
+              />
+            </>
           )}
 
         </div>
@@ -727,12 +663,6 @@ const Home: React.FC = () => {
         </div>
       </TexturedSection>
       
-      {/* Floating Display Component - positioned at root level to overlay entire page */}
-      <FloatingDisplay
-        isVisible={!!floatingDisplay}
-        onClose={() => setFloatingDisplay(null)}
-        content={floatingDisplay || undefined}
-      />
     </div>
   );
 };
