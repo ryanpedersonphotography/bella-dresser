@@ -172,7 +172,7 @@ const Home: React.FC = () => {
               <VideoWithFallbackAlt
                 ref={videoRef}
                 webmSrc="/videos/bella_clean_output.webm"
-                fallbackSrc="/videos/bella_clean_output.mov"
+                fallbackSrc="/videos/bella_clean_output_alpha.mov"
                 playsInline
                 preload="auto"
                 muted={isMuted}
